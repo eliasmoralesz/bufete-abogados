@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faFlagUsa, faFlag } from '@fortawesome/free-solid-svg-icons'; // Banderas
+import logo from '../assets/Daguer Hernandez Abogado nombre negro.png'; // Nombre exacto del logo
+import flagUsa from '../assets/flag-usa.svg'; // Icono SVG para inglés
+import flagSpain from '../assets/flag-spain.svg'; // Icono SVG para español
 import './Header.css';
 
 const Header = () => {
@@ -21,7 +23,9 @@ const Header = () => {
   return (
     <header>
       <div className="logo">
-        <a href="/">Logo del Bufete</a> {/* Logo como enlace a la página de inicio */}
+        <a href="/">
+          <img src={logo} alt="Logo del Bufete" className="logo-image" />
+        </a>
       </div>
       <nav className={`nav-menu ${isMenuOpen ? 'open' : ''}`}>
         <button className="menu-toggle" onClick={toggleMenu}>
@@ -30,14 +34,13 @@ const Header = () => {
         <ul>
           <li><a href="#about">{t('about')}</a></li>
           <li><a href="#services">{t('services')}</a></li>
-          <li><a href="#blog">{t('blog')}</a></li>
           <li><a href="#contact">{t('contact')}</a></li>
           <li className="language-buttons">
             <button onClick={() => changeLanguage('en')}>
-              <FontAwesomeIcon icon={faFlagUsa} /> {/* Bandera de EE.UU. */}
+              <img src={flagUsa} alt="English" className="flag-icon" />
             </button>
             <button onClick={() => changeLanguage('es')}>
-              <FontAwesomeIcon icon={faFlag} /> {/* Bandera de España */}
+              <img src={flagSpain} alt="Español" className="flag-icon" />
             </button>
           </li>
         </ul>

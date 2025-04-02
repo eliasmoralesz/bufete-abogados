@@ -1,13 +1,147 @@
 footer {
-    background-color: #333333;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 40px 20px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.footer-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 1px;
+  background-color: #d4af37;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.footer-column h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-column p {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.footer-column .highlight {
+  color: #d4af37;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #d4af37; /* Dorado por defecto, ya no se necesita porque el stroke está en el SVG */
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover svg {
+  stroke: #ffffff; /* Blanco en hover */
+}
+
+.footer-column .social-icons svg {
+  width: 24px;
+  height: 24px;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1rem;
+  opacity: 0.8;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.copyright:hover {
+  color: #d4af37;
+  opacity: 1;
+}
+
+/* Estilos para los botones interactivos */
+.phone-button {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d4af37;
+  text-decoration: none;
+  margin: 10px 0;
+  display: block;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.phone-button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.email-button {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #d4af37;
+  text-decoration: none;
+  margin: 10px 0;
+  display: block;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.email-button:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column;
+      align-items: center;
   }
-  
-  footer p {
-    margin: 0;
+
+  .footer-column {
+      margin-bottom: 20px;
+  }
+
+  .footer-container::after {
+      width: 80%;
+  }
+
+  .footer-column h3 {
+      font-size: 1.8rem;
+  }
+
+  .footer-column p {
+      font-size: 1.3rem;
+  }
+
+  .phone-button {
+    font-size: 1.3rem;
+  }
+
+  .email-button {
     font-size: 1rem;
-    opacity: 0.8; /* Texto ligeramente transparente */
   }
+}
