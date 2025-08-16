@@ -1,8 +1,16 @@
+/* styles.css */
+
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  color: #1e1e1e;
+  background-color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden; /* ✨ Esto previene el scroll horizontal */
+}
+
+h1, h2, h3, .section-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 
 header {
@@ -10,8 +18,14 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  box-shadow: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 header .logo {
@@ -28,10 +42,21 @@ header nav ul {
 header nav ul li a {
   text-decoration: none;
   color: #333333;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; /* Añadimos transición */
+}
+
+/* Hover básico para no interferir con Header.css */
+header nav ul li a:hover {
+  color: #2B4BB1; /* Cambio de color ligero para Formal.jsx */
 }
 
 header .language-selector select {
   padding: 5px;
   border: 1px solid #cccccc;
   border-radius: 5px;
+}
+
+header.scrolled {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

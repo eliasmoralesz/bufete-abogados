@@ -1,117 +1,130 @@
 header {
+  font-family: 'Inter', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  box-sizing: border-box; /* Añadido: incluye padding en la altura */
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.4); /* Glassmorphism para escritorio y móvil */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
+  transition: margin-top 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Con TopBar activa (al principio) */
+header.with-topbar {
+  margin-top: 34px;
+}
+
+/* Cuando el usuario hace scroll y desaparece la TopBar */
+header.no-topbar {
+  margin-top: 0;
+}
+
+header.scrolled {
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;     /* Hacer el header fijo */
-  top: 0;             /* Pegado a la parte superior */
-  left: 0;            /* Alineado a la izquierda */
-  width: 100%;        /* Ocupar todo el ancho */
-  z-index: 1000;      /* Asegurar que esté por encima de otros elementos */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 0;
+  padding: 10px 20px;
+  backdrop-filter: none; /* Quitamos glassmorphism en scrolled */
 }
 
-header .logo a {
-  text-decoration: none; /* Elimina el subrayado del enlace */
-  display: block; /* Añadido para que la imagen se comporte bien dentro del enlace */
+.logo .logo-image {
+  height: 52px;
+  width: auto;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-header .logo .logo-image {
-  height: 40px; /* Altura fija para el logo, ajusta según necesites */
-  width: auto; /* Mantiene la proporción */
-  transition: transform 0.3s ease; /* Transición suave para el hover */
+header.scrolled .logo-image {
+  transform: scale(0.95);
 }
 
-header .logo a:hover .logo-image {
-  transform: scale(1.05); /* Efecto de aumento ligero en hover */
+.logo a:hover .logo-image {
+  transform: scale(1.05);
 }
 
-/* Estilos para el menú de navegación */
+/* Nav Styles */
 nav.nav-menu {
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative; /* Para posicionar el menú desplegable */
+  position: relative;
 }
 
 nav.nav-menu ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 24px; /* un poco más de separación */
   margin: 0;
-  padding: 0;
+  padding: 20px 0; /* agrega altura vertical */
+  align-items: center;
 }
 
 nav.nav-menu ul li a {
   text-decoration: none;
   color: #333333;
   font-size: 1rem;
-  font-weight: normal; /* Sin negrita */
   padding: 10px 20px;
   border-radius: 50px;
-  transition: all 0.3s ease;
-  display: flex; /* Añadido */
-  justify-content: center; /* Centra el texto horizontalmente */
-  align-items: center; /* Centra el texto verticalmente */
-  width: 100%;
-  box-sizing: border-box;
-  text-align: center;
+  transform: translateY(-3px);
+  transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
 }
 
-nav.nav-menu ul li a:hover {
+/* Estilos base para el hover (scrolled) */
+header.scrolled .nav-menu ul li a:hover {
   background-color: #2B4BB1;
   color: #ffffff;
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  justify-content: center;    /* Añadido: asegura centrado */
-  align-items: center;        /* Añadido: asegura centrado vertical */
-  text-align: center;         /* Añadido: refuerzo */
 }
 
-/* Estilos para los botones de idioma dentro del menú */
+/* Estilos para fondo transparente (not scrolled) */
+header:not(.scrolled) .nav-menu ul li a {
+  color: white;
+}
+
+header:not(.scrolled) .nav-menu ul li a:hover {
+  background-color: #d4af37 !important;
+  color: #ffffff !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones de idioma */
 nav.nav-menu ul li.language-buttons {
   display: flex;
   gap: 10px;
-  align-items: center; /* Añadido: alinea los botones verticalmente */
-  height: 100%; /* Añadido: ajusta la altura */
+  align-items: center;
 }
 
 nav.nav-menu ul li.language-buttons button {
-  padding: 8px 16px; /* Reducido el padding */
+  padding: 8px 16px;
   background-color: transparent;
-  border: none; /* Cambiado de 2px solid #2B4BB1 a none */
+  border: none;
   border-radius: 50px;
   color: #2B4BB1;
-  font-size: 0.9rem; /* Reducido ligeramente el tamaño de fuente */
+  font-size: 0.9rem;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;              /* Mantener flex */
-  justify-content: center;    /* Centra horizontalmente */
-  align-items: center;        /* Centra verticalmente */
-  height: 32px;               /* Altura fija */
-  box-sizing: border-box;
-  text-align: center;         /* Añadido: refuerza el centrado del texto */
+  transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
 }
 
 nav.nav-menu ul li.language-buttons button:hover {
   background-color: #2B4BB1;
   color: #ffffff;
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  justify-content: flex-start; /* Mantener alineación a la izquierda */
-  text-align: left;           /* Mantener alineación a la izquierda */
 }
 
-/* Estilo para los íconos SVG de las banderas */
 nav.nav-menu ul li.language-buttons .flag-icon {
-  width: 20px; /* Tamaño fijo, ajusta según tus SVG */
-  height: 15px; /* Mantiene proporción, ajusta según necesites */
+  width: 20px;
+  height: 15px;
 }
 
-/* Estilos para el botón de menú en dispositivos móviles */
+/* Mobile Menu */
 .menu-toggle {
   display: none;
   background: none;
@@ -119,128 +132,261 @@ nav.nav-menu ul li.language-buttons .flag-icon {
   font-size: 1.5rem;
   cursor: pointer;
   color: #2B4BB1;
-  padding: 0;         /* Eliminar padding */
-  margin: 0;          /* Eliminar margen */
+  transition: color 0.4s ease, background-color 0.4s ease;
 }
 
-/* Estilos para dispositivos móviles */
+/* Colores por defecto para fondo transparente */
+header:not(.scrolled) a,
+header:not(.scrolled) .menu-toggle,
+header:not(.scrolled) .language-buttons button {
+  color: white;
+}
+
+header:not(.scrolled) .language-buttons button {
+  border: 1px solid white;
+}
+
+header:not(.scrolled) nav.nav-menu ul li.language-buttons button:hover {
+  background-color: #d4af37;
+  color: #ffffff;
+  border-color: #d4af37;
+  transform: translateY(-3px);
+}
+
+/* Cuando se hace scroll, usa los colores originales */
+header.scrolled .nav-menu ul li a {
+  color: #333;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .menu-toggle {
-      display: block;
-      position: absolute;  /* Cambiado a absolute */
-      right: 0px;        /* Alineado a la derecha con el mismo padding del header */
-      top: 50%;           /* Centrado verticalmente */
-      transform: translateY(-50%); /* Ajuste fino del centrado vertical */
-      z-index: 1001;
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
   }
-  
-  nav.nav-menu {
-      position: relative;
-      width: auto;        /* Permitir que el contenedor se ajuste al botón */
-  }
-  
-  /* Aseguramos que el nav-menu mantenga su posición */
+
   nav.nav-menu ul {
-      display: flex;          /* Cambiado de 'none' a 'flex' */
-      flex-direction: column;
-      position: fixed;
-      top: 68px;            /* Ajustado para que esté pegado al header (altura del header) */
-      left: 0;
-      width: 100%;
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 0;      /* Eliminado el border-radius */
-      padding: 25px 0;        /* Reducido de 10px 0 a 5px 0 (sin padding lateral) */
-      align-items: flex-start; /* Alinear todos los <li> a la izquierda */
-      margin: 0;
-      opacity: 0;              /* Estado inicial cerrado */
-      transform: translateY(-10px); /* Fuera de vista */
-      pointer-events: none;    /* No interactuable */
-      transition: opacity 0.3s ease, transform 0.3s ease; /* Específico para estas propiedades */
-      z-index: 999;         /* Justo debajo del z-index del header */
-      box-sizing: border-box;   /* Añadido para incluir padding en el ancho */
-      overflow-x: hidden;       /* Añadido para evitar desbordamiento horizontal */
+    flex-direction: column;
+    position: fixed;
+    top: 83px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff; /* Fondo blanco para scrolled */
+    padding: 20px 0; /* Padding reducido para minimalismo */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+    align-items: center; /* Centrar elementos */
+    text-align: center; /* Centrar texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para scrolled */
+  }
+
+  nav.nav-menu.open ul {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  header:not(.scrolled) nav.nav-menu.open ul {
+    background-color: rgba(0, 0, 0, 0.4); /* Glassmorphism para no scrolled */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none; /* Sin sombra en no scrolled */
+  }
+
+  /* Hacer el header transparente cuando el menú está abierto */
+  header:not(.scrolled):has(nav.nav-menu.open) {
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   nav.nav-menu ul li {
     width: 100%;
-    padding-left: 10px;       /* Mover el padding al <li> para controlar el espaciado */
-    box-sizing: border-box;   /* Asegurar que el padding no desborde */
-}
-  
+    padding: 5px 0; /* Padding reducido */
+    box-sizing: border-box;
+  }
+
   nav.nav-menu ul li a {
-      width: auto;               /* Cambiado de 100% a auto */
-      justify-content: flex-start;   /* Cambiado de flex-start a center */
-      align-items: center;       /* Mantener centrado vertical */
-      text-align: left;        /* Añadido: refuerza el centrado */
-      padding: 0px 20px;         /* Reducido de 10px 20px a 6px 20px */
-      box-sizing: border-box;     /* Añadido: consistencia */
-      display: inline-flex;      /* Cambiado de flex a inline-flex */
-      font-weight: normal;       /* Sin negrita */
+    width: 100%;
+    padding: 10px 20px; /* Padding más compacto */
+    text-align: center;
+    border-radius: 8px; /* Bordes redondeados sutiles */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transiciones solo para color y fondo */
+  }
+
+  header:not(.scrolled) nav.nav-menu.open ul li a {
+    color: white;
+  }
+
+  header.scrolled nav.nav-menu.open ul li a {
+    color: #333;
+  }
+
+  header.scrolled nav.nav-menu.open ul li a:hover {
+    color: #ffffff;
   }
 
   nav.nav-menu ul li a:hover {
     background-color: #2B4BB1;
     color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    justify-content: flex-start;
-    align-items: center;
-    text-align: left;
-    padding: 0px 20px;         /* Mantener consistencia en hover */
-    display: inline-flex;      /* Mantener inline-flex */
-}
-  
-  /* Muestra el menú cuando tiene la clase 'open' */
-  nav.nav-menu.open ul {
-      opacity: 1;            /* Visible */
-      transform: translateY(0); /* Sin desplazamiento */
-      pointer-events: auto;  /* Interactuable */
+    border-radius: 8px;
   }
-  
-  /* Configuración de los botones de idioma */
+
+  header:not(.scrolled) nav.nav-menu.open ul li a:hover {
+    background-color: #d4af37;
+    color: #000000;
+    border-radius: 8px;
+  }
+
   nav.nav-menu ul li.language-buttons {
-      flex-direction: column; /* Organiza botones verticalmente */
-      gap: 1px;              /* Espacio entre botones */
-      width: auto;              /* Cambiado de 100% a auto */
-      align-items: flex-start;  /* Alinear los botones a la izquierda */
-      padding-left: 10px;        /* Añadido: alinear con el resto del menú */
-      box-sizing: border-box;    /* Añadido: consistencia con otros elementos */
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 0;
+    width: 100%;
+    justify-content: center; /* Centrar botones */
+    gap: 10px; /* Espacio entre botones */
   }
-  
-  /* Estilo de los botones individuales */
+
   nav.nav-menu ul li.language-buttons button {
-    width: auto;              /* Cambiado de 100% a auto */
-      padding: 0px 20px;
-      background-color: transparent;
-      border: none; /* Cambiado de 2px solid #2B4BB1 a none */
-      border-radius: 0; /* Sin redondeado */
-      color: #2B4BB1;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;      /* Cambiado de flex a inline-flex para consistencia */
-      justify-content: flex-start; /* Cambiado de center a flex-start */
-      align-items: center;       /* Centra verticalmente */
-      gap: 1px;                 /* Espacio entre ícono y texto */
-      text-align: left;           /* Cambiado de center a left */
-      box-sizing: border-box;   /* Añadido para incluir padding y borde en el tamaño */
+    padding: 8px; /* Padding más pequeño */
+    text-align: center;
+    border-radius: 8px;
+    background-color: transparent; /* Sin fondo inicial */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  header:not(.scrolled) nav.nav-menu.open ul li.language-buttons button {
+    color: white;
+  }
+
+  header.scrolled nav.nav-menu.open ul li.language-buttons button {
+    color: #2B4BB1;
   }
 
   nav.nav-menu ul li.language-buttons button:hover {
     background-color: #2B4BB1;
     color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 50px; /* Redondeado solo en hover */
-    justify-content: flex-start;
-    text-align: left;
-}
-  
-  /* Tamaño de los íconos en los botones */
-  nav.nav-menu ul li.language-buttons button svg {
-      width: 20px;
-      height: 15px;
   }
+
+  header:not(.scrolled) nav.nav-menu.open ul li.language-buttons button:hover {
+    background-color: #d4af37;
+    color: #000000;
+  }
+
+  nav.nav-menu ul li.language-buttons .flag-icon {
+    width: 20px;
+    height: 15px;
+  }
+
+  .top-bar {
+    display: none !important;
+  }
+
+  header.with-topbar {
+    margin-top: 0 !important;
+  }
+}
+
+/* === Icono Hamburguesa estilo "X" preciso === */
+.menu-toggle {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: none;
+  border: none;
+  z-index: 1002;
+  padding: 0;
+}
+
+.menu-toggle span {
+  background-color: white;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* Barras en estado inicial (hamburguesa) */
+.menu-toggle span:nth-child(1) {
+  top: 0;
+}
+.menu-toggle span:nth-child(2) {
+  top: 12.5px;
+}
+.menu-toggle span:nth-child(3) {
+  top: 25px;
+}
+
+/* Estado "X" */
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 12.5px;
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 12.5px;
+}
+
+/* Color en versión scrolled */
+header.scrolled .menu-toggle span {
+  background-color: #2B4BB1;
+}
+
+/* Solo visible en móviles */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+/* === Animaciones suaves para abrir/cerrar menú === */
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutMenu {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Aplica fade in cuando el menú se abre */
+nav.nav-menu.open ul {
+  animation: fadeInMenu 0.3s ease forwards;
+}
+
+/* Aplica fade out cuando el menú se cierra */
+nav.nav-menu.closing ul {
+  animation: fadeOutMenu 0.3s ease forwards;
 }

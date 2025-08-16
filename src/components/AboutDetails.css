@@ -1,0 +1,188 @@
+/* About Details Section */
+.about-details-section {
+    position: relative;
+    padding: 160px 15px 60px;
+    background: linear-gradient(145deg, #0a1f44, #1e3a8a);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+  }
+  
+  .about-details-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+  
+  .about-details-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1000px;
+    width: 100%;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .about-details-title {
+    font-family: 'Lora', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    position: relative;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+  }
+  
+  .about-details-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #D4AF37;
+  }
+  
+  .about-details-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .profile-section h3 {
+    font-family: 'Lora', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #D4AF37;
+    margin-bottom: 15px;
+  }
+  
+  .profile-section p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    margin: 0;
+    overflow-wrap: break-word;
+  }
+  
+  .profile-highlights {
+    margin-top: 20px;
+    padding-left: 20px;
+    border-left: 3px solid #D4AF37;
+  }
+  
+  .profile-highlights ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .profile-highlights li {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+  }
+  
+  .profile-highlights li::before {
+    content: '✔';
+    color: #D4AF37;
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+  }
+  
+  /* Footer botón de regreso */
+  .about-details-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    min-height: 60px;
+    width: 100%;
+  }
+  
+  .back-button {
+    padding: 10px 24px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #0A1F44;
+    background-color: #D4AF37;
+    border: 2px solid #D4AF37;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 6px 2px rgba(212, 175, 55, 0.4);
+    animation: glowPulse 2.5s ease-in-out infinite;
+    transition: all 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: transparent;
+    color: #D4AF37;
+    box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
+  }
+  
+  @keyframes glowPulse {
+    0% {
+      box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-details-container {
+      padding: 20px;
+    }
+  
+    .about-details-title {
+      font-size: 2.2rem;
+    }
+  
+    .profile-section h3 {
+      font-size: 1.6rem;
+    }
+  
+    .profile-section p,
+    .profile-highlights li {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-details-title {
+      font-size: 1.8rem;
+    }
+  
+    .about-details-title::after {
+      width: 40px;
+    }
+  
+    .profile-section h3 {
+      font-size: 1.4rem;
+    }
+  }
+  

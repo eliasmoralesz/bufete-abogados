@@ -1,0 +1,98 @@
+.cta-section {
+    background: linear-gradient(135deg, #f5f7fa, #e2e8f0);
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-image: url('/src/assets/columna.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.05;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at center, #0A288D22, transparent);
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    z-index: 1;
+    position: relative;
+  }
+  
+  .cta-content h2 {
+    font-family: 'Lora', serif;
+    font-size: 2.4rem;
+    color: #0A288D;
+    margin-bottom: 20px;
+  }
+  
+  .cta-content p {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.15rem;
+    color: #444;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .cta-button {
+    background-color: #0A288D;
+    color: #fff;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta-button:hover {
+    background-color: #d4af37;
+    color: #0A288D;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    .cta-content {
+      padding: 30px 20px;
+    }
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+    .cta-content p {
+      font-size: 1rem;
+    }
+    .cta-button {
+      width: 100%;
+      max-width: 280px;
+      font-size: 1rem;
+    }
+  }

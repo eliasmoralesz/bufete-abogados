@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Formal from './pages/Formal';
-import WhatsAppButton from './components/WhatsAppButton'; // Importamos el botón;
+import AboutDetails from './components/AboutDetails'; // Ruta corregida
+import WhatsAppButton from './components/WhatsAppButton';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // duración de la animación en milisegundos
+      once: false,    // ❗ hace que la animación se repita cada vez que entra en pantalla
+    });
+  }, []);
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/formal" element={<Formal />} />
+        <Route path="/about-details" element={<AboutDetails />} />
       </Routes>
-      <WhatsAppButton /> {/* Botón flotante visible en todas las rutas */}
+      <WhatsAppButton />
     </Router>
   );
 }

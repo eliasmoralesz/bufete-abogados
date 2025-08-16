@@ -1,0 +1,83 @@
+.blog-section {
+    background: linear-gradient(145deg, #0a1f44, #1e3a8a); /* Fondo azul degradado */
+    padding: 100px 20px;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .blog-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.05); /* fondo translúcido sobre azul */
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(247, 186, 3, 0.35);
+  }
+  
+  .blog-title {
+    font-size: 2.4rem;
+    color: #ffffff; /* Dorado elegante */
+    font-family: 'Lora', serif;
+    margin-bottom: 20px;
+  }
+  
+  .blog-description {
+    font-size: 1.15rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 30px;
+  }
+  
+  .blog-button {
+    background-color: #D4AF37;
+    color: #0A1F44;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-button:hover {
+    background-color: #ffffff;
+    color: #0A1F44;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .blog-card {
+      padding: 30px 20px;
+    }
+  
+    .blog-title {
+      font-size: 2rem;
+    }
+  
+    .blog-description {
+      font-size: 1rem;
+    }
+  
+    .blog-button {
+      width: 100%;
+      max-width: 280px;
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,139 @@
+.top-bar {
+    background-color: #0a1f44; /* Azul oscuro elegante */
+    color: #ffffff;
+    font-size: 0.90rem;
+    font-weight: 300;
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Lato', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    overflow-x: hidden; /* Evita que el contenido se desborde horizontalmente */
+    white-space: nowrap; /* Evita que se divida el contenido en varias líneas */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    flex-wrap: nowrap;
+  }
+  
+  /* Estado oculto cuando se hace scroll */
+  .top-bar.scrolled {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* Contenido de la izquierda */
+  .top-bar-left {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .top-bar-left a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .top-bar-left a:hover {
+    color: #d4af37;
+  }
+
+  .top-bar-left .icon svg {
+    fill: #d4af37; /* Ícono siempre dorado */
+    flex-shrink: 0;
+  }
+
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 24px; /* asegura espacio mínimo */
+  }
+  
+  /* Icono de la derecha */
+  .top-bar-right a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    color: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .top-bar-right a:hover {
+    color: #d4af37;
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  
+  .top-bar-right a svg {
+    width: 135px;
+    height: 20px;
+    fill: white;
+    display: block;
+  }
+  
+  .contact-link {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300; /* Light */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+    vertical-align: middle;
+  }
+
+  .contact-link .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  
+  .contact-link .icon svg {
+    fill: #d4af37;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  
+  .contact-link:hover {
+    color: #d4af37;
+  }
+  
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .top-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 10px 15px;
+    }
+  
+    .top-bar-left {
+      gap: 10px;
+      font-size: 0.8rem;
+      flex-direction: column;
+    }
+  
+    .top-bar-right {
+      align-self: flex-end;
+    }
+  }
+  
