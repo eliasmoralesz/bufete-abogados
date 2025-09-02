@@ -1,17 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Usamos 'react-dom/client' para React 18+
+import ReactDOM from 'react-dom/client';
+import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './styles.css'; // Importa los estilos globales
+import reportWebVitals from './reportWebVitals'; // Importación añadida
+import './styles.css';
 import './i18n';
 
 // Crear la raíz de la aplicación
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// Renderizar la aplicación
+// Renderizar la aplicación (solo una vez)
 root.render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
   </React.StrictMode>
 );
 

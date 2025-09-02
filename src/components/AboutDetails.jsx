@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Helmet } from 'react-helmet-async'; // <-- IMPORTADO
 
 import TopBar from '../components/TopBar';
 import Header from '../components/Header';
@@ -31,6 +32,15 @@ const AboutDetails = () => {
 
   return (
     <>
+      {/* BLOQUE AÑADIDO PARA SEO */}
+      <Helmet>
+        <title>Más sobre Daguer Hernández | Experiencia y Compromiso</title>
+        <meta 
+          name="description" 
+          content="Conozca la trayectoria de Daguer Hernández, ex-Subdirector de Migración y especialista en Derecho Notarial con más de una década de experiencia." 
+        />
+      </Helmet>
+
       <TopBar />
       <Header />
 

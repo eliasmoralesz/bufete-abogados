@@ -56,7 +56,10 @@ const resources = {
       objective_consultation: "Consultation",
       objective_inquiry: "Inquiry",
       objective_appointment: "Appointment",
+      appointment_title: "Schedule a Consultation", // <-- AÑADIR
+      appointment_subtitle: "Choose a date and time that works for you. Payment will be processed securely via PayPal.", // <-- AÑADIR
       backToAbout: "Back to About",
+
     },
   },
   es: {
@@ -111,6 +114,8 @@ const resources = {
       objective_consultation: "Consulta",
       objective_inquiry: "Pregunta",
       objective_appointment: "Cita",
+      appointment_title: "Agende su Consulta", // <-- AÑADIR
+      appointment_subtitle: "Elija la fecha y hora que mejor le convenga. El pago se procesará de forma segura a través de PayPal.", // <-- AÑADIR
       backToAbout: "Volver a Inicio",
     },
   },

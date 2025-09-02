@@ -1,0 +1,33 @@
+.appointment-section {
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.appointment-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.appointment-title {
+  font-size: 2.5rem;
+  color: #0A1F44;
+  font-family: 'Lora', serif;
+  margin-bottom: 10px;
+}
+
+.appointment-subtitle {
+  font-size: 1.1rem;
+  color: #555555;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Inter', sans-serif;
+}
+
+.calendly-inline-widget {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
