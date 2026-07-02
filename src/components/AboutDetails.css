@@ -21,7 +21,7 @@
   .about-details-container {
     position: relative;
     z-index: 1;
-    max-width: 1000px;
+    max-width: 1100px; /* Aumentado un poco para el nuevo layout */
     width: 100%;
     padding: 40px;
     background: rgba(255, 255, 255, 0.05);
@@ -39,7 +39,7 @@
     color: #ffffff;
     line-height: 1.2;
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 50px; /* Aumentado para separar del grid */
     text-transform: uppercase;
   }
   
@@ -52,12 +52,21 @@
     height: 3px;
     background: #D4AF37;
   }
-  
-  .about-details-content {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
+
+/* --- NUEVO: LAYOUT DE GRID PARA LAS COLUMNAS --- */
+.details-layout-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Columna de contenido 2 veces más ancha que el sidebar */
+  gap: 50px; /* Espacio entre el contenido y el sidebar */
+  width: 100%;
+}
+
+/* --- ESTILOS DEL CONTENIDO PRINCIPAL --- */
+.main-content-column {
+  display: flex;
+  flex-direction: column;
+  gap: 40px; /* Espacio entre las secciones de perfil */
+}
   
   .profile-section {
     display: flex;
@@ -109,80 +118,157 @@
     left: 0;
     font-size: 1.2rem;
   }
-  
-  /* Footer botón de regreso */
-  .about-details-footer {
-    display: flex;
-    justify-content: center;
-    margin-top: 50px;
-    min-height: 60px;
-    width: 100%;
-  }
-  
-  .back-button {
-    padding: 10px 24px;
-    font-weight: 600;
+
+/* --- NUEVO: ESTILOS DE LA BARRA LATERAL (SIDEBAR) --- */
+.sidebar-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sidebar-widget {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 4px solid #D4AF37;
+}
+
+.widget-title {
+  font-family: 'Lora', serif;
+  font-size: 1.5rem;
+  color: #D4AF37;
+  margin-bottom: 20px;
+}
+
+.widget-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.widget-list li {
+  margin-bottom: 15px;
+}
+
+.widget-list li a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+}
+
+.widget-list li a:hover {
+  color: #D4AF37;
+}
+
+.sidebar-widget p {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+}
+
+.widget-contact-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
     color: #0A1F44;
     background-color: #D4AF37;
-    border: 2px solid #D4AF37;
     border-radius: 50px;
     text-decoration: none;
-    box-shadow: 0 0 6px 2px rgba(212, 175, 55, 0.4);
-    animation: glowPulse 2.5s ease-in-out infinite;
+    text-align: center;
     transition: all 0.3s ease;
-  }
+}
+
+.widget-contact-button:hover {
+    opacity: 0.9;
+}
   
-  .back-button:hover {
-    background-color: transparent;
-    color: #D4AF37;
+/* Footer botón de regreso */
+.about-details-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  min-height: 60px;
+  width: 100%;
+}
+  
+.back-button {
+  padding: 10px 24px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #0A1F44;
+  background-color: #D4AF37;
+  border: 2px solid #D4AF37;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 0 6px 2px rgba(212, 175, 55, 0.4);
+  animation: glowPulse 2.5s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: transparent;
+  color: #D4AF37;
+  box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
+}
+
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
+  }
+  50% {
     box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
   }
-  
-  @keyframes glowPulse {
-    0% {
-      box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
-    }
-    50% {
-      box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
-    }
-    100% {
-      box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
-    }
+  100% {
+    box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
   }
+}
   
-  /* Responsive */
-  @media (max-width: 768px) {
-    .about-details-container {
-      padding: 20px;
-    }
-  
-    .about-details-title {
-      font-size: 2.2rem;
-    }
-  
-    .profile-section h3 {
-      font-size: 1.6rem;
-    }
-  
-    .profile-section p,
-    .profile-highlights li {
-      font-size: 1rem;
-    }
+/* --- RESPONSIVE --- */
+@media (max-width: 992px) {
+  /* Apilar las columnas en tablets y móviles */
+  .details-layout-grid {
+    grid-template-columns: 1fr; /* Una sola columna */
+    gap: 50px;
   }
-  
-  @media (max-width: 480px) {
-    .about-details-title {
-      font-size: 1.8rem;
-    }
-  
-    .about-details-title::after {
-      width: 40px;
-    }
-  
-    .profile-section h3 {
-      font-size: 1.4rem;
-    }
+}
+
+@media (max-width: 768px) {
+  .about-details-container {
+    padding: 20px;
   }
-  
+
+  .about-details-title {
+    font-size: 2.2rem;
+  }
+
+  .profile-section h3 {
+    font-size: 1.6rem;
+  }
+
+  .profile-section p,
+  .profile-highlights li {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-details-title {
+    font-size: 1.8rem;
+  }
+
+  .about-details-title::after {
+    width: 40px;
+  }
+
+  .profile-section h3 {
+    font-size: 1.4rem;
+  }
+}
