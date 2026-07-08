@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&family=Lora:wght@400;600&display=swap');
 
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   margin: 0;
@@ -18,42 +22,6 @@ p, a {
   font-family: 'Lato', sans-serif;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: transparent; /* ✅ Fondo transparente al inicio */
-  box-shadow: none; /* ✅ Sin sombra al inicio */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-
-header .logo {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-header nav.nav-menu ul li a {
-  transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
-}
-header nav.nav-menu ul li a:hover {
-  transform: translateY(-3px);
-}
-
-header .language-selector select {
-  padding: 5px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-}
+/* El estilo del header vive en Header.css (maneja los estados with-topbar/no-topbar/scrolled).
+   Antes había un bloque genérico "header" aquí que forzaba background-color: transparent
+   y pisaba el rgba(0,0,0,0.4) de Header.css, dejando el header invisible al cargar la página. */

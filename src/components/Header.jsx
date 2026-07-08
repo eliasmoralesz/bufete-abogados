@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import logoBlack from '../assets/Daguer Hernandez Abogado nombre negro.png';
-import logoWhite from '../assets/Daguer Hernandez Abogado nombre blanco.png';
+import logoBlack from '../assets/Daguer Hernandez Abogado nombre negro.webp';
+import logoWhite from '../assets/Daguer Hernandez Abogado nombre blanco.webp';
 import flagUsa from '../assets/flag-usa.svg';
 import flagSpain from '../assets/flag-spain.svg';
 import './Header.css';

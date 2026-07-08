@@ -1,143 +1,180 @@
-/* About Details Section */
+/* About Details Section — diseño claro y minimalista, inspirado en fichas de CV */
 .about-details-section {
-    position: relative;
-    padding: 160px 15px 60px;
-    background: linear-gradient(145deg, #0a1f44, #1e3a8a);
-    color: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow-x: hidden;
-  }
-  
-  .about-details-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 0;
-  }
-  
-  .about-details-container {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px; /* Aumentado un poco para el nuevo layout */
-    width: 100%;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(8px);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .about-details-title {
-    font-family: 'Lora', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ffffff;
-    line-height: 1.2;
-    position: relative;
-    margin-bottom: 50px; /* Aumentado para separar del grid */
-    text-transform: uppercase;
-  }
-  
-  .about-details-title::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: #D4AF37;
-  }
+  position: relative;
+  padding: 150px 15px 80px;
+  background: #ffffff;
+  color: #222222;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
 
-/* --- NUEVO: LAYOUT DE GRID PARA LAS COLUMNAS --- */
+.about-details-container {
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-details-title {
+  font-family: 'Lora', serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: #0A1F44;
+  line-height: 1.2;
+  position: relative;
+  margin-bottom: 56px;
+  padding-bottom: 18px;
+}
+
+.about-details-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  background: #D4AF37;
+}
+
+/* --- LAYOUT DE GRID PARA LAS COLUMNAS --- */
 .details-layout-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr; /* Columna de contenido 2 veces más ancha que el sidebar */
-  gap: 50px; /* Espacio entre el contenido y el sidebar */
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
   width: 100%;
 }
 
-/* --- ESTILOS DEL CONTENIDO PRINCIPAL --- */
+/* --- CONTENIDO PRINCIPAL --- */
 .main-content-column {
   display: flex;
   flex-direction: column;
-  gap: 40px; /* Espacio entre las secciones de perfil */
+  gap: 56px;
 }
-  
-  .profile-section {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .profile-section h3 {
-    font-family: 'Lora', serif;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #D4AF37;
-    margin-bottom: 15px;
-  }
-  
-  .profile-section p {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #e0e0e0;
-    margin: 0;
-    overflow-wrap: break-word;
-  }
-  
-  .profile-highlights {
-    margin-top: 20px;
-    padding-left: 20px;
-    border-left: 3px solid #D4AF37;
-  }
-  
-  .profile-highlights ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .profile-highlights li {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: #e0e0e0;
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 20px;
-  }
-  
-  .profile-highlights li::before {
-    content: '✔';
-    color: #D4AF37;
-    position: absolute;
-    left: 0;
-    font-size: 1.2rem;
-  }
 
-/* --- NUEVO: ESTILOS DE LA BARRA LATERAL (SIDEBAR) --- */
+.profile-section h3 {
+  font-family: 'Lora', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0A1F44;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+}
+
+.profile-section p {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #444444;
+  margin: 0 0 16px;
+}
+
+.profile-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- FICHAS ESTILO CV: EXPERIENCIA / EDUCACIÓN / CERTIFICACIONES --- */
+.cv-entry {
+  margin-bottom: 32px;
+}
+
+.cv-entry:last-child {
+  margin-bottom: 0;
+}
+
+.cv-row {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.cv-row:last-child {
+  border-bottom: none;
+}
+
+.cv-label {
+  flex: 0 0 130px;
+  background: #f4f2ec;
+  color: #a5793a;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: right;
+  padding: 10px 14px;
+  margin-right: 20px;
+}
+
+.cv-value {
+  flex: 1;
+  padding: 10px 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: #333333;
+}
+
+.cv-value ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.cv-value li {
+  margin-bottom: 4px;
+}
+
+/* --- LISTAS SIMPLES: LOGROS / HABILIDADES --- */
+.simple-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.simple-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444444;
+}
+
+.simple-list li:last-child {
+  margin-bottom: 0;
+}
+
+.simple-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #D4AF37;
+  font-weight: bold;
+}
+
+/* --- SIDEBAR --- */
 .sidebar-column {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 36px;
 }
 
 .sidebar-widget {
-  background: rgba(0, 0, 0, 0.15);
-  padding: 25px;
-  border-radius: 8px;
-  border-left: 4px solid #D4AF37;
+  border-top: 2px solid #0A1F44;
+  padding-top: 16px;
 }
 
 .widget-title {
   font-family: 'Lora', serif;
-  font-size: 1.5rem;
-  color: #D4AF37;
-  margin-bottom: 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #0A1F44;
+  margin-bottom: 14px;
 }
 
 .widget-list {
@@ -147,14 +184,14 @@
 }
 
 .widget-list li {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .widget-list li a {
-  color: #e0e0e0;
+  color: #444444;
   text-decoration: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -162,113 +199,107 @@
 }
 
 .widget-list li a:hover {
-  color: #D4AF37;
+  color: #a5793a;
 }
 
 .sidebar-widget p {
-    font-family: 'Inter', sans-serif;
-    color: #e0e0e0;
-    line-height: 1.7;
+  font-family: 'Lato', sans-serif;
+  color: #444444;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .widget-contact-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #0A1F44;
-    background-color: #D4AF37;
-    border-radius: 50px;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 16px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #0A1F44;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .widget-contact-button:hover {
-    opacity: 0.9;
+  background-color: #D4AF37;
+  color: #0A1F44;
 }
-  
+
 /* Footer botón de regreso */
 .about-details-footer {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-  min-height: 60px;
+  margin-top: 60px;
   width: 100%;
 }
-  
+
 .back-button {
-  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 1rem;
   color: #0A1F44;
-  background-color: #D4AF37;
-  border: 2px solid #D4AF37;
-  border-radius: 50px;
   text-decoration: none;
-  box-shadow: 0 0 6px 2px rgba(212, 175, 55, 0.4);
-  animation: glowPulse 2.5s ease-in-out infinite;
-  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .back-button:hover {
-  background-color: transparent;
-  color: #D4AF37;
-  box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
+  border-color: #D4AF37;
+  color: #a5793a;
 }
 
-@keyframes glowPulse {
-  0% {
-    box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 10px 4px rgba(212, 175, 55, 0.6);
-  }
-  100% {
-    box-shadow: 0 0 4px 1px rgba(212, 175, 55, 0.2);
-  }
-}
-  
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
-  /* Apilar las columnas en tablets y móviles */
   .details-layout-grid {
-    grid-template-columns: 1fr; /* Una sola columna */
+    grid-template-columns: 1fr;
     gap: 50px;
   }
 }
 
 @media (max-width: 768px) {
-  .about-details-container {
-    padding: 20px;
-  }
-
   .about-details-title {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
   }
 
   .profile-section h3 {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 
   .profile-section p,
-  .profile-highlights li {
+  .simple-list li {
     font-size: 1rem;
+  }
+
+  .cv-label {
+    flex-basis: 100px;
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 480px) {
   .about-details-title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .about-details-title::after {
     width: 40px;
   }
 
-  .profile-section h3 {
-    font-size: 1.4rem;
+  .cv-row {
+    flex-direction: column;
+  }
+
+  .cv-label {
+    text-align: left;
+    margin-right: 0;
+    margin-bottom: 4px;
+    flex-basis: auto;
+    display: inline-block;
   }
 }

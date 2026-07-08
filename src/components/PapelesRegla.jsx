@@ -1,6 +1,26 @@
 import React from 'react';
 import './PapelesRegla.css';
 
+const papelesReglaUrl = 'https://confidencial.digital/migrantes/migrantes-noticias/papeles-en-regla/';
+
+const articles = [
+  {
+    title: 'Permanencia legal en Costa Rica: guía completa para turistas o extranjeros',
+    description: 'Guía sobre la permanencia legal, la condición migratoria regular y los requisitos básicos para turistas o personas extranjeras en Costa Rica.',
+    url: 'https://confidencial.digital/migrantes/migrantes-noticias/papeles-en-regla/permanencia-legal-en-costa-rica-guia-completa-para-turistas-o-extranjeros/',
+  },
+  {
+    title: '¿Cómo regresar a Costa Rica tras migrar a Estados Unidos?',
+    description: 'Consejos y reflexiones para personas migrantes que deben salir de Estados Unidos y valorar su retorno a Costa Rica.',
+    url: 'https://confidencial.digital/migrantes/migrantes-noticias/papeles-en-regla/como-regresar-a-costa-rica-tras-migrar-a-estados-unidos/',
+  },
+  {
+    title: 'El derecho de los solicitantes de refugio que quieren optar por naturalización en Costa Rica',
+    description: 'Análisis sobre el tiempo de permanencia de solicitantes de refugio y su relación con procesos de naturalización.',
+    url: 'https://confidencial.digital/migrantes/migrantes-noticias/papeles-en-regla/el-derecho-de-los-solicitantes-de-refugio-que-quieren-optar-por-naturalizacion-en-costa-rica/',
+  },
+];
+
 const PapelesRegla = () => {
   return (
     <section id="papeles" className="papeles-section">
@@ -8,42 +28,25 @@ const PapelesRegla = () => {
       <p className="subtitle">Columna del Lic. Daguer Hernández en el medio Confidencial</p>
 
       <div className="articles-container">
-        <div className="article-card">
-          <h3>¿Trámites migratorios sin citas?</h3>
-          <p>Una crítica directa a los obstáculos que enfrentan las personas migrantes para agendar citas en la Dirección General de Migración.</p>
-          <a
-            href="https://confidencial.digital/migrantes/noticias/papeles-en-regla/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Leer artículo completo →
-          </a>
-        </div>
-
-        <div className="article-card">
-          <h3>El limbo de los solicitantes de refugio</h3>
-          <p>Reflexión sobre la falta de respuesta del Estado costarricense ante miles de personas que esperan resolución migratoria.</p>
-          <a
-            href="https://confidencial.digital/migrantes/noticias/el-limbo-de-los-solicitantes-de-refugio/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Leer artículo completo →
-          </a>
-        </div>
-
-        <div className="article-card">
-          <h3>La irregularidad no es sinónimo de delito</h3>
-          <p>Explicación jurídica sobre por qué la condición migratoria irregular no debería ser criminalizada ni estigmatizada.</p>
-          <a
-            href="https://confidencial.digital/migrantes/noticias/la-irregularidad-no-es-sinonimo-de-delito/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Leer artículo completo →
-          </a>
-        </div>
+        {articles.map((article) => (
+          <article className="article-card" key={article.url}>
+            <h3>{article.title}</h3>
+            <p>{article.description}</p>
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
+              Leer artículo completo →
+            </a>
+          </article>
+        ))}
       </div>
+
+      <a
+        href={papelesReglaUrl}
+        className="papeles-main-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ver todos los artículos en Confidencial
+      </a>
     </section>
   );
 };

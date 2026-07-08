@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import lawyerImage from '../assets/lawyer.png';
+import lawyerImage from '../assets/lawyer.webp';
 import './About.css';
 
 const About = () => {

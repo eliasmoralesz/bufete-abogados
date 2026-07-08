@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { FaBalanceScale } from 'react-icons/fa';
+import lawyerPhoto from '../assets/lawyer.webp';
 import './Hero.css';
 
 const Hero = () => {
@@ -14,12 +16,8 @@ const Hero = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useTransform(y, [0, windowSize.height], [10, -10]);
-  const rotateY = useTransform(x, [0, windowSize.width], [-10, 10]);
-
-  const moveSmall = useTransform(x, [0, windowSize.width], [-10, 10]);
-  const moveMedium = useTransform(x, [0, windowSize.width], [-20, 20]);
-  const moveLarge = useTransform(x, [0, windowSize.width], [-30, 30]);
+  const moveX = useTransform(x, [0, windowSize.width], [-10, 10]);
+  const moveY = useTransform(y, [0, windowSize.height], [-8, 8]);
 
   const handleMouseMove = (e) => {
     x.set(e.clientX);
@@ -28,62 +26,106 @@ const Hero = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const titlePre = t('hero_title_pre');
+  const titlePost = t('hero_title_post');
+
   return (
     <section className="hero" onMouseMove={handleMouseMove}>
-      <video autoPlay muted loop playsInline className="hero-video" aria-hidden="true">
-        <source src="/videos/background.mp4" type="video/mp4" />
-      </video>
-      <div className="hero-overlay" />
+      <div className="hero-bg" aria-hidden="true" />
+      <span className="hero-watermark" aria-hidden="true">{t('hero_watermark')}</span>
 
-      <motion.div
-        className="hero-card"
-        drag
-        dragElastic={0.08}
-        dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-        whileTap={{ scale: 0.98 }}
-        style={{ rotateX, rotateY }}
-        transition={{ type: "spring", stiffness: 50, damping: 10 }}
-      >
-        <motion.h1 style={{ x: moveLarge }}>{t('hero_title')}</motion.h1>
-        <motion.p style={{ x: moveMedium }}>{t('hero_subtitle')}</motion.p>
-        <motion.span className="tagline" style={{ x: moveSmall }}>
-          {t('hero_tagline')}
-        </motion.span>
-
-        <motion.div className="hero-buttons" style={{ x: moveSmall }}>
-          <motion.a
-            href="#contact"
-            className="btn btn-primary"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Ir a sección de contacto"
+      <div className="hero-content">
+        <div className="hero-text">
+          <motion.span
+            className="hero-badge"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            {t('contact')}
-          </motion.a>
+            <FaBalanceScale aria-hidden="true" />
+            {t('hero_badge')}
+          </motion.span>
+
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}>
+            {titlePre && <>{titlePre} </>}
+            <em>{t('hero_title_highlight')}</em>
+            {titlePost && <> {titlePost}</>}
+          </motion.h1>
+
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}>
+            {t('hero_subtitle')}
+          </motion.p>
+
+          <motion.span
+            className="tagline"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+          >
+            {t('hero_tagline')}
+          </motion.span>
+
+          <motion.div
+            className="hero-buttons"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+          >
+            <motion.a href="#appointment" className="btn btn-primary" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+              {t('cta_button')}
+            </motion.a>
+            <motion.a href="#services" className="btn btn-outline" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+              {t('services')}
+            </motion.a>
+          </motion.div>
+        </div>
+
+        <div className="hero-visual">
+          <div className="hero-arch" aria-hidden="true" />
+          <motion.div
+            className="hero-photo-frame"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7 }}
+          >
+            <img src={lawyerPhoto} alt="Daguer Hernández, abogado" className="hero-photo" />
+          </motion.div>
 
           <motion.a
-            href="#services"
-            className="btn btn-outline"
+            href="#testimonials"
+            className="hero-review-badge"
+            style={{ x: moveX, y: moveY }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Ir a sección de servicios"
           >
-            {t('services')}
+            <span className="hero-review-stars">★★★★★</span>
+            <span>5.0 · {t('hero_review_badge')}</span>
           </motion.a>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <a href="#about" className="scroll-down" aria-label="Saltar a Sobre Mí">↓ {t('about')}</a>
+      <div className="hero-stats">
+        <div className="hero-stat">
+          <span className="hero-stat-number">+12</span>
+          <span className="hero-stat-label">{t('hero_stat_years')}</span>
+        </div>
+        <div className="hero-stat">
+          <span className="hero-stat-number">1000+</span>
+          <span className="hero-stat-label">{t('hero_stat_cases')}</span>
+        </div>
+        <div className="hero-stat">
+          <span className="hero-stat-number">95%</span>
+          <span className="hero-stat-label">{t('hero_stat_success')}</span>
+        </div>
+      </div>
     </section>
   );
 };

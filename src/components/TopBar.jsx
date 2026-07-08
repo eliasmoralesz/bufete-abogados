@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './TopBar.css';
 
 const TopBar = () => {
+  const { t } = useTranslation();
   const [hideTopBar, setHideTopBar] = useState(false);
   const scrollTimeoutRef = useRef(null);
 
@@ -38,7 +40,7 @@ const TopBar = () => {
               <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21.17 2.83 13.93 2.83 5a1 1 0 011-1H7.3a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.26 1.11l-2.18 2.2z"/>
             </svg>
           </span>
-          <span className="text">+506 8965-5582</span>|
+          <span className="text">{t('office')}: +506 8965-5582</span>|
         </a>
 
         <a href="https://maps.app.goo.gl/twiMemVxLYbTfmoMA" target="_blank" rel="noopener noreferrer" className="contact-link">

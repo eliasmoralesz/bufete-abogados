@@ -48,7 +48,7 @@
   width: 120%;
   height: 120%;
   transform: translate(-50%, -50%);
-  background-image: url('/src/assets/lawyer.png'); /* Ajustá si es necesario */
+  background-image: url('../assets/lawyer.webp');
   background-size: cover;
   background-position: center;
   filter: blur(80px);
@@ -61,21 +61,10 @@
   z-index: 1;
   width: 600px;
   height: auto;
-  object-fit: cover;
-  filter: brightness(0.95) contrast(1.05);
-  border-radius: 0;
-
-  /* Difuminado de bordes */
-  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-
-  /* Oscurecimiento desde dentro */
-  -webkit-mask-image: linear-gradient(to bottom, rgb(8, 11, 93) 80%, rgba(9, 15, 101, 0.3) 100%);
-  mask-image: linear-gradient(to bottom, rgba(19, 10, 140, 0.935) 80%, rgba(6, 4, 121, 0.3) 100%);
+  display: block;
+  /* Desvanecido inferior sutil: solo suaviza el borde de abajo donde pega con la sección */
+  -webkit-mask-image: linear-gradient(to bottom, #000 90%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 90%, transparent 100%);
 }
 
 .about-text {
@@ -152,6 +141,44 @@
   }
 }
 
+
+/* Desktop: la foto se ancla al borde inferior de la sección (estilo Horea Crisan)
+   y el texto queda centrado verticalmente, en vez de que la foto flote en el centro. */
+@media (min-width: 1025px) {
+  .about-section {
+    align-items: stretch;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .about-content {
+    align-items: stretch;
+  }
+
+  .about-image {
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .about-text {
+    align-self: center;
+  }
+
+  .about-image img {
+    width: auto;
+    height: auto;
+    max-height: 84vh;
+    max-width: 44vw;
+  }
+}
+
+/* Monitores grandes: el contenedor crece con la pantalla en vez de quedarse fijo */
+@media (min-width: 1440px) {
+  .about-content {
+    max-width: min(1900px, 94vw);
+  }
+}
 
 /* Tablet: 769px – 1024px */
 @media (max-width: 1024px) {

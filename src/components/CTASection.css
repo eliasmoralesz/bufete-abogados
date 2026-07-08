@@ -11,7 +11,7 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    background-image: url('/src/assets/columna.jpg');
+    background-image: url('../assets/columna.webp');
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.05;

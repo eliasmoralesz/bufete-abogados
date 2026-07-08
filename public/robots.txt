@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+# Reemplazar por el dominio real antes de publicar
+Sitemap: https://www.daguerhernandezabogado.com/sitemap.xml
