@@ -270,7 +270,7 @@ const AboutDetails = () => {
               <div className="sidebar-widget">
                  <h4 className="widget-title">{t('contactInfoTitle')}</h4>
                  <p>
-                   <strong>Email:</strong> daguerhernandezvasquez@gmail.com<br/>
+                   <strong>Email:</strong> consulta@daguerhernandez.com<br/>
                    <strong>Teléfono:</strong> +506 8703-3868
                  </p>
                  <Link to="/#contact" className="widget-contact-button">{t('cta_button')}</Link>

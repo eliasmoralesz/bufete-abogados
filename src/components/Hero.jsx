@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FaBalanceScale } from 'react-icons/fa';
 import lawyerPhoto from '../assets/lawyer.webp';
 import './Hero.css';
 
@@ -42,17 +41,7 @@ const Hero = () => {
 
       <div className="hero-content">
         <div className="hero-text">
-          <motion.span
-            className="hero-badge"
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <FaBalanceScale aria-hidden="true" />
-            {t('hero_badge')}
-          </motion.span>
-
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.05 }}>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             {titlePre && <>{titlePre} </>}
             <em>{t('hero_title_highlight')}</em>
             {titlePost && <> {titlePost}</>}
@@ -88,14 +77,14 @@ const Hero = () => {
 
         <div className="hero-visual">
           <div className="hero-arch" aria-hidden="true" />
-          <motion.div
-            className="hero-photo-frame"
+          <motion.img
+            src={lawyerPhoto}
+            alt="Daguer Hernández, abogado"
+            className="hero-photo"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
-          >
-            <img src={lawyerPhoto} alt="Daguer Hernández, abogado" className="hero-photo" />
-          </motion.div>
+          />
 
           <motion.a
             href="#testimonials"

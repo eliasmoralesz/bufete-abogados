@@ -2,5 +2,4 @@
 User-agent: *
 Disallow:
 
-# Reemplazar por el dominio real antes de publicar
-Sitemap: https://www.daguerhernandezabogado.com/sitemap.xml
+Sitemap: https://daguerhernandez.com/sitemap.xml

@@ -25,8 +25,8 @@ const Footer = () => {
         <div className="footer-write">
           <h3>{t('write_me')}</h3>
           <div className="email-social-wrapper">
-            <a href="mailto:daguerhernandezvasquez@gmail.com" className="email-button">
-              daguerhernandezvasquez@gmail.com
+            <a href="mailto:consulta@daguerhernandez.com" className="email-button">
+              consulta@daguerhernandez.com
             </a>
             <div className="social-icons">
               <a href="https://www.instagram.com/daguerhernandezcr/" target="_blank" rel="noopener noreferrer">

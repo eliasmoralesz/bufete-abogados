@@ -61,7 +61,7 @@ const Home = () => {
             image: DEFAULT_OG_IMAGE,
             url: `${SITE_URL}/`,
             telephone: '+506-8703-3868',
-            email: 'daguerhernandezvasquez@gmail.com',
+            email: 'consulta@daguerhernandez.com',
             address: {
               '@type': 'PostalAddress',
               addressLocality: 'San José',

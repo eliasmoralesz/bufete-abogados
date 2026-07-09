@@ -25,13 +25,13 @@ const TopBar = () => {
   return (
     <div className={`top-bar ${hideTopBar ? 'scrolled' : ''}`}>
       <div className="top-bar-left">
-        <a href="mailto:daguerhernandezvasquez@gmail.com" className="contact-link">
+        <a href="mailto:consulta@daguerhernandez.com" className="contact-link">
           <span className="icon">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
               <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
           </span>
-          <span className="text">daguerhernandezvasquez@gmail.com</span>|
+          <span className="text">consulta@daguerhernandez.com</span>|
         </a>
 
         <a href="tel:+50689655582" className="contact-link">
