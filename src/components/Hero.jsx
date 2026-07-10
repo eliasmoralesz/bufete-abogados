@@ -1,53 +1,73 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import lawyerPhoto from '../assets/lawyer.webp';
+import heroVideo from '../assets/hero-justice.mp4';
+import heroPoster from '../assets/hero-justice-poster.webp';
 import './Hero.css';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const heroRef = useRef(null);
+  const videoRef = useRef(null);
 
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
   });
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const moveX = useTransform(x, [0, windowSize.width], [-10, 10]);
-  const moveY = useTransform(y, [0, windowSize.height], [-8, 8]);
-
-  const handleMouseMove = (e) => {
-    x.set(e.clientX);
-    y.set(e.clientY);
-  };
+  const videoY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const video = videoRef.current;
+    if (!video) return undefined;
+
+    const unsubscribe = scrollYProgress.onChange((progress) => {
+      if (video.duration) {
+        video.currentTime = progress * video.duration;
+      }
+    });
+
+    return unsubscribe;
+  }, [scrollYProgress]);
 
   const titlePre = t('hero_title_pre');
   const titlePost = t('hero_title_post');
 
   return (
-    <section className="hero" onMouseMove={handleMouseMove}>
-      <div className="hero-bg" aria-hidden="true" />
-      <span className="hero-watermark" aria-hidden="true">{t('hero_watermark')}</span>
+    <section className="hero" ref={heroRef}>
+      <motion.div className="hero-video-wrap" style={{ y: videoY }}>
+        <video
+          ref={videoRef}
+          className="hero-video"
+          muted
+          playsInline
+          preload="auto"
+          poster={heroPoster}
+          aria-hidden="true"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+      </motion.div>
+      <div className="hero-overlay" aria-hidden="true" />
 
       <div className="hero-content">
         <div className="hero-text">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+          <motion.div
+            className="hero-kicker"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="hero-kicker-line" aria-hidden="true" />
+            <span>{t('hero_kicker')}</span>
+          </motion.div>
+
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
             {titlePre && <>{titlePre} </>}
             <em>{t('hero_title_highlight')}</em>
             {titlePost && <> {titlePost}</>}
           </motion.h1>
 
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }}>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
             {t('hero_subtitle')}
           </motion.p>
 
@@ -55,7 +75,7 @@ const Hero = () => {
             className="tagline"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             {t('hero_tagline')}
           </motion.span>
@@ -64,7 +84,7 @@ const Hero = () => {
             className="hero-buttons"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             <motion.a href="#appointment" className="btn btn-primary" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               {t('cta_button')}
@@ -75,44 +95,19 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <div className="hero-visual">
-          <div className="hero-arch" aria-hidden="true" />
-          <motion.img
-            src={lawyerPhoto}
-            alt="Daguer Hernández, abogado"
-            className="hero-photo"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-          />
-
-          <motion.a
-            href="#testimonials"
-            className="hero-review-badge"
-            style={{ x: moveX, y: moveY }}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            whileHover={{ scale: 1.05 }}
-          >
-            <span className="hero-review-stars">★★★★★</span>
-            <span>5.0 · {t('hero_review_badge')}</span>
-          </motion.a>
-        </div>
-      </div>
-
-      <div className="hero-stats">
-        <div className="hero-stat">
-          <span className="hero-stat-number">+12</span>
-          <span className="hero-stat-label">{t('hero_stat_years')}</span>
-        </div>
-        <div className="hero-stat">
-          <span className="hero-stat-number">1000+</span>
-          <span className="hero-stat-label">{t('hero_stat_cases')}</span>
-        </div>
-        <div className="hero-stat">
-          <span className="hero-stat-number">95%</span>
-          <span className="hero-stat-label">{t('hero_stat_success')}</span>
+        <div className="hero-stats">
+          <motion.div className="hero-stat" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}>
+            <span className="hero-stat-number">+12</span>
+            <span className="hero-stat-label">{t('hero_stat_years')}</span>
+          </motion.div>
+          <motion.div className="hero-stat" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.6 }}>
+            <span className="hero-stat-number">1000+</span>
+            <span className="hero-stat-label">{t('hero_stat_cases')}</span>
+          </motion.div>
+          <motion.div className="hero-stat" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.7 }}>
+            <span className="hero-stat-number">95%</span>
+            <span className="hero-stat-label">{t('hero_stat_success')}</span>
+          </motion.div>
         </div>
       </div>
     </section>

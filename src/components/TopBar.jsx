@@ -52,7 +52,7 @@ const TopBar = () => {
               11.5 12 11.5z"/>
             </svg>
           </span>
-          <span className="text">Barrio Luján, San José, Costa Rica</span>
+          <span className="text">San Sebastián, San José, Costa Rica</span>
         </a>
       </div>
 

@@ -65,7 +65,7 @@ const Home = () => {
             address: {
               '@type': 'PostalAddress',
               addressLocality: 'San José',
-              addressRegion: 'Barrio Luján',
+              addressRegion: 'San Sebastián',
               addressCountry: 'CR',
             },
             areaServed: 'Costa Rica',

@@ -5,17 +5,31 @@ html {
   overflow-x: hidden;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   overflow-x: hidden; /* ✨ Esto previene el scroll horizontal */
 }
 
 h1, h2, h3 {
   font-family: 'Lora', serif;
   font-weight: 600;
+}
+
+/* Compensa el header fijo al navegar por ancla (#about, #services, #contact, #appointment),
+   para que el contenido no quede tapado detrás de la barra superior + nav. */
+#about,
+#services,
+#contact,
+#appointment {
+  scroll-margin-top: 140px;
 }
 
 p, a {
