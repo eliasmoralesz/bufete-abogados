@@ -94,7 +94,7 @@ const Testimonials = () => {
         <button
           type="button"
           className="testimonials-arrow prev"
-          aria-label="Reseña anterior"
+          aria-label={t('testimonials_prev')}
           onClick={goPrev}
         >
           <FaChevronLeft aria-hidden="true" />
@@ -118,7 +118,7 @@ const Testimonials = () => {
               >
                 <div className="testimonial-card">
                   <div className="testimonial-rating" aria-label={`${review.rating} / 5`}>
-                    <span className="testimonial-stars" aria-hidden="true">{'☆'.repeat(review.rating)}</span>
+                    <span className="testimonial-stars" aria-hidden="true">{'★'.repeat(review.rating)}</span>
                     <span>{review.rating.toFixed(1)}</span>
                   </div>
                   <p className="testimonial-text">“{review.text}”</p>
@@ -139,20 +139,20 @@ const Testimonials = () => {
         <button
           type="button"
           className="testimonials-arrow next"
-          aria-label="Reseña siguiente"
+          aria-label={t('testimonials_next')}
           onClick={goNext}
         >
           <FaChevronRight aria-hidden="true" />
         </button>
       </div>
 
-      <div className="testimonials-dots" role="tablist" aria-label="Reseñas">
+      <div className="testimonials-dots" role="tablist" aria-label={t('testimonials_tablist_label')}>
         {reviews.map((review, i) => (
           <button
             type="button"
             key={review.name}
             className={`testimonials-dot ${i === index ? 'active' : ''}`}
-            aria-label={`Ver reseña ${i + 1}`}
+            aria-label={t('testimonials_view_review', { n: i + 1 })}
             aria-selected={i === index}
             onClick={() => goTo(i)}
           />
