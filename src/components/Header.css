@@ -67,7 +67,10 @@ nav.nav-menu ul {
 nav.nav-menu ul li a {
   text-decoration: none;
   color: #333333;
-  font-size: 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   padding: 10px 20px;
   border-radius: 50px;
   transform: translateY(-3px);
