@@ -31,9 +31,10 @@ html {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
-  opacity: 0.6;
+  object-position: 56% 18%;
+  opacity: 0.72;
   display: block;
+  filter: contrast(1.08) saturate(0.92);
 }
 
 .hero-overlay {
@@ -41,8 +42,21 @@ html {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(100deg, rgba(5, 13, 36, 0.97) 0%, rgba(6, 16, 41, 0.9) 40%, rgba(8, 20, 48, 0.58) 72%, rgba(10, 24, 53, 0.32) 100%),
+    linear-gradient(100deg, rgba(5, 13, 36, 0.96) 0%, rgba(6, 16, 41, 0.86) 38%, rgba(8, 20, 48, 0.52) 72%, rgba(10, 24, 53, 0.24) 100%),
+    linear-gradient(to bottom, transparent 52%, rgba(3, 8, 24, 0.7) 82%, rgba(3, 8, 24, 0.98) 100%),
     linear-gradient(to top, rgba(4, 10, 28, 0.65) 0%, transparent 26%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(140px, 22vh, 260px);
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(3, 8, 24, 0), rgba(5, 14, 34, 0.82) 48%, #071734 92%);
 }
 
 .hero-content {
@@ -103,6 +117,41 @@ html {
   /* Reserva espacio para que la cursiva no corte descendentes (la "g" de "Migratorio") */
   line-height: 1.12;
   padding-bottom: 0.08em;
+}
+
+.hero-typed-word {
+  min-height: 1.12em;
+}
+
+.hero-typed-word span {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-typed-word span::after {
+  content: '';
+  display: inline-block;
+  width: 0.06em;
+  height: 0.76em;
+  margin-left: 0.08em;
+  background: rgba(212, 175, 55, 0.86);
+  transform: translateY(0.08em);
+  animation: heroCursorBlink 1s steps(1) infinite;
+}
+
+@keyframes heroCursorBlink {
+  0%, 48% {
+    opacity: 1;
+  }
+  49%, 100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-typed-word span::after {
+    animation: none;
+  }
 }
 
 .hero-text p {
@@ -259,7 +308,18 @@ html {
   }
 
   .hero-video {
-    object-position: center 12%;
+    object-position: 58% 10%;
+    opacity: 0.82;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(5, 13, 36, 0.88) 0%, rgba(5, 13, 36, 0.68) 36%, rgba(4, 10, 28, 0.74) 68%, rgba(3, 8, 24, 0.98) 100%),
+      linear-gradient(90deg, rgba(5, 13, 36, 0.68) 0%, rgba(5, 13, 36, 0.22) 52%, rgba(5, 13, 36, 0.66) 100%);
+  }
+
+  .hero-kicker {
+    display: none;
   }
 
   .hero-text h1 {

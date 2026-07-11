@@ -1,22 +1,31 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async'; // <-- IMPORTAR
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from '../seoConfig';
+import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
+import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, ogImageForLang } from '../seoConfig';
 
 import TopBar from '../components/TopBar';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import About from '../components/About';
 import Services from '../components/Services';
+import MigrationIntent from '../components/MigrationIntent';
 import Testimonials from '../components/Testimonials';
 import Appointment from '../components/Appointment';
 import PapelesRegla from '../components/PapelesRegla';
 import CTASection from '../components/CTASection';
 import Contact from '../components/Contact';
+import LocationSection from '../components/LocationSection';
 import Footer from '../components/Footer';
 
-const Home = () => {
+const Home = ({ lang = 'es' }) => {
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+    document.documentElement.lang = lang;
+  }, [lang, i18n]);
 
   useEffect(() => {
     if (location.hash) {
@@ -28,30 +37,35 @@ const Home = () => {
     }
   }, [location]);
 
+  const path = lang === 'en' ? '/en' : '/';
+  const canonicalUrl = `${SITE_URL}${path}`;
+  const ogLocale = lang === 'en' ? 'en_US' : 'es_CR';
+  const ogLocaleAlternate = lang === 'en' ? 'es_CR' : 'en_US';
+  const ogImage = ogImageForLang(lang);
+
   return (
     <div>
-      {/* AÑADIR ESTE BLOQUE */}
       <Helmet>
-        <title>Abogado Migratorio en Costa Rica | Immigration Attorney | Daguer Hernández</title>
-        <meta
-          name="description"
-          content="Especialista en derecho migratorio y notarial en Costa Rica con más de 12 años de experiencia. Asesoría clara y resultados reales para sus trámites. Over 12 years of experience. Contact Immigration Attorney Daguer Hernández."
-        />
-        <link rel="canonical" href={`${SITE_URL}/`} />
+        <title>{t('meta_title')}</title>
+        <meta name="description" content={t('meta_description')} />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="es" href={`${SITE_URL}/`} />
+        <link rel="alternate" hrefLang="en" href={`${SITE_URL}/en`} />
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/`} />
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={SITE_NAME} />
-        <meta property="og:title" content="Abogado Migratorio en Costa Rica | Daguer Hernández" />
-        <meta property="og:description" content="Especialista en derecho migratorio y notarial en Costa Rica con más de 12 años de experiencia. Asesoría clara y resultados reales para sus trámites." />
-        <meta property="og:url" content={`${SITE_URL}/`} />
-        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
-        <meta property="og:locale" content="es_CR" />
-        <meta property="og:locale:alternate" content="en_US" />
+        <meta property="og:title" content={t('meta_title')} />
+        <meta property="og:description" content={t('meta_description')} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:locale" content={ogLocale} />
+        <meta property="og:locale:alternate" content={ogLocaleAlternate} />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Abogado Migratorio en Costa Rica | Daguer Hernández" />
-        <meta name="twitter:description" content="Especialista en derecho migratorio y notarial en Costa Rica con más de 12 años de experiencia." />
-        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:title" content={t('meta_title')} />
+        <meta name="twitter:description" content={t('meta_description')} />
+        <meta name="twitter:image" content={ogImage} />
 
         <script type="application/ld+json">
           {JSON.stringify({
@@ -59,7 +73,7 @@ const Home = () => {
             '@type': 'Attorney',
             name: 'Daguer Hernández',
             image: DEFAULT_OG_IMAGE,
-            url: `${SITE_URL}/`,
+            url: canonicalUrl,
             telephone: '+506-8703-3868',
             email: 'consulta@daguerhernandez.com',
             address: {
@@ -83,6 +97,12 @@ const Home = () => {
               'Derecho Notarial',
               'Derecho Registral',
               'Derecho Migratorio',
+              'Residencia en Costa Rica',
+              'Naturalización costarricense',
+              'Refugio en Costa Rica',
+              'DIMEX',
+              'Permisos migratorios',
+              'Regularización migratoria',
             ],
           })}
         </script>
@@ -93,11 +113,13 @@ const Home = () => {
       <Hero />
       <About />
       <Services />
-      <Testimonials />
+      <MigrationIntent />
       <Appointment />
-      <PapelesRegla />
       <CTASection />
+      <Testimonials />
       <Contact />
+      <LocationSection />
+      <PapelesRegla />
       <Footer />
     </div>
   );

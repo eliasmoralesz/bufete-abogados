@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useMemo, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import heroVideo from '../assets/hero-justice.mp4';
@@ -6,7 +6,7 @@ import heroPoster from '../assets/hero-justice-poster.webp';
 import './Hero.css';
 
 const Hero = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const heroRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -31,6 +31,46 @@ const Hero = () => {
 
   const titlePre = t('hero_title_pre');
   const titlePost = t('hero_title_post');
+  const heroWords = useMemo(() => [
+    t('hero_title_word_migration'),
+    t('hero_title_word_notarial'),
+    t('hero_title_word_registral'),
+  ], [i18n.language, t]);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [displayWord, setDisplayWord] = useState(heroWords[0]);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    setWordIndex(0);
+    setDisplayWord(heroWords[0]);
+    setIsDeleting(false);
+  }, [heroWords, i18n.language]);
+
+  useEffect(() => {
+    const currentWord = heroWords[wordIndex] || heroWords[0];
+    const isComplete = displayWord === currentWord;
+    const isEmpty = displayWord === '';
+
+    const delay = isComplete && !isDeleting ? 2400 : isDeleting ? 28 : 48;
+
+    const timeout = window.setTimeout(() => {
+      if (isComplete && !isDeleting) {
+        setIsDeleting(true);
+        return;
+      }
+
+      if (isEmpty && isDeleting) {
+        setIsDeleting(false);
+        setWordIndex((index) => (index + 1) % heroWords.length);
+        return;
+      }
+
+      const nextLength = displayWord.length + (isDeleting ? -1 : 1);
+      setDisplayWord(currentWord.slice(0, nextLength));
+    }, delay);
+
+    return () => window.clearTimeout(timeout);
+  }, [displayWord, heroWords, isDeleting, wordIndex]);
 
   return (
     <section className="hero" ref={heroRef}>
@@ -61,9 +101,16 @@ const Hero = () => {
             <span>{t('hero_kicker')}</span>
           </motion.div>
 
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+          <motion.h1
+            aria-label={t('hero_title')}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             {titlePre && <>{titlePre} </>}
-            <em>{t('hero_title_highlight')}</em>
+            <em className="hero-typed-word" aria-hidden="true">
+              <span>{displayWord}</span>
+            </em>
             {titlePost && <> {titlePost}</>}
           </motion.h1>
 

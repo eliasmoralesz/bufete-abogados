@@ -9,6 +9,12 @@ import './i18n';
 
 initAnalytics();
 
+// Quita las etiquetas SEO estáticas de index.html (marcadas con data-default) apenas
+// se ejecuta JavaScript, para que no queden duplicadas con las que inyecta React Helmet
+// por ruta/idioma. Los bots que no ejecutan JS (WhatsApp, Facebook) nunca llegan a
+// correr este script, así que igual ven las etiquetas estáticas originales.
+document.querySelectorAll('[data-default]').forEach((el) => el.remove());
+
 // Crear la raíz de la aplicación
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

@@ -7,7 +7,22 @@
   justify-content: center;
   color: #ffffff;
   padding: 100px 20px;
-  background-color: #0A1F44; /* fallback si canvas no carga */
+  background:
+    linear-gradient(180deg, #071734 0%, #0A1F44 18%, #0A1F44 100%);
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  width: min(1180px, 82vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.72), transparent);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.28);
+  pointer-events: none;
 }
 
 /* Fondo dinámico de Vanta.js */

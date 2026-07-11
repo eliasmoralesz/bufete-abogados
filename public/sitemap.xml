@@ -1,13 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://daguerhernandez.com/</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/" />
   </url>
   <url>
     <loc>https://daguerhernandez.com/about-details</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/about-details" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/about-details" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/about-details" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/about-details</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/about-details" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/about-details" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/about-details" />
   </url>
 </urlset>

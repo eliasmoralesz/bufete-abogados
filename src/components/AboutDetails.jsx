@@ -5,16 +5,18 @@ import { FaArrowLeft, FaGavel, FaBalanceScale, FaHandshake } from 'react-icons/f
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Helmet } from 'react-helmet-async';
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from '../seoConfig';
+import { SITE_URL, SITE_NAME, ogImageForLang } from '../seoConfig';
 
 import TopBar from '../components/TopBar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './AboutDetails.css';
 
-// Contenido tomado del CV real del abogado (2024). Se deja en español porque
-// traducir cargos y títulos administrativos costarricenses corre el riesgo de
-// tergiversar credenciales reales.
+// El cargo (role), la institución (org) se dejan siempre en español porque son
+// nombres oficiales de instituciones/puestos públicos costarricenses — traducirlos
+// correría el riesgo de tergiversar credenciales reales. Las fechas (period/periodEn)
+// y las funciones (bullets, vía i18n.js) sí se traducen — son solo calendario/prosa,
+// sin ese riesgo.
 // Los 3 cargos más recientes/relevantes llevan detalle completo; los 3 más
 // antiguos se muestran en una sola línea para no saturar la página.
 const workExperience = [
@@ -22,46 +24,35 @@ const workExperience = [
     role: 'Subdirector General',
     org: 'Dirección General de Migración y Extranjería',
     period: 'Mayo 2018 – Mayo 2022',
-    bullets: [
-      'Política, gestión, ayuda y control migratorio en Costa Rica.',
-      'Colaboración con el control migratorio de ingreso y egreso del territorio nacional.',
-      'Formulación de planes, programas y proyectos presupuestarios para el ejercicio de sus atribuciones.',
-      'Definición y ejecución de proyectos de integración financiados por el Fondo Especial de Migración y el Fondo Social Migratorio.',
-      'Promoción de la integración de las personas migrantes en la sociedad costarricense.',
-    ],
+    periodEn: 'May 2018 – May 2022',
+    bulletKeys: ['workExp1_bullet1', 'workExp1_bullet2', 'workExp1_bullet3', 'workExp1_bullet4', 'workExp1_bullet5'],
   },
   {
     role: 'Abogado Senior',
     org: 'Processus - CR',
     period: 'Febrero 2013 – Actualidad',
-    bullets: [
-      'Atención de asuntos civiles, comerciales, administrativos y contencioso-administrativos.',
-      'Explicación de leyes complejas y documentos legales a los clientes.',
-      'Representación jurídica integral de los clientes en juicio.',
-      'Ejecución de asuntos notariales: certificaciones, traspasos, matrimonios y sucesorios.',
-    ],
+    periodEn: 'February 2013 – Present',
+    bulletKeys: ['workExp2_bullet1', 'workExp2_bullet2', 'workExp2_bullet3', 'workExp2_bullet4'],
   },
   {
     role: 'Asesor del Concejo Municipal',
     org: 'Concejo Municipal de San José',
     period: 'Mayo 2016 – Abril 2018 / Enero 2024 – Abril 2024',
-    bullets: [
-      'Asesoría a los regidores sobre los temas presentados para votación en el Concejo Municipal.',
-      'Redacción de mociones y análisis de reglamentos municipales.',
-      'Asesoría sobre temas legales vinculados al presupuesto municipal.',
-      'Elaboración de denuncias ante las instancias correspondientes por violación de derechos.',
-    ],
+    periodEn: 'May 2016 – April 2018 / January 2024 – April 2024',
+    bulletKeys: ['workExp3_bullet1', 'workExp3_bullet2', 'workExp3_bullet3', 'workExp3_bullet4'],
   },
 ];
 
 const earlierExperience = [
-  { role: 'Regidor Municipal', org: 'Concejo Municipal de San José', period: 'Mayo 2010 – Abril 2016' },
-  { role: 'Asistente Legal', org: 'Oficina del Lic. Marco Castillo Rojas', period: 'Enero 2007 – Abril 2010' },
-  { role: 'Asesor Legal Externo', org: 'FUPROVI', period: 'Enero 2007 – Diciembre 2009' },
+  { role: 'Regidor Municipal', org: 'Concejo Municipal de San José', period: 'Mayo 2010 – Abril 2016', periodEn: 'May 2010 – April 2016' },
+  { role: 'Asistente Legal', org: 'Oficina del Lic. Marco Castillo Rojas', period: 'Enero 2007 – Abril 2010', periodEn: 'January 2007 – April 2010' },
+  { role: 'Asesor Legal Externo', org: 'FUPROVI', period: 'Enero 2007 – Diciembre 2009', periodEn: 'January 2007 – December 2009' },
 ];
 
+// Título e institución se dejan en español (nombres oficiales de instituciones
+// académicas costarricenses/internacionales), igual que en workExperience.
 const education = [
-  { degree: 'Maestría en Derecho Internacional de los Derechos Humanos', institution: 'University for Peace (UPEACE – Mandato de la ONU)', year: '2022 (en progreso)' },
+  { degree: 'Maestría en Derecho Internacional de los Derechos Humanos', institution: 'University for Peace (UPEACE – Mandato de la ONU)', year: '2022 (en progreso)', yearEn: '2022 (in progress)' },
   { degree: 'Especialidad en Notariado', institution: 'Universidad Escuela Libre de Derecho', year: '2017' },
   { degree: 'Licenciatura en Derecho', institution: 'Universidad Escuela Libre de Derecho', year: '2013' },
   { degree: 'Pregrado en Economía', institution: 'Universidad de Costa Rica', year: '2004' },
@@ -72,48 +63,48 @@ const certifications = [
   { name: 'Política de Gobernanza de las Migraciones en América Latina y el Caribe', institution: 'Banco Interamericano de Desarrollo', year: '2020' },
 ];
 
-const achievements = [
-  'Gestión y coordinación con agencias de Naciones Unidas (OIM, ACNUR y UNICEF) para el cumplimiento de los Objetivos de Desarrollo Sostenible, el Pacto Mundial para las Migraciones y el Pacto Mundial sobre los Refugiados.',
-  'Enfoque social y humano del derecho, orientado a poblaciones vulnerables.',
-  'Gestión legal, política y de control migratorio en Costa Rica.',
-  'Colaboración en la redacción de proyectos de ley e investigaciones jurídicas.',
-];
+const achievementKeys = ['achievement1', 'achievement2', 'achievement3', 'achievement4'];
+const skillKeys = ['skill1', 'skill2', 'skill3', 'skill4', 'skill5', 'skill6'];
 
-const skills = [
-  'Desarrollo jurídico',
-  'Responsabilidad civil',
-  'Gestión de poblaciones vulnerables',
-  'Gestión y control de riesgos',
-  'Administración pública',
-  'Inglés B2',
-];
+const AboutDetails = ({ lang = 'es' }) => {
+  const { t, i18n } = useTranslation();
+  const prefix = lang === 'en' ? '/en' : '';
 
-const AboutDetails = () => {
-  const { t } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+    document.documentElement.lang = lang;
+  }, [lang, i18n]);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
     window.scrollTo(0, 0);
   }, []);
 
+  const path = lang === 'en' ? '/en/about-details' : '/about-details';
+  const canonicalUrl = `${SITE_URL}${path}`;
+  const ogImage = ogImageForLang(lang);
+
   return (
     <>
       <Helmet>
-        <title>Más sobre Daguer Hernández | Experiencia y Compromiso</title>
-        <meta name="description" content="Conozca la trayectoria de Daguer Hernández, ex-Subdirector de Migración y especialista en Derecho Notarial con más de 12 años de experiencia." />
-        <link rel="canonical" href={`${SITE_URL}/about-details`} />
+        <title>{t('aboutMeta_title')}</title>
+        <meta name="description" content={t('aboutMeta_description')} />
+        <link rel="canonical" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="es" href={`${SITE_URL}/about-details`} />
+        <link rel="alternate" hrefLang="en" href={`${SITE_URL}/en/about-details`} />
+        <link rel="alternate" hrefLang="x-default" href={`${SITE_URL}/about-details`} />
 
         <meta property="og:type" content="profile" />
         <meta property="og:site_name" content={SITE_NAME} />
-        <meta property="og:title" content="Más sobre Daguer Hernández | Experiencia y Compromiso" />
-        <meta property="og:description" content="Conozca la trayectoria de Daguer Hernández, ex-Subdirector de Migración y especialista en Derecho Notarial con más de 12 años de experiencia." />
-        <meta property="og:url" content={`${SITE_URL}/about-details`} />
-        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:title" content={t('aboutMeta_title')} />
+        <meta property="og:description" content={t('aboutMeta_description')} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImage} />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Más sobre Daguer Hernández" />
-        <meta name="twitter:description" content="Conozca la trayectoria de Daguer Hernández, ex-Subdirector de Migración y especialista en Derecho Notarial." />
-        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:title" content={t('aboutMeta_title')} />
+        <meta name="twitter:description" content={t('aboutMeta_description')} />
+        <meta name="twitter:image" content={ogImage} />
       </Helmet>
 
       <TopBar />
@@ -129,17 +120,8 @@ const AboutDetails = () => {
             <div className="main-content-column">
               <div className="profile-section" data-aos="fade-up">
                 <h3>{t('profile')}</h3>
-                <p>
-                  Soy un profesional con más de 12 años de experiencia en la administración pública, habiendo
-                  ejercido cargos de liderazgo en instituciones públicas y de elección popular, manteniendo un
-                  vínculo permanente con organizaciones de la sociedad civil para atender las necesidades de la
-                  población migrante y refugiada de Costa Rica.
-                </p>
-                <p>
-                  Cuento con la capacidad de desempeñarme en todas las ramas del Derecho, presentando y
-                  contribuyendo con soluciones pacíficas, eficaces y justas a los conflictos de la sociedad
-                  costarricense, con una visión clara de la realidad nacional e internacional y una misión humanista.
-                </p>
+                <p>{t('aboutDetails_profile_p1')}</p>
+                <p>{t('aboutDetails_profile_p2')}</p>
               </div>
 
               <div className="profile-section" data-aos="fade-up">
@@ -152,7 +134,7 @@ const AboutDetails = () => {
                     </div>
                     <div className="cv-row">
                       <span className="cv-label">{t('cv_period')}</span>
-                      <span className="cv-value">{job.period}</span>
+                      <span className="cv-value">{lang === 'en' ? job.periodEn : job.period}</span>
                     </div>
                     <div className="cv-row">
                       <span className="cv-label">{t('cv_institution')}</span>
@@ -162,8 +144,8 @@ const AboutDetails = () => {
                       <span className="cv-label">{t('cv_duties')}</span>
                       <span className="cv-value">
                         <ul>
-                          {job.bullets.map((bullet) => (
-                            <li key={bullet}>{bullet}</li>
+                          {job.bulletKeys.map((key) => (
+                            <li key={key}>{t(key)}</li>
                           ))}
                         </ul>
                       </span>
@@ -179,7 +161,7 @@ const AboutDetails = () => {
                     </div>
                     <div className="cv-row">
                       <span className="cv-label">{t('cv_period')}</span>
-                      <span className="cv-value">{job.period}</span>
+                      <span className="cv-value">{lang === 'en' ? job.periodEn : job.period}</span>
                     </div>
                     <div className="cv-row">
                       <span className="cv-label">{t('cv_institution')}</span>
@@ -203,7 +185,7 @@ const AboutDetails = () => {
                     </div>
                     <div className="cv-row">
                       <span className="cv-label">{t('cv_year')}</span>
-                      <span className="cv-value">{item.year}</span>
+                      <span className="cv-value">{lang === 'en' && item.yearEn ? item.yearEn : item.year}</span>
                     </div>
                   </div>
                 ))}
@@ -232,8 +214,8 @@ const AboutDetails = () => {
               <div className="profile-section" data-aos="fade-up">
                 <h3>{t('achievements')}</h3>
                 <ul className="simple-list">
-                  {achievements.map((item) => (
-                    <li key={item}>{item}</li>
+                  {achievementKeys.map((key) => (
+                    <li key={key}>{t(key)}</li>
                   ))}
                 </ul>
               </div>
@@ -244,7 +226,7 @@ const AboutDetails = () => {
               <div className="sidebar-widget">
                 <h4 className="widget-title">{t('barMembership')}</h4>
                 <p>
-                  Colegio de Abogados de Costa Rica<br />
+                  {t('barMembership_org')}<br />
                   Carné № 23730
                 </p>
               </div>
@@ -252,8 +234,8 @@ const AboutDetails = () => {
               <div className="sidebar-widget">
                 <h4 className="widget-title">{t('skills')}</h4>
                 <ul className="simple-list">
-                  {skills.map((skill) => (
-                    <li key={skill}>{skill}</li>
+                  {skillKeys.map((key) => (
+                    <li key={key}>{t(key)}</li>
                   ))}
                 </ul>
               </div>
@@ -261,26 +243,26 @@ const AboutDetails = () => {
               <div className="sidebar-widget">
                 <h4 className="widget-title">{t('practiceAreasTitle')}</h4>
                 <ul className="widget-list">
-                  <li><Link to="/#services"><FaGavel /> {t('notarialLaw')}</Link></li>
-                  <li><Link to="/#services"><FaBalanceScale /> {t('registralLaw')}</Link></li>
-                  <li><Link to="/#services"><FaHandshake /> {t('migrationLaw')}</Link></li>
+                  <li><Link to={`${prefix}/#services`}><FaGavel /> {t('notarialLaw')}</Link></li>
+                  <li><Link to={`${prefix}/#services`}><FaBalanceScale /> {t('registralLaw')}</Link></li>
+                  <li><Link to={`${prefix}/#services`}><FaHandshake /> {t('migrationLaw')}</Link></li>
                 </ul>
               </div>
 
               <div className="sidebar-widget">
                  <h4 className="widget-title">{t('contactInfoTitle')}</h4>
                  <p>
-                   <strong>Email:</strong> consulta@daguerhernandez.com<br/>
-                   <strong>Teléfono:</strong> +506 8703-3868
+                   <strong>{t('email')}:</strong> consulta@daguerhernandez.com<br/>
+                   <strong>{t('phone')}:</strong> +506 8703-3868
                  </p>
-                 <Link to="/#contact" className="widget-contact-button">{t('cta_button')}</Link>
+                 <Link to={`${prefix}/#contact`} className="widget-contact-button">{t('cta_button')}</Link>
               </div>
             </aside>
 
           </div>
 
           <div className="about-details-footer">
-            <Link to="/#about" className="back-button">
+            <Link to={`${prefix}/#about`} className="back-button">
               <FaArrowLeft style={{ marginRight: '8px' }} />
               {t('backToAbout')}
             </Link>

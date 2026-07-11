@@ -8,30 +8,36 @@ const reviews = [
     name: 'Mari Vallejos',
     meta: '1 review',
     rating: 5,
+    initials: 'MV',
     text: 'Excelente asesoria y abogado, super recomendado muy buen servicio.',
   },
   {
     name: 'José Manuel Terán Cordero',
     meta: '2 reviews',
     rating: 5,
+    initials: 'JT',
     text: 'Muy buena atención y excelente abogado',
   },
   {
     name: 'Michael Wurm',
     meta: 'Local Guide · 272 reviews',
     rating: 5,
+    initials: 'MW',
     text: 'He and his associates provide excellent services, not only as far as immigration services are concerned, but also for a multiplicity of other legal and notary services, such as representation of our corporation, and also my spouse and myself. […] He is a clear 10 out of 10 and I can totally second his work with a thumbs up for him and his team.',
   },
   {
     name: 'Alejandro Díaz Jiménez',
     meta: 'Local Guide · 106 reviews',
     rating: 5,
+    initials: 'AD',
     text: 'Gracias por la colaboración y todo el apoyo. Recomiendo su trabajo.',
   },
 ];
 
 const AUTO_ADVANCE_MS = 6000;
 const SWIPE_THRESHOLD = 50;
+const displayedReviews = [...reviews, ...reviews];
+const googleReviewUrl = 'https://www.google.com/search?q=Daguer+Hernandez&ludocid=6725057967580669949#lrd=0x8fa0e36fe84dc86f:0x5d543497338e67fd,3';
 
 const Testimonials = () => {
   const { t } = useTranslation();
@@ -102,19 +108,28 @@ const Testimonials = () => {
         >
           <div
             className="testimonials-track"
-            style={{ transform: `translateX(-${index * 100}%)` }}
+            style={{ transform: `translateX(calc(-${index} * var(--testimonial-card-step)))` }}
           >
-            {reviews.map((review) => (
-              <div className="testimonial-slide" key={review.name}>
+            {displayedReviews.map((review, i) => (
+              <div
+                className="testimonial-slide"
+                key={`${review.name}-${i}`}
+                aria-hidden={i >= reviews.length}
+              >
                 <div className="testimonial-card">
-                  <div className="testimonial-stars" aria-label={`${review.rating} / 5`}>
-                    {'★'.repeat(review.rating)}
+                  <div className="testimonial-rating" aria-label={`${review.rating} / 5`}>
+                    <span className="testimonial-stars" aria-hidden="true">{'☆'.repeat(review.rating)}</span>
+                    <span>{review.rating.toFixed(1)}</span>
                   </div>
                   <p className="testimonial-text">“{review.text}”</p>
                   <div className="testimonial-author">
-                    <span className="testimonial-name">{review.name}</span>
-                    <span className="testimonial-meta">{review.meta}</span>
+                    <span className="testimonial-avatar" aria-hidden="true">{review.initials}</span>
+                    <span>
+                      <span className="testimonial-name">{review.name}</span>
+                      <span className="testimonial-meta">{review.meta}</span>
+                    </span>
                   </div>
+                  <span className="testimonial-quote" aria-hidden="true">”</span>
                 </div>
               </div>
             ))}
@@ -144,15 +159,27 @@ const Testimonials = () => {
         ))}
       </div>
 
-      <a
-        href="https://maps.app.goo.gl/twiMemVxLYbTfmoMA"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="testimonials-google-link"
-        data-aos="fade-up"
-      >
-        {t('testimonials_cta')}
-      </a>
+      <div className="testimonials-review-actions">
+        <p>{t('testimonials_review_prompt')}</p>
+        <div className="testimonials-review-buttons">
+          <a
+            href={googleReviewUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="testimonials-write-link"
+          >
+            {t('testimonials_write_review')}
+          </a>
+          <a
+            href="https://maps.app.goo.gl/twiMemVxLYbTfmoMA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="testimonials-google-link"
+          >
+            {t('testimonials_cta')}
+          </a>
+        </div>
+      </div>
     </section>
   );
 };

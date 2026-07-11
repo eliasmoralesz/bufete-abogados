@@ -45,6 +45,12 @@
   .whatsapp-container:hover .whatsapp-text {
     transform: scale(1.05); /* Aumenta ligeramente el texto en hover */
   }
+
+  body.mobile-menu-open .whatsapp-container {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+  }
   
   /* Responsive: Ocultar el texto en pantallas pequeñas */
   @media (max-width: 768px) {
