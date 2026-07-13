@@ -74,7 +74,7 @@ const Home = ({ lang = 'es' }) => {
             name: 'Daguer Hernández',
             image: DEFAULT_OG_IMAGE,
             url: canonicalUrl,
-            telephone: '+506-8703-3868',
+            telephone: '+506-8965-5582',
             email: 'consulta@daguerhernandez.com',
             address: {
               '@type': 'PostalAddress',

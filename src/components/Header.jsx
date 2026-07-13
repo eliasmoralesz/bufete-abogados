@@ -124,11 +124,11 @@ const Header = () => {
           </li>
 
           <li className="mobile-menu-footer">
-            <a href="tel:+50687033868" className="mobile-menu-phone">
+            <a href="tel:+50689655582" className="mobile-menu-phone">
               <svg className="mobile-menu-phone-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
                 <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21.17 2.83 13.93 2.83 5a1 1 0 011-1H7.3a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.26 1.11l-2.18 2.2z"/>
               </svg>
-              +506 8703-3868
+              +506 8965-5582
             </a>
             <a href={`${prefix}/#appointment`} className="mobile-menu-cta" onClick={closeMenu}>
               {t('cta_button')}

@@ -4,7 +4,7 @@ import './WhatsAppButton.css';
 
 const WhatsAppButton = () => {
   const { t } = useTranslation(); // Hook para acceder a las traducciones
-  const whatsappUrl = 'https://wa.me/50687033868?text=Hola%20Daguer,%20quiero%20contactarte';
+  const whatsappUrl = 'https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20contactarte';
 
   return (
     <div className="whatsapp-container">

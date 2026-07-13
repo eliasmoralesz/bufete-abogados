@@ -20,13 +20,36 @@ const Hero = () => {
     const video = videoRef.current;
     if (!video) return undefined;
 
+    // En iOS Safari, un <video> que nunca se ha "reproducido" (aunque sea muted +
+    // playsInline) no decodifica fotogramas al cambiarle `currentTime` por JS —
+    // se queda en blanco mostrando lo que haya detrás. El truco estándar es
+    // reproducirlo y pausarlo de inmediato al montar, para forzar a WebKit a
+    // inicializar el decodificador antes de que el scroll empiece a buscar frames.
+    const primeVideo = () => {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.then === 'function') {
+        playPromise.then(() => video.pause()).catch(() => {});
+      } else {
+        video.pause();
+      }
+    };
+
+    if (video.readyState >= 2) {
+      primeVideo();
+    } else {
+      video.addEventListener('loadeddata', primeVideo, { once: true });
+    }
+
     const unsubscribe = scrollYProgress.onChange((progress) => {
       if (video.duration) {
         video.currentTime = progress * video.duration;
       }
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      video.removeEventListener('loadeddata', primeVideo);
+    };
   }, [scrollYProgress]);
 
   const titlePre = t('hero_title_pre');

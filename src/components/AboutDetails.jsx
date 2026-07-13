@@ -253,7 +253,7 @@ const AboutDetails = ({ lang = 'es' }) => {
                  <h4 className="widget-title">{t('contactInfoTitle')}</h4>
                  <p>
                    <strong>{t('email')}:</strong> consulta@daguerhernandez.com<br/>
-                   <strong>{t('phone')}:</strong> +506 8703-3868
+                   <strong>{t('phone')}:</strong> +506 8965-5582
                  </p>
                  <Link to={`${prefix}/#contact`} className="widget-contact-button">{t('cta_button')}</Link>
               </div>

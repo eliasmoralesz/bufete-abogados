@@ -30,7 +30,7 @@ const LocationSection = () => {
                 <span>{t('location_address')}</span>
               </p>
               <p>
-                <a href="tel:+50687033868">
+                <a href="tel:+50689655582">
                   <strong>{t('location_phone_label')}</strong> {t('location_phone')}
                 </a>
               </p>

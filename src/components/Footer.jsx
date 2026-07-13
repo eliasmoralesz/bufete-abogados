@@ -16,12 +16,12 @@ const Footer = () => {
         <div className="footer-call">
           <h3>{t('call_me')}</h3>
           <a
-            href="https://wa.me/50687033868?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta"
+            href="https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta"
             className="phone-button"
             target="_blank"
             rel="noopener noreferrer"
           >
-            +506 8703-3868
+            +506 8965-5582
           </a>
           <p className="highlight">{t('directLine')}</p>
           <p className="highlight">{t('schedule')}</p>
