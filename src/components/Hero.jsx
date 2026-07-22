@@ -5,16 +5,36 @@ import heroVideo from '../assets/hero-justice.mp4';
 import heroPoster from '../assets/hero-justice-poster.webp';
 import './Hero.css';
 
+// iOS (Safari y cualquier navegador ahí, todos corren sobre WebKit) no decodifica
+// fotogramas de video al cambiar `currentTime` por JS aunque el video ya se haya
+// "cebado" con play/pause — el scroll-scrubbing simplemente no es viable en ese
+// motor. En vez de pelear contra la plataforma, en mobile se muestra una imagen
+// estática (el mismo frame que ya se usaba como poster) y no se descarga el video.
+const MOBILE_QUERY = '(max-width: 768px)';
+
 const Hero = () => {
   const { t, i18n } = useTranslation();
   const heroRef = useRef(null);
   const videoRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window.matchMedia === 'function' && window.matchMedia(MOBILE_QUERY).matches
+  );
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
   const videoY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+
+  useEffect(() => {
+    // jsdom (entorno de pruebas) no implementa matchMedia.
+    if (typeof window.matchMedia !== 'function') return undefined;
+
+    const mediaQuery = window.matchMedia(MOBILE_QUERY);
+    const handleChange = (event) => setIsMobile(event.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -98,17 +118,21 @@ const Hero = () => {
   return (
     <section className="hero" ref={heroRef}>
       <motion.div className="hero-video-wrap" style={{ y: videoY }}>
-        <video
-          ref={videoRef}
-          className="hero-video"
-          muted
-          playsInline
-          preload="auto"
-          poster={heroPoster}
-          aria-hidden="true"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        {isMobile ? (
+          <img src={heroPoster} className="hero-video" alt="" aria-hidden="true" />
+        ) : (
+          <video
+            ref={videoRef}
+            className="hero-video"
+            muted
+            playsInline
+            preload="auto"
+            poster={heroPoster}
+            aria-hidden="true"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
+        )}
       </motion.div>
       <div className="hero-overlay" aria-hidden="true" />
 
