@@ -7,7 +7,7 @@ import flagUsa from '../assets/flag-usa.svg';
 import flagSpain from '../assets/flag-spain.svg';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ forceScrolled = false }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -74,16 +74,22 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Páginas sin Hero oscuro (Blog, artículo, About) pasan forceScrolled: el header
+  // parte transparente/gris pensado para superponerse a un Hero oscuro, así que sin
+  // Hero se ve como una barra gris sobre fondo blanco. forceScrolled lo deja siempre
+  // en su versión blanca/sólida, pero conserva el ajuste with-topbar/no-topbar para
+  // que el margen siga sincronizado con la TopBar al hacer scroll.
   const getHeaderClass = () => {
+    const topbarClass = scrollState === 'with-topbar' ? 'with-topbar' : 'no-topbar';
+    if (forceScrolled) return `scrolled ${topbarClass}`;
     if (scrollState === 'scrolled') return 'scrolled no-topbar';
-    if (scrollState === 'no-topbar') return 'no-topbar';
-    return 'with-topbar';
+    return topbarClass;
   };
 
   // Cuando el menú móvil está abierto, el header se vuelve transparente sobre el
   // overlay navy, así que el logo siempre debe ser el blanco (aunque estemos en
   // estado 'scrolled', donde normalmente se usa el negro).
-  const useWhiteLogo = scrollState !== 'scrolled' || isMenuOpen;
+  const useWhiteLogo = isMenuOpen || (!forceScrolled && scrollState !== 'scrolled');
 
   return (
     <header className={`${getHeaderClass()} ${isMenuOpen ? 'menu-open' : ''}`}>

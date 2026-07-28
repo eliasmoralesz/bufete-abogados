@@ -34,6 +34,15 @@ header.scrolled {
   backdrop-filter: none; /* Quitamos glassmorphism en scrolled */
 }
 
+/* En páginas sin Hero (forceScrolled), el header puede estar "scrolled" (blanco)
+   y "with-topbar" (TopBar aún visible) al mismo tiempo — algo que antes no pasaba,
+   porque scrolled y with-topbar eran mutuamente excluyentes. Sin esta regla,
+   header.scrolled's margin-top:0 gana por orden de cascada y el header queda
+   pegado encima de la TopBar. */
+header.scrolled.with-topbar {
+  margin-top: 34px;
+}
+
 .logo .logo-image {
   height: 52px;
   width: auto;

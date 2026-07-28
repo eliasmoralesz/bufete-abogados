@@ -108,7 +108,7 @@ const AboutDetails = ({ lang = 'es' }) => {
       </Helmet>
 
       <TopBar />
-      <Header />
+      <Header forceScrolled />
 
       <section className="about-details-section">
         <div className="about-details-container" data-aos="fade-up">

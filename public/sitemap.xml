@@ -37,4 +37,76 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/about-details" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/about-details" />
   </url>
+  <url>
+    <loc>https://daguerhernandez.com/blog</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/blog</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/blog/permanencia-legal-costa-rica-requisitos-multas</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog/permanencia-legal-costa-rica-requisitos-multas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog/legal-stay-costa-rica-requirements-fines" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog/permanencia-legal-costa-rica-requisitos-multas" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/blog/legal-stay-costa-rica-requirements-fines</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog/permanencia-legal-costa-rica-requisitos-multas" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog/legal-stay-costa-rica-requirements-fines" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog/permanencia-legal-costa-rica-requisitos-multas" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/blog/dimex-vencido-como-regresar-renovar-residencia-costa-rica</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog/dimex-vencido-como-regresar-renovar-residencia-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog/expired-dimex-how-to-return-renew-residency-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog/dimex-vencido-como-regresar-renovar-residencia-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/blog/expired-dimex-how-to-return-renew-residency-costa-rica</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog/dimex-vencido-como-regresar-renovar-residencia-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog/expired-dimex-how-to-return-renew-residency-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog/dimex-vencido-como-regresar-renovar-residencia-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/blog/naturalizacion-solicitantes-refugio-costa-rica</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog/naturalizacion-solicitantes-refugio-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog/naturalization-refugee-applicants-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog/naturalizacion-solicitantes-refugio-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/blog/naturalization-refugee-applicants-costa-rica</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/blog/naturalizacion-solicitantes-refugio-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/blog/naturalization-refugee-applicants-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/blog/naturalizacion-solicitantes-refugio-costa-rica" />
+  </url>
 </urlset>
