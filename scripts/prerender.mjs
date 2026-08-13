@@ -25,6 +25,26 @@ const BUILD_DIR = join(ROOT, 'build');
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 
+// El Chromium que descarga el paquete "puppeteer" normal funciona bien en
+// Mac/Linux de escritorio, pero en el contenedor de build de Vercel truena
+// con "error while loading shared libraries: libnspr4.so" -- esas librerías
+// del sistema no están instaladas ahí y no se pueden agregar. La solución
+// estándar es "@sparticuz/chromium": un build de Chromium empaquetado para
+// correr en el entorno mínimo de Vercel/AWS Lambda, sin esa dependencia. Solo
+// se usa cuando la variable VERCEL está presente (la pone Vercel automático
+// en cada build); en local sigue usando el Chromium normal de "puppeteer".
+async function getLaunchOptions() {
+  if (!process.env.VERCEL) {
+    return { headless: true, args: ['--no-sandbox', '--use-gl=swiftshader'] };
+  }
+  const { default: chromium } = await import('@sparticuz/chromium');
+  return {
+    headless: true,
+    args: chromium.args,
+    executablePath: await chromium.executablePath(),
+  };
+}
+
 function getRoutesFromSitemap() {
   const xml = readFileSync(join(ROOT, 'public', 'sitemap.xml'), 'utf-8');
   const routes = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
@@ -107,10 +127,7 @@ async function main() {
   try {
     await waitForServer(BASE_URL);
 
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--use-gl=swiftshader'],
-    });
+    browser = await puppeteer.launch(await getLaunchOptions());
 
     // Se capturan todas las páginas en memoria ANTES de escribir nada a disco.
     // build/index.html sigue siendo el shell vacío original hasta el final,
