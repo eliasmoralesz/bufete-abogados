@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import './ProcessRoute.css';
 
@@ -54,19 +55,28 @@ const ProcessRoute = () => {
           ))}
         </div>
 
-        <div className="route-steps">
-          {steps.map((step) => (
-            <div className={`route-step ${step === '3' ? 'route-step-highlight' : ''}`} key={step}>
-              <div className="route-step-dot-row">
-                <span className="route-step-dot" aria-hidden="true" />
-                <span className="route-step-line" aria-hidden="true" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="route-steps"
+            key={activeArea}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {steps.map((step) => (
+              <div className={`route-step ${step === '3' ? 'route-step-highlight' : ''}`} key={step}>
+                <div className="route-step-dot-row">
+                  <span className="route-step-dot" aria-hidden="true" />
+                  <span className="route-step-line" aria-hidden="true" />
+                </div>
+                <span className="route-step-label">{t(`route_step${step}_label`)}</span>
+                <h3>{t(`route_step${step}_title`)}</h3>
+                <p>{t(`route_step${step}_desc`)}</p>
               </div>
-              <span className="route-step-label">{t(`route_step${step}_label`)}</span>
-              <h3>{t(`route_step${step}_title`)}</h3>
-              <p>{t(`route_step${step}_desc`)}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         <div className="route-footer">
           <span>{t('route_footer_prompt')}</span>

@@ -3,7 +3,7 @@
   padding: clamp(70px, 9vw, 110px) clamp(18px, 5vw, 40px);
   background: var(--ed-bg-deep);
   color: var(--ed-text);
-  font-family: var(--ed-font);
+  font-family: 'Lato', sans-serif;
   overflow: hidden;
   border-top: 1px solid var(--ed-border);
 }
@@ -25,7 +25,7 @@
   display: block;
   margin-bottom: 16px;
   color: var(--ed-text-faint);
-  font-family: var(--ed-font);
+  font-family: 'Lato', sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.18em;
@@ -35,10 +35,10 @@
 .migration-intent-header h2 {
   margin: 0;
   color: var(--ed-text);
-  font-family: var(--ed-font);
+  font-family: 'Lora', serif;
   font-size: clamp(1.9rem, 1.5rem + 1.8vw, 2.7rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   line-height: 1.15;
   text-wrap: balance;
 }
@@ -79,7 +79,7 @@
   border-radius: 0;
   background: transparent;
   color: var(--ed-text-muted);
-  font-family: var(--ed-font);
+  font-family: 'Lato', sans-serif;
   font-size: 0.92rem;
   font-weight: 500;
   line-height: 1.2;
@@ -134,10 +134,10 @@
   max-width: 720px;
   margin: 0;
   color: var(--ed-text);
-  font-family: var(--ed-font);
+  font-family: 'Lora', serif;
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   line-height: 1.15;
   text-wrap: balance;
 }
@@ -187,7 +187,7 @@
   border-radius: 2px;
   color: var(--ed-accent-text);
   background: var(--ed-accent-bg);
-  font-family: var(--ed-font);
+  font-family: 'Lato', sans-serif;
   font-weight: 500;
   text-decoration: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -228,7 +228,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    font-family: var(--ed-font);
+    font-family: 'Lato', sans-serif;
     font-size: 0.98rem;
     font-weight: 500;
     line-height: 1.2;

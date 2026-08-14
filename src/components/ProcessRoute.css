@@ -110,16 +110,29 @@
 }
 
 .route-step {
+  position: relative;
   padding: 24px 20px 22px;
   border-left: 1px solid var(--ed-border);
   display: flex;
   flex-direction: column;
   gap: 9px;
-  transition: background 0.2s ease;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease;
 }
 
 .route-step:hover {
   background: var(--ed-bg-card);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28);
+  z-index: 1;
+  padding-bottom: 26px;
+}
+
+.route-step:hover .route-step-dot {
+  background: var(--ed-accent-bg);
+}
+
+.route-step:hover .route-step-line {
+  background: var(--ed-border-soft);
 }
 
 .route-step:first-child {

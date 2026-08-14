@@ -81,6 +81,9 @@ html {
 .hero-headline {
   display: flex;
   flex-direction: column;
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .hl-line {
