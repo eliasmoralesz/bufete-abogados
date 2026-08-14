@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from 'framer-motion';
+import { motion, useTransform, useMotionValue, useSpring, animate } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import lawyerImage from '../assets/lawyer.webp';
 import './Hero.css';
@@ -17,15 +17,12 @@ import './Hero.css';
 // 1) el titular entra letra por letra al cargar, a ritmo pausado y cinematográfico.
 // 2) el RETRATO (no el contenedor que lo recorta) responde con un ligero paralaje
 //    al mover el cursor, y se revela con un fundido tras el titular.
-// 3) las stats reales (+12 años / 1000+ casos / 95% de éxito — las mismas que ya
-//    existían en el sitio, no inventadas) cuentan hacia arriba al terminar la
-//    entrada del titular.
-// 4) el trámite destacado (Residencia/Naturalización/DIMEX/Notarial) cambia según
-//    el scroll dentro del hero — y ahora de verdad "hace algo": muestra la
-//    descripción real de ese trámite (mismo texto que ya existe en Asesoría
-//    migratoria/Servicios, no inventado) y es un link directo a esa sección.
-//    Antes solo cambiaba de color, lo cual con razón Elias señaló que "no
-//    servía de nada".
+// 3) las stats reales (+12 años / 1000+ casos / 95% de éxito) cuentan hacia arriba
+//    al terminar la entrada del titular.
+// 4) el trámite destacado (Residencia/Naturalización/DIMEX/Notarial) es un
+//    selector CLICKEABLE (ya no cambia solo con el scroll — a Elias no le
+//    gustaba que el scroll lo moviera solo) que muestra la descripción real de
+//    ese trámite y es un link directo a esa sección.
 
 const lineVariants = {
   hidden: {},
@@ -41,24 +38,38 @@ const charVariants = {
   },
 };
 
-const AnimatedLine = ({ text, className, delay = 0 }) => (
-  <motion.span
-    className={className}
-    variants={lineVariants}
-    initial="hidden"
-    animate="visible"
-    transition={{ delayChildren: delay }}
-    aria-hidden="true"
-  >
-    {text.split('').map((char, i) => (
-      <motion.span key={i} variants={charVariants} style={{ display: 'inline-block' }}>
-        {/* Un espacio normal solo dentro de un inline-block se colapsa a 0 —
-            se usa un espacio irrompible ( ) para que conserve su ancho. */}
-        {char === ' ' ? ' ' : char}
-      </motion.span>
-    ))}
-  </motion.span>
-);
+// Titular animado letra por letra, pero agrupado por PALABRA: cada palabra es
+// un bloque que nunca se parte a media letra al ajustar línea (bug real que
+// reportó Elias en mobile — "AHORA LO P / REPARO" — porque antes cada letra
+// era un inline-block suelto sin noción de a qué palabra pertenecía, así que
+// el navegador cortaba donde fuera). Entre palabras va un espacio real, para
+// que el ajuste de línea solo pueda pasar ahí, nunca dentro de una palabra.
+const AnimatedLine = ({ text, className, delay = 0 }) => {
+  const words = text.split(' ');
+  return (
+    <motion.span
+      className={className}
+      variants={lineVariants}
+      initial="hidden"
+      animate="visible"
+      transition={{ delayChildren: delay }}
+      aria-hidden="true"
+    >
+      {words.map((word, wi) => (
+        <React.Fragment key={wi}>
+          <span className="hl-word">
+            {word.split('').map((char, ci) => (
+              <motion.span key={ci} variants={charVariants} style={{ display: 'inline-block' }}>
+                {char}
+              </motion.span>
+            ))}
+          </span>
+          {wi < words.length - 1 && ' '}
+        </React.Fragment>
+      ))}
+    </motion.span>
+  );
+};
 
 // Cuenta de 0 hasta `target` cuando `start` pasa a true. Formatea con
 // prefijo/sufijo (+12, 1000+, 95%) sin tocar el valor numérico animado.
@@ -101,6 +112,7 @@ const Hero = () => {
   const { t } = useTranslation();
   const heroRef = useRef(null);
   const [statsStarted, setStatsStarted] = useState(false);
+  const [activeArea, setActiveArea] = useState(0);
 
   const whatsappHref = 'https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta';
 
@@ -109,6 +121,7 @@ const Hero = () => {
   const post = t('hero_ed_post');
   const fullTitle = `${pre} ${mid}. ${post}`;
   const areas = t('hero_ed_areas').split(' · ');
+  const activeMeta = AREA_META[activeArea];
 
   // --- Paralaje suave con el cursor: se mueve la FOTO, no el contenedor que la
   // recorta (ese quedaba fijo, alineado con el velo — mover el contenedor entero
@@ -141,17 +154,6 @@ const Hero = () => {
       target.removeEventListener('mouseleave', handleLeave);
     };
   }, [mouseX, mouseY]);
-
-  // --- Trámite destacado según el scroll dentro del hero ---
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  });
-  const areaIndexMV = useTransform(scrollYProgress, (v) => Math.min(areas.length - 1, Math.floor(v * areas.length)));
-  const [activeArea, setActiveArea] = useState(0);
-  useEffect(() => areaIndexMV.on('change', (v) => setActiveArea(v)), [areaIndexMV]);
-
-  const activeMeta = AREA_META[activeArea];
 
   return (
     <section className="hero" ref={heroRef}>

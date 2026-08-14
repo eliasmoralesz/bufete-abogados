@@ -91,12 +91,24 @@ html {
 }
 
 .hl-line {
+  display: block;
   font-size: clamp(3.2rem, 1.1rem + 8.4vw, 6.5rem);
   line-height: 0.96;
   font-weight: 400;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: var(--ed-text);
+  /* Envuelve por palabra, nunca a media palabra (ver .hl-word). */
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Cada palabra es un bloque indivisible — el navegador solo puede ajustar
+   línea en los espacios reales entre <span class="hl-word">, jamás dentro
+   de una palabra. Esto es lo que arregla el corte tipo "AHORA LO P / REPARO"
+   que aparecía en mobile. */
+.hl-word {
+  display: inline-block;
 }
 
 .hl-dim {
@@ -293,7 +305,7 @@ html {
   }
 
   .hl-line {
-    font-size: clamp(2.9rem, 1.2rem + 11vw, 4.4rem);
+    font-size: clamp(2.5rem, 1rem + 9.5vw, 3.8rem);
   }
 
   .hero-bg img {
@@ -331,5 +343,14 @@ html {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+}
+
+/* Teléfonos angostos (iPhone SE y similares, ~375px o menos): un margen
+   extra de seguridad para que ninguna palabra del titular quede al límite
+   del ancho de pantalla. */
+@media (max-width: 380px) {
+  .hl-line {
+    font-size: clamp(2.1rem, 0.9rem + 8.8vw, 3rem);
   }
 }

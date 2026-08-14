@@ -6,6 +6,13 @@ import './DiagnosticQuiz.css';
 // enrutamiento de UX (3 preguntas → WhatsApp / agendar / correo, todos canales
 // reales ya usados en el resto del sitio) — no genera ningún resultado legal
 // personalizado ni requisitos por rama, para no inventar asesoría legal específica.
+//
+// El mensaje de WhatsApp/correo SÍ lleva el contexto de lo que la persona
+// respondió (situación + necesidad, en sus propias palabras/opciones reales,
+// nada inventado) — antes siempre mandaba el mismo saludo genérico sin
+// importar qué había contestado, lo cual Elias señaló con razón: "de qué
+// sirve llenar el formulario". Coincide con el spec original de Figr
+// ("el botón de agendar ya lleva el contexto").
 const TOTAL_STEPS = 3;
 
 const DiagnosticQuiz = () => {
@@ -26,7 +33,23 @@ const DiagnosticQuiz = () => {
     setStep(1);
   };
 
-  const whatsappHref = 'https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta';
+  const buildContextLines = () => {
+    const lines = [];
+    if (answers.q1) lines.push(`${t('quiz_context_situation')}: ${t(`quiz_q1_${answers.q1}`)}.`);
+    if (answers.q2) lines.push(`${t('quiz_context_need')}: ${t(`quiz_q2_${answers.q2}`)}.`);
+    return lines;
+  };
+
+  const whatsappHref = (() => {
+    const text = [t('whatsapp_greeting'), ...buildContextLines()].join(' ');
+    return `https://wa.me/50689655582?text=${encodeURIComponent(text)}`;
+  })();
+
+  const mailtoHref = (() => {
+    const subject = t('sectionEyebrow_diagnostic');
+    const body = [t('whatsapp_greeting'), ...buildContextLines()].join('\n');
+    return `mailto:consulta@daguerhernandez.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  })();
 
   const q1Options = ['opt1', 'opt2', 'opt3', 'opt4'];
   const q2Options = ['opt1', 'opt2', 'opt3', 'opt4'];
@@ -113,7 +136,7 @@ const DiagnosticQuiz = () => {
                   {t('quiz_q3_appointment')}
                 </a>
                 <a
-                  href="mailto:consulta@daguerhernandez.com"
+                  href={mailtoHref}
                   className="quiz-final-btn"
                   onClick={() => setAnswers((prev) => ({ ...prev, q3: 'email' }))}
                 >
