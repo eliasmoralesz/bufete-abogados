@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+/* El hero usa un fondo propio (casi negro, #0E1013) en vez del navy que usan
+   La Ruta/Diagnóstico/Asesoría migratoria — Elias lo pidió específicamente para
+   esta sección ("no me gusta en azul el hero"). Se sobreescribe --ed-bg solo
+   dentro de .hero para no afectar a esas otras secciones, que se quedan en navy. */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -9,6 +13,7 @@ html {
   display: flex;
   flex-direction: column;
   color: var(--ed-text);
+  --ed-bg: #0E1013;
   background: var(--ed-bg);
   padding: clamp(96px, 11vh, 132px) clamp(20px, 3.75vw, 48px) clamp(40px, 5vh, 60px);
   overflow: hidden;
@@ -55,9 +60,9 @@ html {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, var(--ed-bg) 0%, var(--ed-bg) 42%, rgba(7, 23, 52, 0.72) 56%, rgba(7, 23, 52, 0.45) 100%),
-    linear-gradient(0deg, var(--ed-bg) 0%, rgba(7, 23, 52, 0) 30%),
-    linear-gradient(180deg, rgba(7, 23, 52, 0.35) 0%, rgba(7, 23, 52, 0) 20%);
+    linear-gradient(90deg, var(--ed-bg) 0%, var(--ed-bg) 42%, rgba(14, 16, 19, 0.72) 56%, rgba(14, 16, 19, 0.45) 100%),
+    linear-gradient(0deg, var(--ed-bg) 0%, rgba(14, 16, 19, 0) 30%),
+    linear-gradient(180deg, rgba(14, 16, 19, 0.35) 0%, rgba(14, 16, 19, 0) 20%);
 }
 
 .hero-inner {
