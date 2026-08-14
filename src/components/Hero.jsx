@@ -26,7 +26,7 @@ import './Hero.css';
 
 const lineVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.09 } },
+  visible: { transition: { staggerChildren: 0.07 } },
 };
 
 const charVariants = {
@@ -34,7 +34,7 @@ const charVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -173,11 +173,11 @@ const Hero = () => {
       <div className="hero-inner">
         <h1 className="hero-headline" aria-label={fullTitle}>
           <AnimatedLine text={pre} className="hl-line" delay={0} />
-          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.09 + 0.35} />
+          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.07 + 0.26} />
           <AnimatedLine
             text={post}
             className="hl-line hl-dim"
-            delay={(pre.length + mid.length) * 0.09 + 0.7}
+            delay={(pre.length + mid.length) * 0.07 + 0.52}
           />
         </h1>
 
@@ -185,7 +185,7 @@ const Hero = () => {
           className="hero-foot"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 2.35, ease: [0.22, 1, 0.36, 1] }}
           onAnimationComplete={() => setStatsStarted(true)}
         >
           <div className="hero-lead">
