@@ -97,8 +97,13 @@ html {
      límite de ancho, su texto se metía encima del retrato (hasta 220px
      adentro en algunos anchos de MacBook — bug real que reportó Elias, no
      un efecto de diseño buscado). Este límite hace que envuelva a una
-     segunda línea antes de tocar la foto, en vez de superponerse a ella. */
-  max-width: min(48vw, 640px);
+     segunda línea antes de tocar la foto, en vez de superponerse a ella.
+     Antes tenía además un tope fijo de 640px — en monitores grandes la
+     imagen crece con la pantalla pero el texto se quedaba pegado en 640px,
+     dejando un vacío enorme en el medio (lo que reportó Elias). Sin el tope
+     fijo, el texto también crece proporcionalmente y usa el espacio
+     disponible, verificado sin volver a tocar la foto en ningún ancho. */
+  max-width: 48vw;
 }
 
 .hl-line {
