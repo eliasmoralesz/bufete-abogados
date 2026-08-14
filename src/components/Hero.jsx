@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, animate } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import lawyerImage from '../assets/lawyer.webp';
 import './Hero.css';
@@ -12,14 +12,21 @@ import './Hero.css';
 // confirmó, sabiendo que el cargo real fue Subdirector — ver hero_ed_lead abajo,
 // que sí trae el título exacto) en vez del "CONOCÍ" más tibio de un primer intento.
 //
-// Movimiento/interacción (spec original del wireframe E, implementados aquí):
-// 1) el titular entra letra por letra al cargar.
-// 2) el retrato responde con un ligero paralaje al mover el cursor.
-// 3) el contador 01–04 avanza según el scroll dentro del hero.
+// Movimiento/interacción (spec original del wireframe E + ajustes de feedback real):
+// 1) el titular entra letra por letra al cargar, a ritmo pausado (no instantáneo).
+// 2) el RETRATO (no el contenedor que lo recorta) responde con un ligero paralaje
+//    al mover el cursor, y se revela con un fundido tras el titular.
+// 3) las stats reales (+12 años / 1000+ casos / 95% de éxito — las mismas que ya
+//    existían en el sitio, no inventadas) cuentan hacia arriba al terminar la
+//    entrada — reemplazan el contador 01-04 decorativo, que no representaba nada
+//    real ("los números deberían hacer algo", feedback de Elias).
+// 4) el trámite destacado (Residencia/Naturalización/DIMEX/Notarial) cambia según
+//    el scroll dentro del hero, para que "deslice para ver los trámites" cumpla
+//    lo que promete.
 
 const lineVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.018 } },
+  visible: { transition: { staggerChildren: 0.048 } },
 };
 
 const charVariants = {
@@ -27,12 +34,10 @@ const charVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
-// Divide el texto en spans animados letra por letra. Los espacios se preservan
-// con un carácter de espacio duro para que no colapsen entre spans inline-block.
 const AnimatedLine = ({ text, className, delay = 0 }) => (
   <motion.span
     className={className}
@@ -43,21 +48,47 @@ const AnimatedLine = ({ text, className, delay = 0 }) => (
     aria-hidden="true"
   >
     {text.split('').map((char, i) => (
-      <motion.span
-        key={i}
-        variants={charVariants}
-        style={{ display: 'inline-block' }}
-      >
+      <motion.span key={i} variants={charVariants} style={{ display: 'inline-block' }}>
+        {/* Un espacio normal solo dentro de un inline-block se colapsa a 0 —
+            se usa un espacio irrompible para que conserve su ancho. */}
         {char === ' ' ? ' ' : char}
       </motion.span>
     ))}
   </motion.span>
 );
 
+// Cuenta de 0 hasta `target` cuando `start` pasa a true. Formatea con
+// prefijo/sufijo (+12, 1000+, 95%) sin tocar el valor numérico animado.
+const useCountUp = (target, start, duration = 1.3) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!start) return undefined;
+    const controls = animate(0, target, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setValue(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [start, target, duration]);
+
+  return value;
+};
+
+const HeroStat = ({ target, prefix = '', suffix = '', start, label, delay = 0 }) => {
+  const value = useCountUp(target, start, 1.3 + delay);
+  return (
+    <div className="hero-stat">
+      <span className="hero-stat-number">{prefix}{value}{suffix}</span>
+      <span className="hero-stat-label">{label}</span>
+    </div>
+  );
+};
+
 const Hero = () => {
   const { t } = useTranslation();
   const heroRef = useRef(null);
-  const portraitRef = useRef(null);
+  const [statsStarted, setStatsStarted] = useState(false);
 
   const whatsappHref = 'https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta';
 
@@ -65,14 +96,17 @@ const Hero = () => {
   const mid = `${t('hero_ed_wordA')}${t('hero_ed_wordB')}`;
   const post = t('hero_ed_post');
   const fullTitle = `${pre} ${mid}. ${post}`;
+  const areas = t('hero_ed_areas').split(' · ');
 
-  // --- Paralaje suave con el cursor sobre el retrato ---
+  // --- Paralaje suave con el cursor: se mueve la FOTO, no el contenedor que la
+  // recorta (ese quedaba fijo, alineado con el velo — mover el contenedor entero
+  // desalineaba el recorte del degradado y el efecto no se notaba). ---
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 60, damping: 18, mass: 0.4 });
-  const springY = useSpring(mouseY, { stiffness: 60, damping: 18, mass: 0.4 });
-  const portraitX = useTransform(springX, [-0.5, 0.5], ['-14px', '14px']);
-  const portraitY = useTransform(springY, [-0.5, 0.5], ['-10px', '10px']);
+  const springX = useSpring(mouseX, { stiffness: 55, damping: 16, mass: 0.5 });
+  const springY = useSpring(mouseY, { stiffness: 55, damping: 16, mass: 0.5 });
+  const portraitX = useTransform(springX, [-0.5, 0.5], ['-22px', '22px']);
+  const portraitY = useTransform(springY, [-0.5, 0.5], ['-16px', '16px']);
 
   useEffect(() => {
     const target = heroRef.current;
@@ -96,37 +130,47 @@ const Hero = () => {
     };
   }, [mouseX, mouseY]);
 
-  // --- Contador 01–04 avanza con el scroll dentro del hero ---
+  // --- Trámite destacado según el scroll dentro del hero ---
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const counterProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const activeIndex = useTransform(scrollYProgress, (v) => Math.min(3, Math.floor(v * 4)));
+  const areaIndexMV = useTransform(scrollYProgress, (v) => Math.min(areas.length - 1, Math.floor(v * areas.length)));
+  const [activeArea, setActiveArea] = useState(0);
+  useEffect(() => areaIndexMV.on('change', (v) => setActiveArea(v)), [areaIndexMV]);
 
   return (
     <section className="hero" ref={heroRef}>
-      <motion.div
-        className="hero-bg"
-        aria-hidden="true"
-        style={{ x: portraitX, y: portraitY }}
-      >
-        <img ref={portraitRef} src={lawyerImage} alt="" loading="eager" />
-      </motion.div>
+      <div className="hero-bg" aria-hidden="true">
+        <motion.img
+          src={lawyerImage}
+          alt=""
+          loading="eager"
+          style={{ x: portraitX, y: portraitY }}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </div>
       <div className="hero-scrim" aria-hidden="true" />
 
       <div className="hero-inner">
         <h1 className="hero-headline" aria-label={fullTitle}>
           <AnimatedLine text={pre} className="hl-line" delay={0} />
-          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.018 + 0.1} />
-          <AnimatedLine text={post} className="hl-line hl-dim" delay={(pre.length + mid.length) * 0.018 + 0.2} />
+          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.048 + 0.25} />
+          <AnimatedLine
+            text={post}
+            className="hl-line hl-dim"
+            delay={(pre.length + mid.length) * 0.048 + 0.5}
+          />
         </h1>
 
         <motion.div
           className="hero-foot"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 2.1, ease: [0.22, 1, 0.36, 1] }}
+          onAnimationComplete={() => setStatsStarted(true)}
         >
           <div className="hero-lead">
             <p>{t('hero_ed_lead')}</p>
@@ -138,30 +182,23 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="hero-counter" aria-hidden="true">
-            <HeroCounter activeIndex={activeIndex} />
-            <div className="hc-track"><motion.span className="hc-fill" style={{ width: useTransform(counterProgress, (v) => `${25 + v * 0.75}%`) }} /></div>
-            <div className="hc-label">{t('hero_ed_areas')}</div>
+          <div className="hero-stats">
+            <HeroStat target={12} prefix="+" start={statsStarted} label={t('hero_stat_years')} delay={0} />
+            <HeroStat target={1000} suffix="+" start={statsStarted} label={t('hero_stat_cases')} delay={0.15} />
+            <HeroStat target={95} suffix="%" start={statsStarted} label={t('hero_stat_success')} delay={0.3} />
           </div>
         </motion.div>
+
+        <div className="hero-bottom-bar">
+          <span className="hero-scroll-hint">{t('hero_scroll_hint')}</span>
+          <div className="hero-areas">
+            {areas.map((area, i) => (
+              <span key={area} className={i === activeArea ? 'active' : ''}>{area}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
-  );
-};
-
-// Componente aparte para poder suscribirse al motion value `activeIndex` sin
-// re-renderizar todo el Hero en cada frame de scroll.
-const HeroCounter = ({ activeIndex }) => {
-  const [active, setActive] = React.useState(0);
-
-  useEffect(() => activeIndex.on('change', (v) => setActive(v)), [activeIndex]);
-
-  return (
-    <div className="hc-nums">
-      {['01', '02', '03', '04'].map((n, i) => (
-        <span key={n} className={i === active ? 'active' : ''}>{n}</span>
-      ))}
-    </div>
   );
 };
 
