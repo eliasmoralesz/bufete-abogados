@@ -3,15 +3,21 @@ import { motion, useTransform, useMotionValue, useSpring, animate } from 'framer
 import { useTranslation } from 'react-i18next';
 import portraitA from '../assets/hero-portrait-2.jpg';
 import portraitB from '../assets/hero-portrait-1.JPG';
+import portraitC from '../assets/hero-portrait-3-2.jpg';
+import portraitD from '../assets/hero-portrait-4.JPG';
 import './Hero.css';
 
-// Las dos fotos reales de Daguer (tomadas de invitaciones a programas de TV)
+// Cuatro fotos reales de Daguer (tomadas de invitaciones a programas de TV)
 // alternan lentamente de fondo — la 2 (perfil, traje navy, la que Elias
-// eligió como principal) va primero y se queda más tiempo en pantalla; la 1
-// (corbata roja, gesticulando) entra después como variación. Ambos elementos
-// quedan siempre montados y solo se cruza la opacidad entre ellos — evita
-// depender de AnimatePresence para el montaje/desmontaje.
-const PORTRAITS = [portraitA, portraitB];
+// eligió como principal) va primero y se queda más tiempo en pantalla; luego
+// la 1 (corbata roja, gesticulando), la 3-2 y la 4 entran como variación.
+// La foto 3 original mostraba a otra persona (presentadora de TV) reconocible
+// sin su consentimiento para uso promocional del despacho — se usa en su
+// lugar hero-portrait-3-2.jpg, la versión editada con esa persona desenfocada,
+// tal como pidió Elias. Todos los elementos quedan siempre montados y solo se
+// cruza la opacidad entre ellos — evita depender de AnimatePresence para el
+// montaje/desmontaje.
+const PORTRAITS = [portraitA, portraitB, portraitC, portraitD];
 const PORTRAIT_INTERVAL_MS = 7000;
 
 // Rediseño "editorial oscuro" inspirado en el wireframe E de la auditoría en Figr,
