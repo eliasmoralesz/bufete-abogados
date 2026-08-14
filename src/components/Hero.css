@@ -84,6 +84,10 @@ html {
   margin: 0;
   font-size: inherit;
   font-weight: inherit;
+  /* El h1 global del sitio (styles.css) fuerza Lora en todo h1/h2/h3 — hay
+     que ganarle explícitamente acá, si no el titular del hero cae en Lora
+     en vez de Inter (bug real que reportó Elias). */
+  font-family: var(--ed-font);
 }
 
 .hl-line {
@@ -199,12 +203,18 @@ html {
    ahora sí cambia con el scroll dentro del hero. */
 .hero-bottom-bar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  flex-direction: column;
+  gap: 14px;
   margin-top: clamp(28px, 4vh, 44px);
   padding-top: 18px;
   border-top: 1px solid var(--ed-border);
+}
+
+.hero-bottom-bar > *:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
@@ -215,22 +225,66 @@ html {
   color: var(--ed-text-ghost);
 }
 
-.hero-areas {
+/* Pestañas de trámite: clickeables (no solo decorativas) — cambian cuál
+   descripción real se muestra abajo y también avanzan con el scroll. */
+.hero-areas-nav {
   display: flex;
   gap: 18px;
+}
+
+.hero-areas-nav button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--ed-font);
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-}
-
-.hero-areas span {
   color: var(--ed-text-whisper);
   transition: color 0.3s ease, font-weight 0.3s ease;
 }
 
-.hero-areas span.active {
+.hero-areas-nav button:hover {
+  color: var(--ed-text-muted);
+}
+
+.hero-areas-nav button.active {
   color: var(--ed-accent-bg);
   font-weight: 600;
+}
+
+/* Descripción real del trámite activo — link directo a la sección
+   correspondiente. Es lo que hace que el bloque "haga algo" de verdad. */
+.hero-area-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-decoration: none;
+  color: var(--ed-text-soft);
+  padding: 10px 0;
+}
+
+.hero-area-detail-text {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  max-width: 62ch;
+}
+
+.hero-area-detail-arrow {
+  flex: 0 0 auto;
+  color: var(--ed-accent-bg);
+  font-size: 1rem;
+  transition: transform 0.25s ease;
+}
+
+.hero-area-detail:hover .hero-area-detail-arrow {
+  transform: translateX(4px);
+}
+
+.hero-area-detail:hover .hero-area-detail-text {
+  color: var(--ed-text);
 }
 
 @media (max-width: 720px) {
@@ -262,14 +316,20 @@ html {
     justify-content: space-between;
   }
 
-  .hero-bottom-bar {
+  .hero-bottom-bar > *:first-child {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  .hero-areas {
+  .hero-areas-nav {
     flex-wrap: wrap;
     gap: 10px 16px;
+  }
+
+  .hero-area-detail {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }

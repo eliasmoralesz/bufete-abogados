@@ -12,21 +12,24 @@ import './Hero.css';
 // confirmó, sabiendo que el cargo real fue Subdirector — ver hero_ed_lead abajo,
 // que sí trae el título exacto) en vez del "CONOCÍ" más tibio de un primer intento.
 //
-// Movimiento/interacción (spec original del wireframe E + ajustes de feedback real):
-// 1) el titular entra letra por letra al cargar, a ritmo pausado (no instantáneo).
+// Movimiento/interacción (spec original del wireframe E + varias rondas de
+// feedback real de Elias):
+// 1) el titular entra letra por letra al cargar, a ritmo pausado y cinematográfico.
 // 2) el RETRATO (no el contenedor que lo recorta) responde con un ligero paralaje
 //    al mover el cursor, y se revela con un fundido tras el titular.
 // 3) las stats reales (+12 años / 1000+ casos / 95% de éxito — las mismas que ya
 //    existían en el sitio, no inventadas) cuentan hacia arriba al terminar la
-//    entrada — reemplazan el contador 01-04 decorativo, que no representaba nada
-//    real ("los números deberían hacer algo", feedback de Elias).
+//    entrada del titular.
 // 4) el trámite destacado (Residencia/Naturalización/DIMEX/Notarial) cambia según
-//    el scroll dentro del hero, para que "deslice para ver los trámites" cumpla
-//    lo que promete.
+//    el scroll dentro del hero — y ahora de verdad "hace algo": muestra la
+//    descripción real de ese trámite (mismo texto que ya existe en Asesoría
+//    migratoria/Servicios, no inventado) y es un link directo a esa sección.
+//    Antes solo cambiaba de color, lo cual con razón Elias señaló que "no
+//    servía de nada".
 
 const lineVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.048 } },
+  visible: { transition: { staggerChildren: 0.09 } },
 };
 
 const charVariants = {
@@ -34,7 +37,7 @@ const charVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -50,7 +53,7 @@ const AnimatedLine = ({ text, className, delay = 0 }) => (
     {text.split('').map((char, i) => (
       <motion.span key={i} variants={charVariants} style={{ display: 'inline-block' }}>
         {/* Un espacio normal solo dentro de un inline-block se colapsa a 0 —
-            se usa un espacio irrompible para que conserve su ancho. */}
+            se usa un espacio irrompible ( ) para que conserve su ancho. */}
         {char === ' ' ? ' ' : char}
       </motion.span>
     ))}
@@ -84,6 +87,15 @@ const HeroStat = ({ target, prefix = '', suffix = '', start, label, delay = 0 })
     </div>
   );
 };
+
+// Trámite ↔ contenido real ya existente en el sitio (Asesoría migratoria /
+// Servicios) y ancla a esa sección — no se inventa texto nuevo por trámite.
+const AREA_META = [
+  { descKey: 'migrationIntent_residency_text', anchor: '#migration-guidance' },
+  { descKey: 'migrationIntent_naturalization_text', anchor: '#migration-guidance' },
+  { descKey: 'migrationIntent_dimex_text', anchor: '#migration-guidance' },
+  { descKey: 'notarialLaw_desc', anchor: '#services' },
+];
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -139,6 +151,8 @@ const Hero = () => {
   const [activeArea, setActiveArea] = useState(0);
   useEffect(() => areaIndexMV.on('change', (v) => setActiveArea(v)), [areaIndexMV]);
 
+  const activeMeta = AREA_META[activeArea];
+
   return (
     <section className="hero" ref={heroRef}>
       <div className="hero-bg" aria-hidden="true">
@@ -157,11 +171,11 @@ const Hero = () => {
       <div className="hero-inner">
         <h1 className="hero-headline" aria-label={fullTitle}>
           <AnimatedLine text={pre} className="hl-line" delay={0} />
-          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.048 + 0.25} />
+          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.09 + 0.35} />
           <AnimatedLine
             text={post}
             className="hl-line hl-dim"
-            delay={(pre.length + mid.length) * 0.048 + 0.5}
+            delay={(pre.length + mid.length) * 0.09 + 0.7}
           />
         </h1>
 
@@ -169,7 +183,7 @@ const Hero = () => {
           className="hero-foot"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 2.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 3, ease: [0.22, 1, 0.36, 1] }}
           onAnimationComplete={() => setStatsStarted(true)}
         >
           <div className="hero-lead">
@@ -191,11 +205,31 @@ const Hero = () => {
 
         <div className="hero-bottom-bar">
           <span className="hero-scroll-hint">{t('hero_scroll_hint')}</span>
-          <div className="hero-areas">
+
+          <div className="hero-areas-nav">
             {areas.map((area, i) => (
-              <span key={area} className={i === activeArea ? 'active' : ''}>{area}</span>
+              <button
+                type="button"
+                key={area}
+                className={i === activeArea ? 'active' : ''}
+                onClick={() => setActiveArea(i)}
+              >
+                {area}
+              </button>
             ))}
           </div>
+
+          <motion.a
+            key={activeArea}
+            href={activeMeta.anchor}
+            className="hero-area-detail"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="hero-area-detail-text">{t(activeMeta.descKey)}</span>
+            <span className="hero-area-detail-arrow" aria-hidden="true">→</span>
+          </motion.a>
         </div>
       </div>
     </section>
