@@ -1,7 +1,6 @@
 footer {
-  background-color: var(--ed-bg-deepest);
-  color: var(--ed-text);
-  font-family: var(--ed-font);
+  background-color: #000000;
+  color: #ffffff;
   padding: 20px 20px;
 }
 
@@ -25,7 +24,7 @@ footer {
   transform: translateX(-50%);
   width: 50%;
   height: 1px;
-  background-color: var(--ed-border-strong);
+  background-color: #d4af37;
 }
 
 .footer-logo {
@@ -35,6 +34,7 @@ footer {
 .footer-logo img {
   height: 60px;
   width: auto;
+  filter: brightness(0) invert(1);
 }
 
 .footer-call {
@@ -69,15 +69,15 @@ footer {
 .email-button {
   font-size: 1rem;
   font-weight: normal;
-  color: var(--ed-text-muted);
+  color: #d4af37;
   text-decoration: none;
   margin: 5px 0 10px;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .email-button:hover {
-  color: var(--ed-text);
-  transform: scale(1.05);
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
 .social-icons {
@@ -87,7 +87,7 @@ footer {
 }
 
 .social-icons a:hover svg {
-  stroke: var(--ed-text-muted);
+  stroke: #ffffff;
 }
 
 .footer-column .social-icons svg {
@@ -98,7 +98,7 @@ footer {
 .phone-button {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--ed-text);
+  color: #d4af37;
   text-decoration: none;
   margin: 10px 0;
   display: block;
@@ -106,12 +106,12 @@ footer {
 }
 
 .phone-button:hover {
-  color: var(--ed-text-muted);
-  transform: scale(1.05);
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
 .highlight {
-  color: var(--ed-text-muted);
+  color: #d4af37;
   font-size: 1rem;
   font-weight: normal;
 }
@@ -119,14 +119,13 @@ footer {
 .copyright {
   text-align: center;
   margin-top: 20px;
-  font-size: 0.9rem;
-  color: var(--ed-text-ghost);
+  font-size: 1rem;
   opacity: 0.8;
   transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 .copyright:hover {
-  color: var(--ed-text-muted);
+  color: #d4af37;
   opacity: 1;
 }
 

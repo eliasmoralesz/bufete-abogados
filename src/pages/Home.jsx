@@ -7,12 +7,10 @@ import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, ogImageForLang } from '../seoCon
 import TopBar from '../components/TopBar';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import ProcessRoute from '../components/ProcessRoute';
 import About from '../components/About';
 import Services from '../components/Services';
 import MigrationIntent from '../components/MigrationIntent';
 import Testimonials from '../components/Testimonials';
-import DiagnosticQuiz from '../components/DiagnosticQuiz';
 import Appointment from '../components/Appointment';
 import PapelesRegla from '../components/PapelesRegla';
 import Contact from '../components/Contact';
@@ -114,12 +112,10 @@ const Home = ({ lang = 'es' }) => {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <About />
-        <ProcessRoute />
         <Services />
         <MigrationIntent />
-        <Testimonials />
-        <DiagnosticQuiz />
         <Appointment />
+        <Testimonials />
         <Contact />
         <LocationSection />
         <PapelesRegla />

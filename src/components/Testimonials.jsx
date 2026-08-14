@@ -77,9 +77,6 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="testimonials-section">
-      <span className="testimonials-eyebrow" data-aos="fade-up">
-        <span className="testimonials-eyebrow-num">04</span> — {t('hero_review_badge')}
-      </span>
       <h2 data-aos="fade-up">{t('testimonials')}</h2>
       <p className="testimonials-subtitle" data-aos="fade-up" data-aos-delay="100">
         {t('testimonials_subtitle')}
