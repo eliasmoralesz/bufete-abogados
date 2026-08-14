@@ -1,8 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useTransform, useMotionValue, useSpring, animate } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import lawyerImage from '../assets/lawyer.webp';
+import portraitA from '../assets/hero-portrait-2.jpg';
+import portraitB from '../assets/hero-portrait-1.JPG';
 import './Hero.css';
+
+// Las dos fotos reales de Daguer (tomadas de invitaciones a programas de TV)
+// alternan lentamente de fondo — la 2 (perfil, traje navy, la que Elias
+// eligió como principal) va primero y se queda más tiempo en pantalla; la 1
+// (corbata roja, gesticulando) entra después como variación. Ambos elementos
+// quedan siempre montados y solo se cruza la opacidad entre ellos — evita
+// depender de AnimatePresence para el montaje/desmontaje.
+const PORTRAITS = [portraitA, portraitB];
+const PORTRAIT_INTERVAL_MS = 7000;
 
 // Rediseño "editorial oscuro" inspirado en el wireframe E de la auditoría en Figr,
 // pero corrigiendo su placeholder: el retrato NO va incrustado como recuadro entre
@@ -113,6 +123,14 @@ const Hero = () => {
   const heroRef = useRef(null);
   const [statsStarted, setStatsStarted] = useState(false);
   const [activeArea, setActiveArea] = useState(0);
+  const [activePortrait, setActivePortrait] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setActivePortrait((i) => (i + 1) % PORTRAITS.length);
+    }, PORTRAIT_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
   const whatsappHref = 'https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta';
 
@@ -158,15 +176,22 @@ const Hero = () => {
   return (
     <section className="hero" ref={heroRef}>
       <div className="hero-bg" aria-hidden="true">
-        <motion.img
-          src={lawyerImage}
-          alt=""
-          loading="eager"
-          style={{ x: portraitX, y: portraitY }}
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        />
+        {PORTRAITS.map((src, i) => (
+          <motion.img
+            key={src}
+            src={src}
+            alt=""
+            loading={i === 0 ? 'eager' : 'lazy'}
+            className="hero-bg-photo"
+            style={{ x: portraitX, y: portraitY }}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: i === activePortrait ? 1 : 0, scale: 1 }}
+            transition={{
+              opacity: { duration: 1.4, ease: 'easeInOut' },
+              scale: { duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
+            }}
+          />
+        ))}
       </div>
       <div className="hero-scrim" aria-hidden="true" />
 
