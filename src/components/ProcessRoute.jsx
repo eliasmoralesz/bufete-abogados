@@ -16,7 +16,7 @@ const ProcessRoute = () => {
     <section id="la-ruta" className="route-section">
       <div className="route-header" data-aos="fade-up">
         <span className="route-eyebrow">
-          <span className="route-eyebrow-num">02</span> — {t('sectionEyebrow_route')}
+          <span className="route-eyebrow-num">03</span> — {t('sectionEyebrow_route')}
         </span>
         <h2>{t('route_title')}</h2>
         <p>{t('route_intro')}</p>

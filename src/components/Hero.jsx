@@ -6,10 +6,11 @@ import './Hero.css';
 
 // Rediseño "editorial oscuro" inspirado en el wireframe E de la auditoría en Figr,
 // pero corrigiendo su placeholder: el retrato NO va incrustado como recuadro entre
-// las letras (se veía como una estampilla) — va grande, desaturado y difuminado
-// DETRÁS del titular, como una presencia atmosférica. La palabra "MIGRACIÓN" queda
-// entera. El verbo de la primera línea se suavizó respecto al "DIRIGÍ" del wireframe
-// (fue Exsubdirector, no Director); el crédito exacto va en el subtítulo.
+// las letras (se veía como una estampilla) — va grande, desaturado y NÍTIDO (sin
+// difuminar, se veía mal) detrás del titular, con un velo de gradiente para
+// mantener el texto legible. La palabra "MIGRACIÓN" queda entera. "DIRIGÍ" (Elias
+// confirmó, sabiendo que el cargo real fue Subdirector — ver hero_ed_lead abajo,
+// que sí trae el título exacto) en vez del "CONOCÍ" más tibio de un primer intento.
 const Hero = () => {
   const { t } = useTranslation();
   const whatsappHref = 'https://wa.me/50689655582?text=Hola%20Daguer,%20quiero%20agendar%20una%20consulta';

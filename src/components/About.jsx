@@ -109,7 +109,7 @@ const About = () => {
         </div>
         <div className="about-text">
           <span className="about-eyebrow">
-            <span className="about-eyebrow-num">03</span> — {t('about')}
+            <span className="about-eyebrow-num">02</span> — {t('about')}
           </span>
           <h2>{t('hero_aboutTitle')}</h2>
           <p className="subtitle">{t('hero_aboutSubtitle')}</p>

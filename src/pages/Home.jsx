@@ -15,7 +15,6 @@ import Testimonials from '../components/Testimonials';
 import DiagnosticQuiz from '../components/DiagnosticQuiz';
 import Appointment from '../components/Appointment';
 import PapelesRegla from '../components/PapelesRegla';
-import CTASection from '../components/CTASection';
 import Contact from '../components/Contact';
 import LocationSection from '../components/LocationSection';
 import Footer from '../components/Footer';
@@ -114,14 +113,13 @@ const Home = ({ lang = 'es' }) => {
       <Header />
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <ProcessRoute />
         <About />
+        <ProcessRoute />
         <Services />
         <MigrationIntent />
-        <Appointment />
-        <CTASection />
         <Testimonials />
         <DiagnosticQuiz />
+        <Appointment />
         <Contact />
         <LocationSection />
         <PapelesRegla />
