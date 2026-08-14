@@ -74,7 +74,12 @@ html {
   justify-content: center;
   max-width: 1440px;
   width: 100%;
-  margin: 0 auto;
+  /* Antes centraba con "margin: 0 auto" — en monitores grandes eso deja un
+     margen izquierdo que crece con la pantalla (hasta 550px+ en un monitor
+     de 2560px) y ya no coincide con el padding fijo del logo del header
+     (20px), dando la sensación de "mucho espacio vacío" que notó Elias.
+     Ahora se ancla al mismo padding de .hero, igual que el header. */
+  margin: 0;
 }
 
 /* --- Titular apilado a gran escala --- */
@@ -88,6 +93,12 @@ html {
      que ganarle explícitamente acá, si no el titular del hero cae en Lora
      en vez de Inter (bug real que reportó Elias). */
   font-family: var(--ed-font);
+  /* La línea "AHORA LO PREPARO"/"NOW I PREPARE IT" es la más larga y, sin
+     límite de ancho, su texto se metía encima del retrato (hasta 220px
+     adentro en algunos anchos de MacBook — bug real que reportó Elias, no
+     un efecto de diseño buscado). Este límite hace que envuelva a una
+     segunda línea antes de tocar la foto, en vez de superponerse a ella. */
+  max-width: min(48vw, 640px);
 }
 
 .hl-line {
@@ -106,9 +117,16 @@ html {
 /* Cada palabra es un bloque indivisible — el navegador solo puede ajustar
    línea en los espacios reales entre <span class="hl-word">, jamás dentro
    de una palabra. Esto es lo que arregla el corte tipo "AHORA LO P / REPARO"
-   que aparecía en mobile. */
+   que aparecía en mobile.
+   "white-space: nowrap" es la parte que realmente lo garantiza: cada letra
+   es TAMBIÉN su propio <span> (para la animación letra por letra), así que
+   aunque no haya espacios entre ellas, son cajas inline-block separadas y
+   el navegador puede ajustar línea entre cualquier par de ellas igual —
+   "display:inline-block" solo (sin nowrap) no bastaba, se vio al agregar el
+   límite de ancho del titular: "MIGRACIÓN" se partió en "MIGRACI" / "ÓN". */
 .hl-word {
   display: inline-block;
+  white-space: nowrap;
 }
 
 .hl-dim {
@@ -302,6 +320,13 @@ html {
 @media (max-width: 720px) {
   .hero {
     padding-top: clamp(104px, 14vh, 140px);
+  }
+
+  .hero-headline {
+    /* En mobile la foto ya va casi transparente (opacity 0.3) y el ancho
+       completo de pantalla se necesita para que el titular no corte
+       palabras — el límite de 48vw/640px es cosa de escritorio. */
+    max-width: none;
   }
 
   .hl-line {

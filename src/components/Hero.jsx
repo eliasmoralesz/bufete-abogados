@@ -195,7 +195,7 @@ const Hero = () => {
       <div className="hero-bg" aria-hidden="true">
         {PORTRAITS.map(({ src, position }, i) => (
           <motion.img
-            key={src}
+            key={`${src}-${i}`}
             src={src}
             alt=""
             loading={i === 0 ? 'eager' : 'lazy'}
