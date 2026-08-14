@@ -1,6 +1,8 @@
 #services {
   padding: clamp(70px, 9vh, 110px) clamp(18px, 5vw, 40px);
-  background-color: #ffffff;
+  background-color: var(--ed-bg);
+  color: var(--ed-text);
+  font-family: var(--ed-font);
   text-align: center;
 }
 
@@ -11,35 +13,36 @@
 
 .services-eyebrow {
   display: block;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--ed-font);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #B88A22;
+  color: var(--ed-text-faint);
   margin-bottom: 14px;
 }
 
 .services-header h2 {
-  font-family: 'Lora', serif;
-  font-size: clamp(2.1rem, 1.7rem + 1.6vw, 3rem);
-  font-weight: 600;
-  color: #0A1F44;
+  font-family: var(--ed-font);
+  font-size: clamp(1.9rem, 1.6rem + 1.4vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ed-text);
   margin: 0 0 20px;
 }
 
 .services-divider {
   display: block;
   width: 56px;
-  height: 2px;
-  background: #D4AF37;
+  height: 1px;
+  background: var(--ed-border-strong);
   margin: 0 auto 22px;
 }
 
 .services-subtitle {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.05rem;
-  color: #667187;
+  font-family: var(--ed-font);
+  font-size: 1rem;
+  color: var(--ed-text-muted);
   line-height: 1.6;
   margin: 0;
 }
@@ -51,14 +54,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   max-width: 1200px;
-  border-top: 1px solid rgba(10, 31, 68, 0.12);
-  border-left: 1px solid rgba(10, 31, 68, 0.12);
+  border-top: 1px solid var(--ed-border);
+  border-left: 1px solid var(--ed-border);
 }
 
 .service-card {
-  background-color: #ffffff;
-  border-right: 1px solid rgba(10, 31, 68, 0.12);
-  border-bottom: 1px solid rgba(10, 31, 68, 0.12);
+  background-color: var(--ed-bg);
+  border-right: 1px solid var(--ed-border);
+  border-bottom: 1px solid var(--ed-border);
   padding: clamp(32px, 3.4vw, 46px);
   text-align: left;
   display: flex;
@@ -68,7 +71,7 @@
 }
 
 .service-card:hover {
-  background-color: #0A1F44;
+  background-color: var(--ed-bg-raised);
 }
 
 /* Responsive */

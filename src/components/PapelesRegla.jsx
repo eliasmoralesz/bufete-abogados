@@ -38,7 +38,9 @@ const PapelesRegla = () => {
 
   return (
     <section id="papeles" className="papeles-section">
-      <span className="papeles-eyebrow">{t('papelesRegla_eyebrow')}</span>
+      <span className="papeles-eyebrow">
+        <span className="papeles-eyebrow-num">06</span> — {t('papelesRegla_eyebrow')}
+      </span>
       <h2>{t('papelesRegla_title')}</h2>
       <p className="subtitle">{t('papelesRegla_subtitle')}</p>
 

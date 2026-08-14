@@ -1,11 +1,11 @@
 header {
-  font-family: 'Lato', sans-serif;
+  font-family: var(--ed-font);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.4); /* Glassmorphism para escritorio y móvil */
+  background-color: rgba(19, 19, 17, 0.5); /* Glassmorphism para escritorio y móvil */
   backdrop-filter: blur(10px); /* Efecto de desenfoque */
   -webkit-backdrop-filter: blur(10px); /* Soporte para Safari */
   transition: margin-top 0.4s ease, background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
@@ -27,8 +27,9 @@ header.no-topbar {
 }
 
 header.scrolled {
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: var(--ed-bg);
+  border-bottom: 1px solid var(--ed-border);
+  box-shadow: none;
   margin-top: 0;
   padding: 10px 20px;
   backdrop-filter: none; /* Quitamos glassmorphism en scrolled */
@@ -75,35 +76,35 @@ nav.nav-menu ul {
 
 nav.nav-menu ul li a {
   text-decoration: none;
-  color: #333333;
-  font-size: 0.92rem;
-  font-weight: 600;
+  color: var(--ed-text);
+  font-size: 0.85rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 10px 20px;
-  border-radius: 50px;
+  letter-spacing: 0.08em;
+  padding: 10px 18px;
+  border-radius: 2px;
   transform: translateY(-3px);
   transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
 }
 
 /* Estilos base para el hover (scrolled) */
 header.scrolled .nav-menu ul li a:hover {
-  background-color: #2B4BB1;
-  color: #ffffff;
+  background-color: var(--ed-accent-bg);
+  color: var(--ed-accent-text);
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 /* Estilos para fondo transparente (not scrolled) */
 header:not(.scrolled) .nav-menu ul li a {
-  color: white;
+  color: var(--ed-text);
 }
 
 header:not(.scrolled) .nav-menu ul li a:hover {
-  background-color: #d4af37 !important;
-  color: #ffffff !important;
+  background-color: var(--ed-accent-bg) !important;
+  color: var(--ed-accent-text) !important;
   transform: translateY(-3px) !important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 /* Botones de idioma */
@@ -117,17 +118,17 @@ nav.nav-menu ul li.language-buttons button {
   padding: 8px 16px;
   background-color: transparent;
   border: none;
-  border-radius: 50px;
-  color: #2B4BB1;
+  border-radius: 2px;
+  color: var(--ed-text);
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
   transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
 }
 
 nav.nav-menu ul li.language-buttons button:hover {
-  background-color: #2B4BB1;
-  color: #ffffff;
+  background-color: var(--ed-accent-bg);
+  color: var(--ed-accent-text);
   transform: translateY(-3px);
 }
 
@@ -143,7 +144,7 @@ nav.nav-menu ul li.language-buttons .flag-icon {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: #2B4BB1;
+  color: var(--ed-text);
   transition: color 0.4s ease, background-color 0.4s ease;
 }
 
@@ -151,23 +152,23 @@ nav.nav-menu ul li.language-buttons .flag-icon {
 header:not(.scrolled) a,
 header:not(.scrolled) .menu-toggle,
 header:not(.scrolled) .language-buttons button {
-  color: white;
+  color: var(--ed-text);
 }
 
 header:not(.scrolled) .language-buttons button {
-  border: 1px solid white;
+  border: 1px solid var(--ed-border-soft);
 }
 
 header:not(.scrolled) nav.nav-menu ul li.language-buttons button:hover {
-  background-color: #d4af37;
-  color: #ffffff;
-  border-color: #d4af37;
+  background-color: var(--ed-accent-bg);
+  color: var(--ed-accent-text);
+  border-color: var(--ed-accent-bg);
   transform: translateY(-3px);
 }
 
-/* Cuando se hace scroll, usa los colores originales */
+/* Cuando se hace scroll, usa los mismos colores (todo el sitio es oscuro) */
 header.scrolled .nav-menu ul li a {
-  color: #333;
+  color: var(--ed-text);
 }
 
 /* Ocultar el footer del menú (teléfono + CTA) en escritorio: solo aplica en el overlay móvil */
@@ -195,7 +196,7 @@ header.scrolled .nav-menu ul li a {
     inset: 0;
     width: 100%;
     height: 100dvh;
-    background-color: #0A1F44;
+    background-color: var(--ed-bg-deep);
     padding: 120px 34px 44px;
     margin: 0;
     gap: 0;
@@ -231,17 +232,17 @@ header.scrolled .nav-menu ul li a {
 
   header.menu-open nav.nav-menu ul li a:not(.mobile-menu-cta),
   header.scrolled.menu-open nav.nav-menu ul li a:not(.mobile-menu-cta) {
-    color: #ffffff;
+    color: var(--ed-text);
   }
 
   header.menu-open nav.nav-menu ul li a:not(.mobile-menu-cta):hover,
   header.menu-open nav.nav-menu ul li a:not(.mobile-menu-cta):focus-visible {
-    color: #D4AF37;
+    color: var(--ed-text-muted);
   }
 
   header.menu-open nav.nav-menu ul li .mobile-menu-cta,
   header.scrolled.menu-open nav.nav-menu ul li .mobile-menu-cta {
-    color: #0A1F44 !important;
+    color: var(--ed-accent-text) !important;
   }
 
   /* El logo debe quedar por encima del overlay (que también es z-index 1000). */
@@ -254,7 +255,7 @@ header.scrolled .nav-menu ul li a {
     width: 100%;
     padding: 0;
     box-sizing: border-box;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid var(--ed-border);
   }
 
   nav.nav-menu ul li a {
@@ -262,7 +263,7 @@ header.scrolled .nav-menu ul li a {
     width: 100%;
     padding: 20px 4px;
     text-align: left;
-    color: #ffffff;
+    color: var(--ed-text);
     font-size: 0.95rem;
     font-weight: 500;
     letter-spacing: 0.14em;
@@ -275,7 +276,7 @@ header.scrolled .nav-menu ul li a {
   nav.nav-menu ul li a:hover,
   nav.nav-menu ul li a:focus-visible {
     background-color: transparent;
-    color: #D4AF37;
+    color: var(--ed-text-muted);
     padding-left: 12px;
     box-shadow: none;
     transform: none;
@@ -295,14 +296,14 @@ header.scrolled .nav-menu ul li a {
   nav.nav-menu ul li.language-buttons button {
     padding: 6px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--ed-border-soft);
     border-radius: 6px;
     transition: border-color 0.3s ease, transform 0.3s ease;
   }
 
   nav.nav-menu ul li.language-buttons button:hover {
     background-color: transparent;
-    border-color: #D4AF37;
+    border-color: var(--ed-text);
     transform: translateY(-2px);
   }
 
@@ -328,7 +329,7 @@ header.scrolled .nav-menu ul li a {
     gap: 12px;
     width: fit-content;
     padding: 0;
-    color: #ffffff;
+    color: var(--ed-text);
     font-size: 1.15rem;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -347,15 +348,15 @@ header.scrolled .nav-menu ul li a {
     width: 34px;
     height: 34px;
     padding: 8px;
-    color: #D4AF37;
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.28);
+    color: var(--ed-text);
+    background: var(--ed-bg-card);
+    border: 1px solid var(--ed-border-strong);
     border-radius: 50%;
     flex: 0 0 auto;
   }
 
   .mobile-menu-phone:hover {
-    color: #D4AF37;
+    color: var(--ed-text-muted);
     padding-left: 0;
   }
 
@@ -365,16 +366,16 @@ header.scrolled .nav-menu ul li a {
     justify-content: center;
     width: 100%;
     padding: 16px 20px;
-    background-color: #D4AF37;
-    color: #0A1F44 !important;
+    background-color: var(--ed-accent-bg);
+    color: var(--ed-accent-text) !important;
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     text-align: center;
     text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    border-radius: 2px;
+    transition: opacity 0.3s ease;
   }
 
   nav.nav-menu ul li .mobile-menu-cta {
@@ -386,9 +387,9 @@ header.scrolled .nav-menu ul li a {
   }
 
   .mobile-menu-cta:hover {
-    background-color: #c19d2e;
+    opacity: 0.88;
     padding-left: 20px;
-    color: #0A1F44 !important;
+    color: var(--ed-accent-text) !important;
   }
 
   .top-bar {
@@ -416,7 +417,7 @@ header.scrolled .nav-menu ul li a {
 }
 
 .menu-toggle span {
-  background-color: white;
+  background-color: var(--ed-text);
   height: 3px;
   width: 100%;
   position: absolute;
@@ -452,13 +453,14 @@ header.scrolled .nav-menu ul li a {
 }
 
 /* Color en versión scrolled (la regla header.menu-open .menu-toggle span lo
-   sobrescribe a blanco cuando el overlay está abierto). */
+   sobrescribe cuando el overlay está abierto — ahora es el mismo tono en
+   ambos casos porque todo el sitio quedó en el tema oscuro). */
 header.scrolled .menu-toggle span {
-  background-color: #2B4BB1;
+  background-color: var(--ed-text);
 }
 
 header.scrolled.menu-open .menu-toggle span {
-  background-color: #ffffff;
+  background-color: var(--ed-text);
 }
 
 /* Solo visible en móviles */

@@ -4,13 +4,13 @@
   left: 16px;
   z-index: 1300;
   padding: 14px 24px;
-  background-color: #0A1F44;
-  color: #ffffff;
-  border: 1px solid #D4AF37;
-  border-radius: 4px;
-  font-family: 'Lato', sans-serif;
+  background-color: var(--ed-bg);
+  color: var(--ed-text);
+  border: 1px solid var(--ed-text);
+  border-radius: 2px;
+  font-family: var(--ed-font);
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: none;
   transition: top 0.2s ease;
@@ -18,6 +18,6 @@
 
 .skip-link:focus {
   top: 16px;
-  outline: 2px solid #D4AF37;
+  outline: 2px solid var(--ed-text);
   outline-offset: 2px;
 }

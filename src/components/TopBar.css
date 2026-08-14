@@ -1,13 +1,13 @@
 .top-bar {
-    background-color: #0a1f44; /* Azul oscuro elegante */
-    color: #ffffff;
-    font-size: 0.90rem;
-    font-weight: 300;
+    background-color: var(--ed-bg-deepest);
+    color: var(--ed-text);
+    font-size: 0.86rem;
+    font-weight: 400;
     padding: 10px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Lato', sans-serif;
+    font-family: var(--ed-font);
     position: fixed;
     top: 0;
     left: 0;
@@ -17,15 +17,16 @@
     white-space: nowrap; /* Evita que se divida el contenido en varias líneas */
     transition: transform 0.4s ease, opacity 0.4s ease;
     flex-wrap: nowrap;
+    border-bottom: 1px solid var(--ed-border);
   }
-  
+
   /* Estado oculto cuando se hace scroll */
   .top-bar.scrolled {
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
   }
-  
+
   /* Contenido de la izquierda */
   .top-bar-left {
     display: flex;
@@ -33,7 +34,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     gap: 10px;
-    color: white;
+    color: var(--ed-text);
     text-decoration: none;
     transition: color 0.3s ease;
   }
@@ -42,17 +43,17 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    color: white;
+    color: var(--ed-text-muted);
     text-decoration: none;
     transition: color 0.3s ease;
   }
 
   .top-bar-left a:hover {
-    color: #d4af37;
+    color: var(--ed-text);
   }
 
   .top-bar-left .icon svg {
-    fill: #d4af37; /* Ícono siempre dorado */
+    fill: var(--ed-text-faint);
     flex-shrink: 0;
   }
 
@@ -62,38 +63,38 @@
     justify-content: flex-end;
     min-width: 24px; /* asegura espacio mínimo */
   }
-  
+
   /* Icono de la derecha */
   .top-bar-right a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding-left: 10px;
-    color: white;
+    color: var(--ed-text);
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  
+
   .top-bar-right a:hover {
-    color: #d4af37;
+    color: var(--ed-text-muted);
     transform: scale(1.1);
     opacity: 0.8;
   }
-  
+
   .top-bar-right a svg {
     width: 135px;
     height: 20px;
-    fill: white;
+    fill: var(--ed-text);
     display: block;
   }
-  
+
   .contact-link {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300; /* Light */
+    font-family: var(--ed-font);
+    font-weight: 400;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: white;
+    color: var(--ed-text-muted);
     transition: color 0.3s ease;
     vertical-align: middle;
   }
@@ -104,19 +105,19 @@
     justify-content: center;
     line-height: 1;
   }
-  
+
   .contact-link .icon svg {
-    fill: #d4af37;
+    fill: var(--ed-text-faint);
     width: 18px;
     height: 18px;
     flex-shrink: 0;
   }
-  
+
   .contact-link:hover {
-    color: #d4af37;
+    color: var(--ed-text);
   }
-  
-  
+
+
   /* Responsive */
   @media (max-width: 768px) {
     .top-bar {
@@ -125,15 +126,14 @@
       gap: 6px;
       padding: 10px 15px;
     }
-  
+
     .top-bar-left {
       gap: 10px;
       font-size: 0.8rem;
       flex-direction: column;
     }
-  
+
     .top-bar-right {
       align-self: flex-end;
     }
   }
-  

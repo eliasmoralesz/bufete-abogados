@@ -1,0 +1,39 @@
+/* Tema "editorial oscuro" — rediseño de home basado en el wireframe E (galería
+   editorial) aprobado en la auditoría de Figr. Vive aparte de styles.css para poder
+   revertir el rediseño fácilmente si hace falta: basta con dejar de importar este
+   archivo y las secciones vuelven a sus colores navy/dorado con los tokens de abajo
+   simplemente sin efecto (los componentes siguen usando var(--ed-*) con fallback).
+
+   Paleta y escala tipográfica tomadas literalmente del wireframe
+   `esqueleto-sitio-registro-e.html` (Figr, proyecto "Website Audit"). */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Fondos, de más claro a más oscuro */
+  --ed-bg: #1A1A18;
+  --ed-bg-raised: #22211D;
+  --ed-bg-card: #26251F;
+  --ed-bg-deep: #161614;
+  --ed-bg-deepest: #131311;
+
+  /* Bordes */
+  --ed-border: #2A2925;
+  --ed-border-strong: #35342F;
+  --ed-border-soft: #4A4842;
+
+  /* Texto, de más brillante a más apagado */
+  --ed-text: #F0EDE6;
+  --ed-text-soft: #D6D2CC;
+  --ed-text-muted: #A9A49B;
+  --ed-text-dim: #8A8377;
+  --ed-text-faint: #7E7A73;
+  --ed-text-ghost: #6E6A63;
+  --ed-text-whisper: #5E5B55;
+
+  /* Acento único: botón sólido invertido (crema sobre carbón), sin dorado */
+  --ed-accent-bg: #F0EDE6;
+  --ed-accent-text: #1A1A18;
+
+  --ed-font: 'Inter', 'Lato', sans-serif;
+}

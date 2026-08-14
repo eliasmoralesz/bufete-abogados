@@ -1,7 +1,10 @@
 .appointment-section {
   padding: 80px 20px;
-  background-color: #ffffff;
+  background-color: var(--ed-bg);
+  color: var(--ed-text);
+  font-family: var(--ed-font);
   text-align: center;
+  border-top: 1px solid var(--ed-border);
 }
 
 .appointment-container {
@@ -10,27 +13,30 @@
 }
 
 .appointment-title {
-  font-size: 2.5rem;
-  color: #0A1F44;
-  font-family: 'Lora', serif;
+  font-size: clamp(1.8rem, 1.5rem + 1vw, 2.3rem);
+  color: var(--ed-text);
+  font-family: var(--ed-font);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   margin-bottom: 10px;
 }
 
 .appointment-subtitle {
-  font-size: 1.1rem;
-  color: #555555;
+  font-size: 1.02rem;
+  color: var(--ed-text-muted);
   margin-bottom: 40px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Lato', sans-serif;
+  font-family: var(--ed-font);
 }
 
 .appointment-iframe {
   width: 100%;
   min-width: 320px;
   height: 700px;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ed-border-strong);
+  border-radius: 0;
+  box-shadow: none;
+  background: #ffffff;
 }

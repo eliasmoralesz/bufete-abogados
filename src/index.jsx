@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals'; // Importación añadida
 import { initAnalytics } from './analytics';
 import './styles.css';
+import './styles/theme-editorial.css';
 import './i18n';
 
 initAnalytics();

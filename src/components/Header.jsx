@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logoBlack from '../assets/Daguer Hernandez Abogado nombre negro.webp';
 import logoWhite from '../assets/Daguer Hernandez Abogado nombre blanco.webp';
 import flagUsa from '../assets/flag-usa.svg';
 import flagSpain from '../assets/flag-spain.svg';
@@ -86,17 +85,15 @@ const Header = ({ forceScrolled = false }) => {
     return topbarClass;
   };
 
-  // Cuando el menú móvil está abierto, el header se vuelve transparente sobre el
-  // overlay navy, así que el logo siempre debe ser el blanco (aunque estemos en
-  // estado 'scrolled', donde normalmente se usa el negro).
-  const useWhiteLogo = isMenuOpen || (!forceScrolled && scrollState !== 'scrolled');
-
+  // Tema editorial oscuro: todo el sitio quedó en fondo carbón, así que el logo
+  // crema (blanco) funciona en cualquier estado del header — ya no hace falta la
+  // versión negra que se usaba antes sobre el header blanco en estado "scrolled".
   return (
     <header className={`${getHeaderClass()} ${isMenuOpen ? 'menu-open' : ''}`}>
       <div className="logo">
         <a href={homeHref}>
           <img
-            src={useWhiteLogo ? logoWhite : logoBlack}
+            src={logoWhite}
             alt="Logo del Bufete"
             className="logo-image"
           />

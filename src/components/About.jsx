@@ -33,9 +33,9 @@ const About = () => {
           minWidth: 200.0,
           scale: 1.0,
           scaleMobile: 1.0,
-          backgroundColor: 0x071734,
-          color: 0xd4af37,           // dorado
-          color2: 0xffffff,          // blanco
+          backgroundColor: 0x1a1a18,
+          color: 0xf0ede6,           // crema — tema editorial oscuro, sin dorado
+          color2: 0x4a4842,
           spacing: 50.0,
           showLines: false,
         });
@@ -108,11 +108,30 @@ const About = () => {
           <img src={lawyerImage} alt="Perfil del Abogado" />
         </div>
         <div className="about-text">
+          <span className="about-eyebrow">
+            <span className="about-eyebrow-num">03</span> — {t('about')}
+          </span>
           <h2>{t('hero_aboutTitle')}</h2>
           <p className="subtitle">{t('hero_aboutSubtitle')}</p>
           <p className="description">
             {t('hero_aboutDescription', { name: 'Daguer Hernandez' })}
           </p>
+
+          <div className="about-stats">
+            <div className="about-stat">
+              <span className="about-stat-number">+12</span>
+              <span className="about-stat-label">{t('hero_stat_years')}</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat-number">1000+</span>
+              <span className="about-stat-label">{t('hero_stat_cases')}</span>
+            </div>
+            <div className="about-stat">
+              <span className="about-stat-number">95%</span>
+              <span className="about-stat-label">{t('hero_stat_success')}</span>
+            </div>
+          </div>
+
           <Link to={`${prefix}/about-details`} className="about-link">
             {t('moreAbout')}
           </Link>

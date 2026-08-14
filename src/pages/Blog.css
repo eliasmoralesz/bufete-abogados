@@ -1,11 +1,12 @@
-/* Blog (index + artículo) — mismo lenguaje visual que AboutDetails: fondo claro, navy/dorado, Lora + Lato */
+/* Blog (index + artículo) — mismo lenguaje visual que el resto del sitio: tema editorial oscuro */
 
 .blog-index-section,
 .blog-article-section {
   position: relative;
   padding: 175px 15px 80px;
-  background: #ffffff;
-  color: #222222;
+  background: var(--ed-bg);
+  color: var(--ed-text-soft);
+  font-family: var(--ed-font);
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -20,28 +21,29 @@
 
 .blog-eyebrow {
   display: inline-block;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  font-family: var(--ed-font);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #d4af37;
+  color: var(--ed-text-faint);
   margin-bottom: 14px;
 }
 
 .blog-index-title {
-  font-family: 'Lora', serif;
-  font-size: 2.6rem;
-  font-weight: 600;
-  color: #0a1f44;
+  font-family: var(--ed-font);
+  font-size: 2.4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ed-text);
   line-height: 1.2;
   margin-bottom: 16px;
 }
 
 .blog-index-subtitle {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.1rem;
-  color: #555;
+  font-family: var(--ed-font);
+  font-size: 1.05rem;
+  color: var(--ed-text-muted);
   max-width: 640px;
   margin-bottom: 56px;
 }
@@ -53,8 +55,8 @@
 }
 
 .blog-index-card {
-  border: 1px solid #e4e4e4;
-  border-radius: 4px;
+  border: 1px solid var(--ed-border);
+  border-radius: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -62,7 +64,7 @@
 }
 
 .blog-index-card:hover {
-  border-color: #d4af37;
+  border-color: var(--ed-border-soft);
   transform: translateY(-4px);
 }
 
@@ -70,12 +72,14 @@
   display: block;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: var(--ed-bg-card);
 }
 
 .blog-index-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(0.3) contrast(1.05);
 }
 
 .blog-index-card-body {
@@ -86,10 +90,10 @@
 }
 
 .blog-index-card-body h2 {
-  font-family: 'Lora', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0a1f44;
+  font-family: var(--ed-font);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--ed-text);
   line-height: 1.35;
   margin: 0;
 }
@@ -100,23 +104,23 @@
 }
 
 .blog-index-card-body p {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.98rem;
-  color: #555;
+  font-family: var(--ed-font);
+  font-size: 0.94rem;
+  color: var(--ed-text-dim);
   line-height: 1.6;
   margin: 0;
 }
 
 .blog-index-card-link {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: #0a288d;
+  font-family: var(--ed-font);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--ed-text-muted);
   text-decoration: none;
 }
 
 .blog-index-card-link:hover {
-  color: #d4af37;
+  color: var(--ed-text);
 }
 
 /* --- Artículo individual --- */
@@ -126,31 +130,32 @@
   width: fit-content;
   align-items: center;
   gap: 8px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #0a288d;
+  font-family: var(--ed-font);
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--ed-text-muted);
   text-decoration: none;
   margin-bottom: 28px;
 }
 
 .blog-back-link:hover {
-  color: #d4af37;
+  color: var(--ed-text);
 }
 
 .blog-article-title {
-  font-family: 'Lora', serif;
-  font-size: 2.4rem;
-  font-weight: 600;
-  color: #0a1f44;
+  font-family: var(--ed-font);
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ed-text);
   line-height: 1.25;
   margin-bottom: 16px;
 }
 
 .blog-article-dek {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.15rem;
-  color: #555;
+  font-family: var(--ed-font);
+  font-size: 1.1rem;
+  color: var(--ed-text-muted);
   line-height: 1.6;
   margin-bottom: 32px;
 }
@@ -159,22 +164,23 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 0;
   margin-bottom: 40px;
+  filter: grayscale(0.3) contrast(1.05);
 }
 
 .blog-article-body {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.05rem;
+  font-family: var(--ed-font);
+  font-size: 1.02rem;
   line-height: 1.8;
-  color: #333;
+  color: var(--ed-text-soft);
 }
 
 .blog-article-body h2 {
-  font-family: 'Lora', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0a1f44;
+  font-family: var(--ed-font);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ed-text);
   margin: 40px 0 16px;
 }
 
@@ -192,57 +198,58 @@
 }
 
 .blog-article-source {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.9rem;
-  color: #777;
-  font-style: italic;
-  border-top: 1px solid #e4e4e4;
+  font-family: var(--ed-font);
+  font-size: 0.88rem;
+  color: var(--ed-text-ghost);
+  font-style: normal;
+  border-top: 1px solid var(--ed-border);
   padding-top: 20px;
   margin-top: 20px;
 }
 
 .blog-article-source a {
-  color: #0a288d;
+  color: var(--ed-text-muted);
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .blog-article-cta {
   margin-top: 48px;
   padding: 36px;
-  background: #f5f7fa;
-  border-radius: 8px;
+  background: var(--ed-bg-raised);
+  border: 1px solid var(--ed-border);
+  border-radius: 0;
   text-align: center;
 }
 
 .blog-article-cta h3 {
-  font-family: 'Lora', serif;
-  font-size: 1.5rem;
-  color: #0a1f44;
+  font-family: var(--ed-font);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ed-text);
   margin-bottom: 12px;
 }
 
 .blog-article-cta p {
-  font-family: 'Lato', sans-serif;
-  color: #555;
+  font-family: var(--ed-font);
+  color: var(--ed-text-muted);
   margin-bottom: 24px;
 }
 
 .blog-article-cta-button {
   display: inline-block;
-  background-color: #0a288d;
-  color: #fff;
+  background-color: var(--ed-accent-bg);
+  color: var(--ed-accent-text);
   padding: 14px 32px;
-  border-radius: 50px;
+  border-radius: 2px;
   text-decoration: none;
-  font-family: 'Lato', sans-serif;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  font-family: var(--ed-font);
+  font-weight: 500;
+  transition: opacity 0.3s ease;
 }
 
 .blog-article-cta-button:hover {
-  background-color: #d4af37;
-  color: #0a1f44;
+  opacity: 0.9;
 }
 
 @media (max-width: 600px) {
