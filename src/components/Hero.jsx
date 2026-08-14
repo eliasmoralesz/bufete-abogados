@@ -17,7 +17,18 @@ import './Hero.css';
 // tal como pidió Elias. Todos los elementos quedan siempre montados y solo se
 // cruza la opacidad entre ellos — evita depender de AnimatePresence para el
 // montaje/desmontaje.
-const PORTRAITS = [portraitA, portraitB, portraitC, portraitD];
+// `position` es opcional — solo se define cuando el recorte por defecto
+// (centrado, "50% 6%" en Hero.css) deja a Daguer fuera de encuadre. La foto
+// 3-2 es una toma de estudio de TV donde él queda hacia la derecha del
+// cuadro (la entrevistadora, desenfocada, va a la izquierda) — sin un
+// object-position propio, el recorte centrado en mobile cae en la zona
+// vacía del medio y no se ve a nadie.
+const PORTRAITS = [
+  { src: portraitA },
+  { src: portraitB },
+  { src: portraitC, position: '92% 20%' },
+  { src: portraitD },
+];
 const PORTRAIT_INTERVAL_MS = 7000;
 
 // Rediseño "editorial oscuro" inspirado en el wireframe E de la auditoría en Figr,
@@ -182,14 +193,14 @@ const Hero = () => {
   return (
     <section className="hero" ref={heroRef}>
       <div className="hero-bg" aria-hidden="true">
-        {PORTRAITS.map((src, i) => (
+        {PORTRAITS.map(({ src, position }, i) => (
           <motion.img
             key={src}
             src={src}
             alt=""
             loading={i === 0 ? 'eager' : 'lazy'}
             className="hero-bg-photo"
-            style={{ x: portraitX, y: portraitY }}
+            style={{ x: portraitX, y: portraitY, ...(position ? { objectPosition: position } : null) }}
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: i === activePortrait ? 1 : 0, scale: 1 }}
             transition={{
