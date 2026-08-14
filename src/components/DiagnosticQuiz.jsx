@@ -37,6 +37,7 @@ const DiagnosticQuiz = () => {
         <span className="quiz-eyebrow">{t('sectionEyebrow_diagnostic')}</span>
         <h2>{t('quiz_title')}</h2>
         <p>{t('quiz_intro')}</p>
+        <p className="quiz-credential">{t('quiz_credential_line')}</p>
       </div>
 
       <div className="quiz-card" data-aos="fade-up" data-aos-delay="100">

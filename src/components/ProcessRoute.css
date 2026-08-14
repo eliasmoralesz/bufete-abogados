@@ -8,7 +8,7 @@
 
 .route-header {
   max-width: 1440px;
-  margin: 0 auto clamp(36px, 5vh, 56px);
+  margin: 0 auto clamp(28px, 4vh, 40px);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -16,64 +16,151 @@
   flex-wrap: wrap;
 }
 
+.route-header-copy {
+  max-width: 640px;
+}
+
 .route-eyebrow {
   display: block;
   font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ed-text-faint);
+  color: var(--ed-accent-bg);
   margin-bottom: 16px;
 }
 
-.route-eyebrow-num {
-  color: var(--ed-text-muted);
-}
-
 .route-header h2 {
-  font-size: clamp(1.7rem, 1.3rem + 1.8vw, 2.5rem);
-  font-weight: 400;
+  font-size: clamp(1.8rem, 1.4rem + 2vw, 2.6rem);
+  font-weight: 500;
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin: 0 0 14px;
-  max-width: 20ch;
-}
-
-.route-header p {
-  font-size: 1rem;
-  color: var(--ed-text-muted);
-  line-height: 1.6;
-  max-width: 46ch;
+  line-height: 1.14;
   margin: 0;
 }
 
-.route-steps {
+/* Caja de credencial, patrón del wireframe F */
+.route-credential {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 260px;
+  padding: 16px 20px;
+  background: var(--ed-bg-raised);
+  border: 1px solid var(--ed-border);
+  border-radius: 6px;
+}
+
+.route-credential-label {
+  font-size: 0.76rem;
+  color: var(--ed-text-faint);
+}
+
+.route-credential-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--ed-text-soft);
+}
+
+.route-panel {
   max-width: 1440px;
   margin: 0 auto;
+  border: 1px solid var(--ed-border-strong);
+  border-radius: 8px;
+  background: var(--ed-bg-raised);
+  overflow: hidden;
+}
+
+/* Pestañas píldora por trámite */
+.route-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--ed-border);
+  background: var(--ed-bg-card);
+}
+
+.route-tab {
+  font-family: var(--ed-font);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ed-text-muted);
+  background: transparent;
+  border: 1px solid var(--ed-border-strong);
+  border-radius: 999px;
+  padding: 7px 15px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.route-tab:hover {
+  border-color: var(--ed-text-muted);
+  color: var(--ed-text);
+}
+
+.route-tab.active {
+  background: var(--ed-text);
+  color: var(--ed-bg);
+  border-color: var(--ed-text);
+}
+
+.route-steps {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--ed-border-strong);
 }
 
 .route-step {
-  padding: 24px 22px;
+  padding: 24px 20px 22px;
   border-left: 1px solid var(--ed-border);
   display: flex;
   flex-direction: column;
   gap: 9px;
+  transition: background 0.2s ease;
+}
+
+.route-step:hover {
+  background: var(--ed-bg-card);
 }
 
 .route-step:first-child {
   border-left: none;
-  padding-left: 0;
 }
 
 .route-step-highlight {
-  background: var(--ed-bg-raised);
+  background: var(--ed-bg-deep);
+  border-left: 1px solid var(--ed-accent-bg);
+  border-right: 1px solid var(--ed-accent-bg);
   margin: -1px 0;
   padding-top: 25px;
-  padding-bottom: 25px;
-  border-left: 1px solid var(--ed-border-soft);
+  padding-bottom: 23px;
+}
+
+.route-step-highlight:hover {
+  background: var(--ed-bg-deep);
+}
+
+.route-step-dot-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.route-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ed-border-strong);
+  flex: 0 0 auto;
+}
+
+.route-step-highlight .route-step-dot {
+  background: var(--ed-accent-bg);
+}
+
+.route-step-line {
+  flex: 1;
+  height: 1px;
+  background: var(--ed-border);
 }
 
 .route-step-label {
@@ -84,18 +171,18 @@
 }
 
 .route-step-highlight .route-step-label {
-  color: var(--ed-text);
+  color: var(--ed-accent-bg);
 }
 
 .route-step h3 {
-  font-size: 1.02rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: 0;
   color: var(--ed-text);
 }
 
 .route-step p {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--ed-text-dim);
   line-height: 1.55;
   margin: 0;
@@ -105,6 +192,53 @@
   color: var(--ed-text-muted);
 }
 
+.route-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--ed-border);
+  background: var(--ed-bg-card);
+  flex-wrap: wrap;
+}
+
+.route-footer span {
+  font-size: 0.86rem;
+  color: var(--ed-text-muted);
+}
+
+.route-footer-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.route-footer-btn {
+  font-family: var(--ed-font);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--ed-text);
+  border: 1px solid var(--ed-border-strong);
+  border-radius: 4px;
+  padding: 9px 16px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.route-footer-btn:hover {
+  border-color: var(--ed-text);
+}
+
+.route-footer-btn-primary {
+  background: var(--ed-accent-bg);
+  color: var(--ed-accent-text);
+  border-color: var(--ed-accent-bg);
+}
+
+.route-footer-btn-primary:hover {
+  opacity: 0.9;
+}
+
 @media (max-width: 1100px) {
   .route-steps {
     grid-template-columns: repeat(3, 1fr);
@@ -112,12 +246,15 @@
 
   .route-step:nth-child(3n+1) {
     border-left: none;
-    padding-left: 0;
   }
 
   .route-step:nth-child(n+4) {
     border-top: 1px solid var(--ed-border);
-    padding-top: 24px;
+  }
+
+  .route-step-highlight {
+    border-top: 1px solid var(--ed-accent-bg);
+    border-bottom: 1px solid var(--ed-accent-bg);
   }
 }
 
@@ -128,20 +265,32 @@
 
   .route-step {
     border-left: none;
-    padding-left: 0;
     border-top: 1px solid var(--ed-border);
-    padding-top: 22px;
   }
 
   .route-step:first-child {
     border-top: none;
-    padding-top: 0;
   }
 
   .route-step-highlight {
     margin: 0;
-    padding-left: 18px;
-    padding-right: 18px;
-    border-left: 1px solid var(--ed-border-soft);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-left: 1px solid var(--ed-accent-bg);
+    border-right: none;
+  }
+
+  .route-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .route-footer-actions {
+    width: 100%;
+  }
+
+  .route-footer-btn {
+    flex: 1;
+    text-align: center;
   }
 }
