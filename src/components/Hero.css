@@ -16,12 +16,15 @@ html {
   font-family: var(--ed-font);
 }
 
-/* --- Retrato de fondo: nítido y desaturado, no difuminado — el difuminado se
-   veía "fea" (feedback del cliente). La nitidez del texto se logra con el scrim
-   (gradiente oscuro), no emborronando la foto. --- */
+/* --- Retrato de fondo: a color (nada de blanco y negro), nítido, no difuminado.
+   Empieza debajo del header/topbar (top ~96px) en vez de pegar contra el borde
+   superior, para que la cabeza no quede aplastada contra el menú. --- */
 .hero-bg {
   position: absolute;
-  inset: 0;
+  top: 96px;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
@@ -35,8 +38,8 @@ html {
   width: auto;
   max-width: 48%;
   object-fit: cover;
-  object-position: 50% 12%;
-  filter: grayscale(1) contrast(1.1) brightness(0.95);
+  object-position: 50% 6%;
+  filter: contrast(1.04) saturate(1.02);
   opacity: 1;
 }
 
@@ -52,9 +55,9 @@ html {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, var(--ed-bg) 0%, var(--ed-bg) 42%, rgba(26, 26, 24, 0.7) 56%, rgba(26, 26, 24, 0.42) 100%),
-    linear-gradient(0deg, var(--ed-bg) 0%, rgba(26, 26, 24, 0) 30%),
-    linear-gradient(180deg, rgba(26, 26, 24, 0.3) 0%, rgba(26, 26, 24, 0) 20%);
+    linear-gradient(90deg, var(--ed-bg) 0%, var(--ed-bg) 42%, rgba(7, 23, 52, 0.72) 56%, rgba(7, 23, 52, 0.45) 100%),
+    linear-gradient(0deg, var(--ed-bg) 0%, rgba(7, 23, 52, 0) 30%),
+    linear-gradient(180deg, rgba(7, 23, 52, 0.35) 0%, rgba(7, 23, 52, 0) 20%);
 }
 
 .hero-inner {

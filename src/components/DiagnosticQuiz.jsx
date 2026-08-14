@@ -34,9 +34,7 @@ const DiagnosticQuiz = () => {
   return (
     <section id="diagnostico" className="quiz-section">
       <div className="quiz-header" data-aos="fade-up">
-        <span className="quiz-eyebrow">
-          <span className="quiz-eyebrow-num">05</span> — {t('sectionEyebrow_diagnostic')}
-        </span>
+        <span className="quiz-eyebrow">{t('sectionEyebrow_diagnostic')}</span>
         <h2>{t('quiz_title')}</h2>
         <p>{t('quiz_intro')}</p>
       </div>
