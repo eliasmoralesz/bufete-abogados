@@ -295,7 +295,7 @@ header.scrolled .nav-menu ul li a {
   nav.nav-menu ul li.language-buttons button {
     padding: 6px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 6px;
     transition: border-color 0.3s ease, transform 0.3s ease;
   }

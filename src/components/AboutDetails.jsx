@@ -110,7 +110,7 @@ const AboutDetails = ({ lang = 'es' }) => {
       <TopBar />
       <Header forceScrolled />
 
-      <section className="about-details-section">
+      <main id="main-content" tabIndex={-1} className="about-details-section">
         <div className="about-details-container" data-aos="fade-up">
           <h1 className="about-details-title">{t('aboutDetailsTitle')}</h1>
 
@@ -268,7 +268,7 @@ const AboutDetails = ({ lang = 'es' }) => {
             </Link>
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer />
     </>

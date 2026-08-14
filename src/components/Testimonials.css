@@ -160,7 +160,7 @@
   z-index: 3;
   width: 42px;
   height: 42px;
-  border: 1px solid rgba(10, 31, 68, 0.16);
+  border: 1px solid rgba(10, 31, 68, 0.55);
   border-radius: 50%;
   background: #ffffff;
   color: #0A1F44;
@@ -270,7 +270,7 @@
 }
 
 .testimonials-google-link {
-  border: 1px solid rgba(10, 31, 68, 0.14);
+  border: 1px solid rgba(10, 31, 68, 0.55);
   background: #ffffff;
   color: #0A1F44;
   box-shadow: 0 12px 26px rgba(10, 31, 68, 0.08);

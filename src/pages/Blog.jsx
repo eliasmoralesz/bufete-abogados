@@ -51,7 +51,7 @@ const Blog = ({ lang = 'es' }) => {
       <TopBar />
       <Header forceScrolled />
 
-      <section className="blog-index-section">
+      <main id="main-content" tabIndex={-1} className="blog-index-section">
         <div className="blog-index-container" data-aos="fade-up">
           <Link to={prefix || '/'} className="blog-back-link">
             <FaArrowLeft aria-hidden="true" /> {t('blog_backToHome')}
@@ -85,7 +85,7 @@ const Blog = ({ lang = 'es' }) => {
             })}
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer />
     </>

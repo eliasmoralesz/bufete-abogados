@@ -93,7 +93,7 @@ const BlogArticle = ({ lang = 'es' }) => {
       <TopBar />
       <Header forceScrolled />
 
-      <section className="blog-article-section">
+      <main id="main-content" tabIndex={-1} className="blog-article-section">
         <div className="blog-article-container" data-aos="fade-up">
           <Link to={`${prefix}/blog`} className="blog-back-link">
             <FaArrowLeft aria-hidden="true" /> {t('blog_backToBlog')}
@@ -142,7 +142,7 @@ const BlogArticle = ({ lang = 'es' }) => {
             </a>
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer />
     </>

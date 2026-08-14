@@ -110,16 +110,18 @@ const Home = ({ lang = 'es' }) => {
 
       <TopBar />
       <Header />
-      <Hero />
-      <About />
-      <Services />
-      <MigrationIntent />
-      <Appointment />
-      <CTASection />
-      <Testimonials />
-      <Contact />
-      <LocationSection />
-      <PapelesRegla />
+      <main id="main-content" tabIndex={-1}>
+        <Hero />
+        <About />
+        <Services />
+        <MigrationIntent />
+        <Appointment />
+        <CTASection />
+        <Testimonials />
+        <Contact />
+        <LocationSection />
+        <PapelesRegla />
+      </main>
       <Footer />
     </div>
   );

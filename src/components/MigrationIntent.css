@@ -84,7 +84,7 @@
   width: 100%;
   min-height: 58px;
   padding: 0 22px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.84);
@@ -252,7 +252,7 @@
   min-height: 50px;
   margin-top: 34px;
   padding: 0 24px;
-  border: 1px solid rgba(212, 175, 55, 0.52);
+  border: 1px solid #B88A22;
   border-radius: 999px;
   color: #0A1F44;
   background: #D4AF37;
@@ -316,7 +316,7 @@
     min-height: 62px;
     scroll-margin-top: 112px;
     padding: 0 18px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.08);
     color: #ffffff;

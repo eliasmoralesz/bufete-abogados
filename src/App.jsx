@@ -5,6 +5,7 @@ import AboutDetails from './components/AboutDetails'; // Ruta corregida
 import Blog from './pages/Blog';
 import BlogArticle from './pages/BlogArticle';
 import WhatsAppButton from './components/WhatsAppButton';
+import SkipLink from './components/SkipLink';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <Router>
+      <SkipLink />
       <Routes>
         <Route path="/" element={<Home lang="es" />} />
         <Route path="/about-details" element={<AboutDetails lang="es" />} />

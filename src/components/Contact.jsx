@@ -42,31 +42,39 @@ const Contact = () => {
         </div>
 
         <form className="contact-form-card" onSubmit={handleSubmit} data-aos="fade-up" data-aos-delay="120">
+          <label htmlFor="contact-name" className="sr-only">{t('name')}</label>
           <input
             type="text"
+            id="contact-name"
             name="name"
             placeholder={t('name')}
             required
           />
           <ValidationError prefix="Name" field="name" errors={state.errors} />
 
+          <label htmlFor="contact-email" className="sr-only">{t('email')}</label>
           <input
             type="email"
+            id="contact-email"
             name="email"
             placeholder={t('email')}
             required
           />
           <ValidationError prefix="Email" field="email" errors={state.errors} />
 
+          <label htmlFor="contact-phone" className="sr-only">{t('phone')}</label>
           <input
             type="tel"
+            id="contact-phone"
             name="phone"
             placeholder={t('phone')}
             required
           />
           <ValidationError prefix="Phone" field="phone" errors={state.errors} />
 
+          <label htmlFor="contact-objective" className="sr-only">{t('objective')}</label>
           <select
+            id="contact-objective"
             name="objective"
             defaultValue=""
             required
@@ -82,7 +90,9 @@ const Contact = () => {
           </select>
           <ValidationError prefix="Objective" field="objective" errors={state.errors} />
 
+          <label htmlFor="contact-message" className="sr-only">{t('message')}</label>
           <textarea
+            id="contact-message"
             name="message"
             placeholder={t('message')}
             required

@@ -1,0 +1,23 @@
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 1300;
+  padding: 14px 24px;
+  background-color: #0A1F44;
+  color: #ffffff;
+  border: 1px solid #D4AF37;
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 2px solid #D4AF37;
+  outline-offset: 2px;
+}

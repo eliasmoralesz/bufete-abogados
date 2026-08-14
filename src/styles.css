@@ -36,6 +36,26 @@ p, a {
   font-family: 'Lato', sans-serif;
 }
 
+/* Oculta visualmente pero mantiene accesible a lectores de pantalla (labels de formulario
+   que ya tienen un placeholder visible haciendo ese trabajo para usuarios videntes). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Evita el anillo de foco por defecto del navegador cuando el skip-link mueve el foco
+   programáticamente a #main-content — es un salto invisible, no un control interactivo. */
+#main-content:focus {
+  outline: none;
+}
+
 /* El estilo del header vive en Header.css (maneja los estados with-topbar/no-topbar/scrolled).
    Antes había un bloque genérico "header" aquí que forzaba background-color: transparent
    y pisaba el rgba(0,0,0,0.4) de Header.css, dejando el header invisible al cargar la página. */
