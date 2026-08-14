@@ -16,7 +16,9 @@ html {
   font-family: var(--ed-font);
 }
 
-/* --- Retrato de fondo: grande, desaturado y difuminado detrás del titular --- */
+/* --- Retrato de fondo: nítido y desaturado, no difuminado — el difuminado se
+   veía "fea" (feedback del cliente). La nitidez del texto se logra con el scrim
+   (gradiente oscuro), no emborronando la foto. --- */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -28,24 +30,31 @@ html {
 .hero-bg img {
   position: absolute;
   top: 0;
-  right: -2%;
+  right: 0;
   height: 100%;
   width: auto;
-  max-width: 58%;
+  max-width: 48%;
   object-fit: cover;
-  object-position: center 8%;
-  filter: grayscale(1) contrast(1.04) blur(11px);
-  opacity: 0.42;
+  object-position: 50% 12%;
+  filter: grayscale(1) contrast(1.1) brightness(0.95);
+  opacity: 1;
 }
 
+/* El scrim tiene dos trabajos: (1) tapar del todo la izquierda para que el
+   titular arranque sobre fondo sólido, (2) aplicar un velo parejo sobre TODA
+   la foto (no solo un degradado que se desvanece en el borde) para que
+   cualquier línea de texto que la cruce — la tercera línea es larga y llega
+   bastante a la derecha — siga siendo legible sin necesidad de difuminar
+   la imagen en sí. */
 .hero-scrim {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, var(--ed-bg) 6%, rgba(26, 26, 24, 0.86) 34%, rgba(26, 26, 24, 0.42) 66%, rgba(26, 26, 24, 0.6) 100%),
-    linear-gradient(0deg, var(--ed-bg) 3%, rgba(26, 26, 24, 0) 42%);
+    linear-gradient(90deg, var(--ed-bg) 0%, var(--ed-bg) 42%, rgba(26, 26, 24, 0.7) 56%, rgba(26, 26, 24, 0.42) 100%),
+    linear-gradient(0deg, var(--ed-bg) 0%, rgba(26, 26, 24, 0) 30%),
+    linear-gradient(180deg, rgba(26, 26, 24, 0.3) 0%, rgba(26, 26, 24, 0) 20%);
 }
 
 .hero-inner {
