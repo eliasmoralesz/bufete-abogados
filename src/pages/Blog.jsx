@@ -53,7 +53,10 @@ const Blog = ({ lang = 'es' }) => {
 
       <main id="main-content" tabIndex={-1} className="blog-index-section">
         <div className="blog-index-container" data-aos="fade-up">
-          <Link to={prefix || '/'} className="blog-back-link">
+          {/* Vuelve a la sección "Papeles en Regla" del Home, no al tope de
+              la página — mismo criterio que ya se aplicó en GuidePage.jsx
+              (Home.jsx hace scroll al elemento que coincide con el hash). */}
+          <Link to={`${prefix}/#papeles`} className="blog-back-link">
             <FaArrowLeft aria-hidden="true" /> {t('blog_backToHome')}
           </Link>
 
