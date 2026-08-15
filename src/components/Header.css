@@ -81,7 +81,13 @@ nav.nav-menu ul li a {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 10px 20px;
-  border-radius: 50px;
+  /* Antes 50px (píldora completa) — Elias lo notó al compararlo con el
+     botón nuevo de "Agenda tu cita ahora" (2px) y pidió consistencia.
+     Regla adoptada en todo el sitio: los botones de ACCIÓN (este hover,
+     "Más sobre...", las pestañas de La Ruta, los CTA del blog/Papeles en
+     Regla) van rectos — las etiquetas/chips y los puntos de carrusel se
+     quedan redondos, son una cosa visualmente distinta. */
+  border-radius: 2px;
   transform: translateY(-3px);
   transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
 }

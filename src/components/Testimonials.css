@@ -255,7 +255,11 @@
   justify-content: center;
   min-height: 42px;
   padding: 0 20px;
-  border-radius: 999px;
+  /* Antes 999px (píldora) — recto, misma regla del resto de botones de
+     acción del sitio (ver Header.css). El chip de calificación
+     (.testimonial-rating) y los puntos del carrusel (.testimonials-dot)
+     se quedan redondos a propósito — son etiqueta/indicador, no botón. */
+  border-radius: 2px;
   font-size: 0.92rem;
   font-weight: 800;
   text-decoration: none;

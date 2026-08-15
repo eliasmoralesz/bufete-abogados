@@ -87,7 +87,9 @@
   color: var(--ed-text-muted);
   background: transparent;
   border: 1px solid var(--ed-border-strong);
-  border-radius: 999px;
+  /* Antes 999px (píldora) — recto, misma regla del resto de botones de
+     acción del sitio (ver Header.css). */
+  border-radius: 2px;
   padding: 7px 15px;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;

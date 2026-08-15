@@ -233,7 +233,10 @@
   background-color: #0a288d;
   color: #fff;
   padding: 14px 32px;
-  border-radius: 50px;
+  /* Antes 50px (píldora) — recto, misma regla del resto de botones de
+     acción del sitio (ver Header.css). Usado también en la página del
+     CETC (CETC.jsx reutiliza estas clases). */
+  border-radius: 2px;
   text-decoration: none;
   font-family: 'Lato', sans-serif;
   font-weight: 600;
