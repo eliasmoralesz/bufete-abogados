@@ -78,7 +78,15 @@ const GuidePage = ({ guideKey, lang = 'es' }) => {
 
       <main id="main-content" tabIndex={-1} className="blog-article-section">
         <div className="blog-article-container" data-aos="fade-up">
-          <Link to={prefix || '/'} className="blog-back-link">
+          {/* Vuelve a la sección de Asesoría migratoria, no al tope de la
+              página — Home.jsx ya tiene un useEffect que hace scroll al
+              elemento con ese id cuando la ruta llega con un hash (lo usan
+              también los CTA de "#appointment" del blog). Antes esto
+              llevaba a `${prefix}` a secas (o sea, arriba del todo), que
+              Elias señaló como incómodo: si alguien entra a esta guía
+              desde Asesoría migratoria, "volver" debería dejarlo otra vez
+              ahí, no en el Hero. */}
+          <Link to={`${prefix}/#migration-guidance`} className="blog-back-link">
             <FaArrowLeft aria-hidden="true" /> {content.backLabel}
           </Link>
 
