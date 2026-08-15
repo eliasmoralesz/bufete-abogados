@@ -108,12 +108,14 @@ header:not(.scrolled) .nav-menu ul li a:hover {
 
 /* Botones de idioma — antes eran banderas (🇺🇸/🇨🇷), ahora texto "ES / EN"
    simple, sin píldora ni borde, sin color de acento (a Elias no le gustó
-   el dorado). Los dos van siempre en negrita — antes el activo iba en
-   negrita y el otro no, y a Elias tampoco le gustó esa diferencia; ahora
-   se distinguen solo por opacidad (activo 100%, inactivo atenuado). Mismo
-   color que el resto del texto del header en cada estado: blanco sobre el
-   Hero oscuro, #333 (igual que el resto del menú) cuando el header pasa a
-   blanco por el scroll. El hover no usa color: solo un leve subrayado. */
+   el dorado). Los dos van siempre en negrita y con el mismo color/opacidad
+   exactos — antes el activo se distinguía con opacidad 100% y el otro
+   atenuado, pero Elias notó esa diferencia y pidió que fuera "de un mismo
+   color". Ahora no hay ninguna distinción visual entre activo/inactivo en
+   reposo — solo el subrayado al pasar el mouse. Mismo color que el resto
+   del texto del header en cada estado: blanco sobre el Hero oscuro, #333
+   (igual que el resto del menú) cuando el header pasa a blanco por el
+   scroll. */
 nav.nav-menu ul li.language-buttons {
   display: flex;
   gap: 6px;
@@ -125,7 +127,6 @@ nav.nav-menu ul li.language-buttons button {
   background: none;
   border: none;
   color: #333;
-  opacity: 0.65;
   font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -133,22 +134,16 @@ nav.nav-menu ul li.language-buttons button {
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 3px;
-  transition: opacity 0.3s ease, text-decoration-color 0.3s ease;
+  transition: text-decoration-color 0.3s ease;
 }
 
 nav.nav-menu ul li.language-buttons button:hover {
-  opacity: 1;
   text-decoration-color: currentColor;
-}
-
-nav.nav-menu ul li.language-buttons button.active {
-  opacity: 1;
 }
 
 nav.nav-menu ul li.language-buttons .language-buttons-divider {
   font-size: 0.85rem;
   color: #333;
-  opacity: 0.5;
 }
 
 /* Mobile Menu */
@@ -311,22 +306,15 @@ header.scrolled .nav-menu ul li a {
   nav.nav-menu ul li.language-buttons button {
     padding: 8px 16px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid white;
     border-radius: 6px;
-    opacity: 1;
     font-size: 1rem;
-    transition: border-color 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease;
   }
 
   nav.nav-menu ul li.language-buttons button:hover {
     background-color: transparent;
-    border-color: white;
     transform: translateY(-2px);
-  }
-
-  nav.nav-menu ul li.language-buttons button.active {
-    border-color: white;
-    font-weight: 700;
   }
 
   nav.nav-menu ul li.language-buttons .language-buttons-divider {
