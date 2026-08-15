@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logoBlack from '../assets/Daguer Hernandez Abogado nombre negro.webp';
 import logoWhite from '../assets/Daguer Hernandez Abogado nombre blanco.webp';
-import flagUsa from '../assets/flag-usa.svg';
-import flagSpain from '../assets/flag-spain.svg';
 import './Header.css';
 
 const Header = ({ forceScrolled = false }) => {
@@ -121,11 +119,20 @@ const Header = ({ forceScrolled = false }) => {
           <li><a href={`${prefix}/#contact`} onClick={closeMenu}>{t('contact')}</a></li>
 
           <li className="language-buttons">
-            <button onClick={() => switchLanguage('en')}>
-              <img src={flagUsa} alt="English" className="flag-icon" />
+            <button
+              onClick={() => switchLanguage('es')}
+              className={i18n.language === 'es' ? 'active' : ''}
+              aria-current={i18n.language === 'es' ? 'true' : undefined}
+            >
+              ES
             </button>
-            <button onClick={() => switchLanguage('es')}>
-              <img src={flagSpain} alt="Español" className="flag-icon" />
+            <span className="language-buttons-divider" aria-hidden="true">/</span>
+            <button
+              onClick={() => switchLanguage('en')}
+              className={i18n.language === 'en' ? 'active' : ''}
+              aria-current={i18n.language === 'en' ? 'true' : undefined}
+            >
+              EN
             </button>
           </li>
 

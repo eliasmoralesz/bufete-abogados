@@ -106,34 +106,47 @@ header:not(.scrolled) .nav-menu ul li a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Botones de idioma */
+/* Botones de idioma — antes eran banderas (🇺🇸/🇨🇷), ahora texto "ES / EN"
+   simple, sin píldora ni borde. Sin color de acento para el activo (a Elias
+   no le gustó el dorado) — se distingue solo por peso de letra y subrayado,
+   mismo color que el resto del texto del header en cada estado. El hover
+   tampoco usa color: solo un leve subrayado/opacidad, nada de fondo. */
 nav.nav-menu ul li.language-buttons {
   display: flex;
-  gap: 10px;
+  gap: 6px;
   align-items: center;
 }
 
 nav.nav-menu ul li.language-buttons button {
-  padding: 8px 16px;
-  background-color: transparent;
+  padding: 4px 2px;
+  background: none;
   border: none;
-  border-radius: 50px;
   color: #2B4BB1;
+  opacity: 0.75;
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: opacity 0.3s ease, text-decoration-color 0.3s ease;
 }
 
 nav.nav-menu ul li.language-buttons button:hover {
-  background-color: #2B4BB1;
-  color: #ffffff;
-  transform: translateY(-3px);
+  opacity: 1;
+  text-decoration-color: currentColor;
 }
 
-nav.nav-menu ul li.language-buttons .flag-icon {
-  width: 20px;
-  height: 15px;
+nav.nav-menu ul li.language-buttons button.active {
+  opacity: 1;
+  font-weight: 700;
+}
+
+nav.nav-menu ul li.language-buttons .language-buttons-divider {
+  font-size: 0.85rem;
+  color: #2B4BB1;
+  opacity: 0.4;
 }
 
 /* Mobile Menu */
@@ -149,20 +162,18 @@ nav.nav-menu ul li.language-buttons .flag-icon {
 
 /* Colores por defecto para fondo transparente */
 header:not(.scrolled) a,
-header:not(.scrolled) .menu-toggle,
-header:not(.scrolled) .language-buttons button {
+header:not(.scrolled) .menu-toggle {
   color: white;
 }
 
-header:not(.scrolled) .language-buttons button {
-  border: 1px solid white;
-}
-
-header:not(.scrolled) nav.nav-menu ul li.language-buttons button:hover {
-  background-color: #d4af37;
-  color: #ffffff;
-  border-color: #d4af37;
-  transform: translateY(-3px);
+/* Los botones ES/EN son <button>, no <a> — la regla de arriba no les gana
+   en especificidad a "nav.nav-menu ul li.language-buttons button" (más
+   elementos en la cadena), así que necesitan su propia regla con la misma
+   cadena para ganar. Mismo patrón que usa el archivo para los <a> del nav
+   en "header:not(.scrolled) .nav-menu ul li a". */
+header:not(.scrolled) .nav-menu ul li.language-buttons button,
+header:not(.scrolled) .language-buttons-divider {
+  color: white;
 }
 
 /* Cuando se hace scroll, usa los colores originales */
@@ -281,35 +292,42 @@ header.scrolled .nav-menu ul li a {
     transform: none;
   }
 
-  /* Banderas de idioma: fila, sin borde inferior de divisor */
+  /* Idioma: fila, sin borde inferior de divisor. Antes eran banderas, ahora
+     texto "ES / EN" — se conserva el botón con borde (buen tamaño de toque
+     en mobile), el idioma activo se resalta en dorado. */
   nav.nav-menu ul li.language-buttons {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 14px;
+    gap: 10px;
     width: 100%;
     padding: 24px 0 0;
     border-bottom: none;
   }
 
   nav.nav-menu ul li.language-buttons button {
-    padding: 6px;
+    padding: 8px 16px;
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 6px;
+    opacity: 1;
+    font-size: 1rem;
     transition: border-color 0.3s ease, transform 0.3s ease;
   }
 
   nav.nav-menu ul li.language-buttons button:hover {
     background-color: transparent;
-    border-color: #D4AF37;
+    border-color: white;
     transform: translateY(-2px);
   }
 
-  nav.nav-menu ul li.language-buttons .flag-icon {
-    width: 26px;
-    height: 19px;
-    display: block;
+  nav.nav-menu ul li.language-buttons button.active {
+    border-color: white;
+    font-weight: 700;
+  }
+
+  nav.nav-menu ul li.language-buttons .language-buttons-divider {
+    display: none;
   }
 
   /* Footer del menú: teléfono + botón de cita, anclado al fondo del overlay */
