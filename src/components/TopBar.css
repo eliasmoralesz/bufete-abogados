@@ -80,8 +80,14 @@
   }
   
   .top-bar-right a svg {
-    width: 135px;
-    height: 20px;
+    /* El viewBox del ícono es cuadrado (24x24) — antes esto forzaba
+       135x20, una relación de aspecto totalmente distinta. El SVG
+       mantiene su proporción y queda centrado dentro de esa caja ancha,
+       así que el glyph real terminaba como una esquirla angosta flotando
+       con mucho espacio vacío invisible alrededor — de ahí que se viera
+       "desubicado" y no alineara con nada. */
+    width: 18px;
+    height: 18px;
     fill: white;
     display: block;
   }
