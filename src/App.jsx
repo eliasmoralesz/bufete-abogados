@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import AboutDetails from './components/AboutDetails'; // Ruta corregida
 import Blog from './pages/Blog';
 import BlogArticle from './pages/BlogArticle';
+import CETC from './pages/CETC';
 import WhatsAppButton from './components/WhatsAppButton';
 import SkipLink from './components/SkipLink';
 import AOS from 'aos';
@@ -25,6 +26,7 @@ function App() {
         <Route path="/about-details" element={<AboutDetails lang="es" />} />
         <Route path="/blog" element={<Blog lang="es" />} />
         <Route path="/blog/:slug" element={<BlogArticle lang="es" />} />
+        <Route path="/categoria-especial-temporal-complementaria-costa-rica" element={<CETC />} />
         <Route path="/en" element={<Home lang="en" />} />
         <Route path="/en/about-details" element={<AboutDetails lang="en" />} />
         <Route path="/en/blog" element={<Blog lang="en" />} />
