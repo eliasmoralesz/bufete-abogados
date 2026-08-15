@@ -107,10 +107,13 @@ header:not(.scrolled) .nav-menu ul li a:hover {
 }
 
 /* Botones de idioma — antes eran banderas (🇺🇸/🇨🇷), ahora texto "ES / EN"
-   simple, sin píldora ni borde. Sin color de acento para el activo (a Elias
-   no le gustó el dorado) — se distingue solo por peso de letra y subrayado,
-   mismo color que el resto del texto del header en cada estado. El hover
-   tampoco usa color: solo un leve subrayado/opacidad, nada de fondo. */
+   simple, sin píldora ni borde, sin color de acento (a Elias no le gustó
+   el dorado). Los dos van siempre en negrita — antes el activo iba en
+   negrita y el otro no, y a Elias tampoco le gustó esa diferencia; ahora
+   se distinguen solo por opacidad (activo 100%, inactivo atenuado). Mismo
+   color que el resto del texto del header en cada estado: blanco sobre el
+   Hero oscuro, #333 (igual que el resto del menú) cuando el header pasa a
+   blanco por el scroll. El hover no usa color: solo un leve subrayado. */
 nav.nav-menu ul li.language-buttons {
   display: flex;
   gap: 6px;
@@ -121,10 +124,10 @@ nav.nav-menu ul li.language-buttons button {
   padding: 4px 2px;
   background: none;
   border: none;
-  color: #2B4BB1;
-  opacity: 0.75;
+  color: #333;
+  opacity: 0.65;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.02em;
   cursor: pointer;
   text-decoration: underline;
@@ -140,13 +143,12 @@ nav.nav-menu ul li.language-buttons button:hover {
 
 nav.nav-menu ul li.language-buttons button.active {
   opacity: 1;
-  font-weight: 700;
 }
 
 nav.nav-menu ul li.language-buttons .language-buttons-divider {
   font-size: 0.85rem;
-  color: #2B4BB1;
-  opacity: 0.4;
+  color: #333;
+  opacity: 0.5;
 }
 
 /* Mobile Menu */
@@ -172,7 +174,7 @@ header:not(.scrolled) .menu-toggle {
    cadena para ganar. Mismo patrón que usa el archivo para los <a> del nav
    en "header:not(.scrolled) .nav-menu ul li a". */
 header:not(.scrolled) .nav-menu ul li.language-buttons button,
-header:not(.scrolled) .language-buttons-divider {
+header:not(.scrolled) .nav-menu ul li.language-buttons .language-buttons-divider {
   color: white;
 }
 
@@ -294,7 +296,8 @@ header.scrolled .nav-menu ul li a {
 
   /* Idioma: fila, sin borde inferior de divisor. Antes eran banderas, ahora
      texto "ES / EN" — se conserva el botón con borde (buen tamaño de toque
-     en mobile), el idioma activo se resalta en dorado. */
+     en mobile). Sin color de acento: el activo se distingue solo por el
+     borde en blanco pleno (el inactivo lo lleva más tenue). */
   nav.nav-menu ul li.language-buttons {
     flex-direction: row;
     align-items: center;
