@@ -152,12 +152,15 @@ html {
    renglón en la parte más angosta de este rango — a 1280px hacía falta
    bajar hasta ~4.5rem. La fórmula crece de forma pareja de 1280 a 1919px
    (a los anchos más generosos de este rango, como 1728px, ya casi no hace
-   falta achicarlo). Verificado en 1280/1440/1728/1919px: "AHORA LO
-   PREPARO" siempre en un renglón, titular completo en 3 renglones, sin
-   tocar la foto en ningún punto. */
+   falta achicarlo). Reajustado (~5% más chico que la versión anterior)
+   tras el cambio de texto "AHORA LO PREPARO" → "AHORA LA RESUELVO" /
+   "NOW I PREPARE IT" → "NOW I RESOLVE IT": la palabra nueva es más larga
+   y con la fórmula vieja llegaba a tocar la foto a 1728px. Verificado en
+   1280/1440/1728/1919px con el texto nuevo: siempre en un renglón, titular
+   completo en 3 renglones, margen seguro contra la foto en todo el rango. */
 @media (min-width: 1280px) and (max-width: 1919px) {
   .hl-line {
-    font-size: clamp(4.15rem, -0.72rem + 6.3vw, 6.5rem);
+    font-size: clamp(3.9rem, -0.7rem + 5.95vw, 6.15rem);
   }
 }
 
