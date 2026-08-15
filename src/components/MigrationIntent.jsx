@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { CETC_PATH } from '../content/cetc';
 import './MigrationIntent.css';
 
+// CETC va primero — Daguer pidió más visibilidad para este recurso en
+// particular (es una categoría nueva y con plazo limitado, sept.
+// 2026–sept. 2027). Su tarjeta enlaza a la página dedicada en vez del
+// "Agendar consulta" genérico de las demás — ver renderPanelContent.
 const items = [
+  { key: 'cetc', terms: ['dimex', 'renewal', 'deadline'], tone: 'amber' },
   { key: 'residency', terms: ['temporary', 'permanent', 'family'], tone: 'gold' },
   { key: 'naturalization', terms: ['citizenship', 'requirements', 'evidence'], tone: 'blue' },
   { key: 'refuge', terms: ['protection', 'regularization', 'humanitarian'], tone: 'green' },
@@ -12,7 +18,7 @@ const items = [
 ];
 
 const MigrationIntent = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [activeKey, setActiveKey] = useState(items[0].key);
   const activeItem = items.find((item) => item.key === activeKey) || items[0];
 
@@ -43,10 +49,10 @@ const MigrationIntent = () => {
       </div>
 
       <a
-        href="#appointment"
+        href={item.key === 'cetc' ? CETC_PATH[i18n.language === 'en' ? 'en' : 'es'] : '#appointment'}
         className="migration-intent-cta"
       >
-        {t('migrationIntent_cta')}
+        {item.key === 'cetc' ? t('migrationIntent_cetc_viewDetails') : t('migrationIntent_cta')}
       </a>
     </>
   );

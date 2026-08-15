@@ -5,6 +5,7 @@ import portraitA from '../assets/hero-portrait-2.jpg';
 import portraitB from '../assets/hero-portrait-1.JPG';
 import portraitC from '../assets/hero-portrait-3-2.jpg';
 import portraitD from '../assets/hero-portrait-4.JPG';
+import { CETC_PATH } from '../content/cetc';
 import './Hero.css';
 
 // Cuatro fotos reales de Daguer (tomadas de invitaciones a programas de TV)
@@ -128,7 +129,11 @@ const HeroStat = ({ target, prefix = '', suffix = '', start, label, delay = 0 })
 
 // Trámite ↔ contenido real ya existente en el sitio (Asesoría migratoria /
 // Servicios) y ancla a esa sección — no se inventa texto nuevo por trámite.
-const AREA_META = [
+// CETC es la excepción: en vez de anclar a una sección del Home, ancla
+// directo a su propia página (Daguer pidió más visibilidad para ese
+// recurso) — por eso el anchor de CETC se arma con la ruta según el
+// idioma activo en vez de ser un string fijo como los demás.
+const AREA_META_BASE = [
   { descKey: 'migrationIntent_residency_text', anchor: '#migration-guidance' },
   { descKey: 'migrationIntent_naturalization_text', anchor: '#migration-guidance' },
   { descKey: 'migrationIntent_dimex_text', anchor: '#migration-guidance' },
@@ -136,7 +141,11 @@ const AREA_META = [
 ];
 
 const Hero = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const AREA_META = [
+    ...AREA_META_BASE,
+    { descKey: 'migrationIntent_cetc_text', anchor: CETC_PATH[i18n.language === 'en' ? 'en' : 'es'] },
+  ];
   const heroRef = useRef(null);
   const [statsStarted, setStatsStarted] = useState(false);
   const [activeArea, setActiveArea] = useState(0);

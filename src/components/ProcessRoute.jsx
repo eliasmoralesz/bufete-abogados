@@ -13,6 +13,8 @@ import './ProcessRoute.css';
 // no queremos inventar una.
 const steps = ['1', '2', '3', '4', '5'];
 const areas = [
+  // CETC va primera — Daguer pidió más visibilidad para este recurso.
+  { key: 'cetc', label: 'migrationIntent_cetc_tab' },
   { key: 'residency', label: 'migrationIntent_residency_tab' },
   { key: 'naturalization', label: 'migrationIntent_naturalization_tab' },
   { key: 'refuge', label: 'migrationIntent_refuge_tab' },
