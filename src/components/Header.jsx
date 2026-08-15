@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { CETC_PATH } from '../content/cetc';
 import logoBlack from '../assets/Daguer Hernandez Abogado nombre negro.webp';
 import logoWhite from '../assets/Daguer Hernandez Abogado nombre blanco.webp';
 import './Header.css';
@@ -116,6 +117,12 @@ const Header = ({ forceScrolled = false }) => {
         <ul>
           <li><a href={`${prefix}/#about`} onClick={closeMenu}>{t('about')}</a></li>
           <li><a href={`${prefix}/#services`} onClick={closeMenu}>{t('services')}</a></li>
+          {/* Página propia (no una sección del Home) — usa Link de react-router
+              para navegación SPA en vez del <a> plano que usan los demás items
+              de este nav (que solo hacen scroll a anclas dentro del Home).
+              Daguer pidió que este recurso tenga acceso fácil desde cualquier
+              página, por eso vive en el nav en vez de solo dentro de /blog. */}
+          <li><Link to={CETC_PATH[i18n.language === 'en' ? 'en' : 'es']} onClick={closeMenu}>{t('nav_cetc')}</Link></li>
           <li><a href={`${prefix}/#contact`} onClick={closeMenu}>{t('contact')}</a></li>
 
           <li className="language-buttons">

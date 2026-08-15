@@ -62,30 +62,6 @@ const Blog = ({ lang = 'es' }) => {
           <p className="blog-index-subtitle">{t('blog_subtitle')}</p>
 
           <div className="blog-index-grid">
-            {lang === 'es' && (
-              // Guía CETC: contenido propio de Daguer (no es una adaptación de la
-              // columna de Confidencial, por eso no vive en blogArticles.js) — de
-              // momento solo existe en español, ver src/pages/CETC.jsx.
-              <article className="blog-index-card" data-aos="fade-up">
-                <Link
-                  to="/categoria-especial-temporal-complementaria-costa-rica"
-                  className="blog-index-card-image blog-index-card-image--placeholder"
-                >
-                  <span>CETC</span>
-                </Link>
-                <div className="blog-index-card-body">
-                  <h2>
-                    <Link to="/categoria-especial-temporal-complementaria-costa-rica">
-                      Categoría Especial Temporal Complementaria en Costa Rica: requisitos y plazo para solicitarla
-                    </Link>
-                  </h2>
-                  <p>Conozca quiénes pueden solicitar la Categoría Especial Temporal Complementaria en Costa Rica, sus requisitos, documentos, beneficios y plazo.</p>
-                  <Link to="/categoria-especial-temporal-complementaria-costa-rica" className="blog-index-card-link">
-                    {t('blog_readMore')}
-                  </Link>
-                </div>
-              </article>
-            )}
             {blogArticles.map((article) => {
               const content = article[lang];
               const href = `${prefix}/blog/${article.slug[lang]}`;

@@ -78,25 +78,6 @@
   object-fit: cover;
 }
 
-/* Tarjeta destacada sin foto real (guía CETC) — placeholder navy/dorado
-   en vez de una imagen inventada. */
-.blog-index-card-image--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #0a1f44, #143066);
-}
-
-.blog-index-card-image--placeholder span {
-  font-family: 'Lora', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #d4af37;
-}
-
 .blog-index-card-body {
   padding: 24px;
   display: flex;
