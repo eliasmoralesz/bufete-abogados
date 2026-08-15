@@ -15,7 +15,20 @@ html {
   color: var(--ed-text);
   --ed-bg: #0E1013;
   background: var(--ed-bg);
-  padding: clamp(96px, 11vh, 132px) clamp(20px, 3.75vw, 48px) clamp(40px, 5vh, 60px);
+  /* El header (fijo, position:fixed) + la TopBar miden ~148.5px de alto
+     juntos (medido en vivo: 34-40px la TopBar + ~114.5px el header — más
+     alto de lo que parecía a simple vista). El padding-top de acá usaba
+     "11vh", que depende de la ALTURA de la ventana del navegador, no de la
+     pantalla — en una ventana real (con barra de marcadores/pestañas, no a
+     pantalla completa) la altura útil suele ser bastante menor que la
+     resolución del monitor. Con el piso viejo de 96px, cualquier ventana de
+     menos de ~873px de alto (11vh<115px) dejaba el titular arrancando POR
+     DEBAJO del borde del header — el header (semitransparente, con blur)
+     tapaba encima del texto. Bug real reportado por Elias en su Mac, no un
+     efecto de diseño. El piso es 180px — deja ~30px de aire por encima de
+     los 148.5px reales del header, para no volver a quedar al límite por
+     una diferencia mínima de fuente/renderizado. */
+  padding: clamp(180px, 11vh, 210px) clamp(20px, 3.75vw, 48px) clamp(40px, 5vh, 60px);
   overflow: hidden;
   isolation: isolate;
   font-family: var(--ed-font);
@@ -117,6 +130,20 @@ html {
   /* Envuelve por palabra, nunca a media palabra (ver .hl-word). */
   overflow-wrap: normal;
   word-break: normal;
+}
+
+/* El tamaño de letra de arriba deja de crecer a partir de ~1029px de ancho
+   (llega a su tope de 6.5rem) y se queda IGUAL de ahí en adelante — en un
+   monitor de 1728px o 2560px la foto de la derecha sí sigue creciendo, así
+   que el titular se ve cada vez más chico/perdido en el medio (vacío que
+   señaló Elias con capturas, incluso después de que el ancho del titular ya
+   no chocaba con la foto). Esta regla retoma el crecimiento SOLO en
+   pantallas anchas — el límite de .hero-headline (48vw, ver arriba) sigue
+   protegiendo contra el choque con la foto sin importar el tamaño de letra. */
+@media (min-width: 1280px) {
+  .hl-line {
+    font-size: clamp(6.5rem, 3rem + 3.5vw, 10rem);
+  }
 }
 
 /* Cada palabra es un bloque indivisible — el navegador solo puede ajustar
@@ -324,7 +351,11 @@ html {
 
 @media (max-width: 720px) {
   .hero {
-    padding-top: clamp(104px, 14vh, 140px);
+    /* Mismo criterio que el piso de escritorio de arriba: el header mobile
+       (sin TopBar) mide ~96px — el piso de 115px deja aire de sobra incluso
+       en un celular en horizontal o con la barra del navegador ocupando
+       parte de la pantalla. */
+    padding-top: clamp(115px, 14vh, 140px);
   }
 
   .hero-headline {
