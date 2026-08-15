@@ -61,6 +61,18 @@ html {
   opacity: 1;
 }
 
+/* Rango típico de laptop (Mac incluido, ~1280–1919px de ancho de ventana):
+   con la foto a su 48% normal no queda aire suficiente para que "AHORA LO
+   PREPARO" quepa en un renglón sin tocarla, ni para que el titular completo
+   quede en 3 renglones (Elias lo probó en su Mac). Achicar la foto "solo un
+   poco" (48%→40%, según pidió) le da al texto el aire que necesita — se
+   sigue viendo grande y ocupando casi la mitad derecha de la pantalla. */
+@media (min-width: 1280px) and (max-width: 1919px) {
+  .hero-bg img {
+    max-width: 40%;
+  }
+}
+
 /* El scrim tiene dos trabajos: (1) tapar del todo la izquierda para que el
    titular arranque sobre fondo sólido, (2) aplicar un velo parejo sobre TODA
    la foto (no solo un degradado que se desvanece en el borde) para que
@@ -116,13 +128,16 @@ html {
      dejando un vacío enorme en el medio (lo que reportó Elias). Sin el tope
      fijo, el texto también crece proporcionalmente y usa el espacio
      disponible, verificado sin volver a tocar la foto en ningún ancho. */
-  max-width: 48vw;
+  max-width: 56vw;
 }
 
 .hl-line {
   display: block;
   font-size: clamp(3.2rem, 1.1rem + 8.4vw, 6.5rem);
-  line-height: 0.96;
+  /* Antes 0.96 — casi sin aire entre renglones, se veía apretado y feo
+     comparado con el wireframe original (que Elias señaló tiene bastante
+     más espacio de arriba a abajo entre líneas). */
+  line-height: 1.18;
   font-weight: 400;
   letter-spacing: -0.04em;
   text-transform: uppercase;
@@ -132,17 +147,31 @@ html {
   word-break: normal;
 }
 
-/* El tamaño de letra de arriba deja de crecer a partir de ~1029px de ancho
-   (llega a su tope de 6.5rem) y se queda IGUAL de ahí en adelante — en un
-   monitor de 1728px o 2560px la foto de la derecha sí sigue creciendo, así
-   que el titular se ve cada vez más chico/perdido en el medio (vacío que
-   señaló Elias con capturas, incluso después de que el ancho del titular ya
-   no chocaba con la foto). Esta regla retoma el crecimiento SOLO en
-   pantallas anchas — el límite de .hero-headline (48vw, ver arriba) sigue
-   protegiendo contra el choque con la foto sin importar el tamaño de letra. */
-@media (min-width: 1280px) {
+/* Rango típico de laptop/Mac (1280–1919px): incluso con la foto ya achicada
+   un poco arriba (40%), el tamaño base (6.5rem) sigue sin caber en un
+   renglón en la parte más angosta de este rango — a 1280px hacía falta
+   bajar hasta ~4.5rem. La fórmula crece de forma pareja de 1280 a 1919px
+   (a los anchos más generosos de este rango, como 1728px, ya casi no hace
+   falta achicarlo). Verificado en 1280/1440/1728/1919px: "AHORA LO
+   PREPARO" siempre en un renglón, titular completo en 3 renglones, sin
+   tocar la foto en ningún punto. */
+@media (min-width: 1280px) and (max-width: 1919px) {
   .hl-line {
-    font-size: clamp(6.5rem, 3rem + 3.5vw, 10rem);
+    font-size: clamp(4.15rem, -0.72rem + 6.3vw, 6.5rem);
+  }
+}
+
+/* El tamaño de letra deja de crecer a partir de ~1029px de ancho (llega a
+   su tope de 6.5rem, o al tope reducido de la regla de arriba entre 1280 y
+   1919px) y se queda IGUAL de ahí en adelante. Por encima de 1920px la
+   foto (sin achicar, a su 48% normal) sí deja aire de sobra, así que acá
+   se retoma el crecimiento para no dejar el titular chico y perdido en
+   monitores grandes — verificado que a 1920px el tamaño arranca igual al
+   tope de la regla anterior (sin salto visible) y en 2560px crece bastante
+   más, sin tocar la foto en ningún punto intermedio. */
+@media (min-width: 1920px) {
+  .hl-line {
+    font-size: clamp(6.5rem, -3rem + 7.4vw, 9.5rem);
   }
 }
 
