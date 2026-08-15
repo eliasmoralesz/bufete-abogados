@@ -143,6 +143,17 @@ const Header = ({ forceScrolled = false }) => {
             </button>
           </li>
 
+          {/* Botón fijo de "Agendar consulta" en el header de escritorio — antes
+              el header no tenía ningún botón de acción, solo links. En mobile
+              queda oculto (Header.css) porque el overlay ya trae su propio CTA
+              abajo, en .mobile-menu-footer — mostrar los dos duplicaría el
+              botón. */}
+          <li className="header-cta">
+            <a href={`${prefix}/#appointment`} className="header-cta-button" onClick={closeMenu}>
+              {t('cta_button')}
+            </a>
+          </li>
+
           <li className="mobile-menu-footer">
             <a href="tel:+50689655582" className="mobile-menu-phone">
               <svg className="mobile-menu-phone-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
