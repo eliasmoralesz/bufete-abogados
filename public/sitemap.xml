@@ -127,4 +127,58 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/complementary-special-temporary-category-costa-rica" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/categoria-especial-temporal-complementaria-costa-rica" />
   </url>
+  <url>
+    <loc>https://daguerhernandez.com/residencia-costa-rica</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/residencia-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/residency-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/residencia-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/residency-costa-rica</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/residencia-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/residency-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/residencia-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/naturalizacion-costa-rica</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/naturalizacion-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/naturalization-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/naturalizacion-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/naturalization-costa-rica</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/naturalizacion-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/naturalization-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/naturalizacion-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/refugio-costa-rica</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/refugio-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/refugee-status-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/refugio-costa-rica" />
+  </url>
+  <url>
+    <loc>https://daguerhernandez.com/en/refugee-status-costa-rica</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://daguerhernandez.com/refugio-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://daguerhernandez.com/en/refugee-status-costa-rica" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://daguerhernandez.com/refugio-costa-rica" />
+  </url>
 </urlset>

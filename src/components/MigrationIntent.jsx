@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { CETC_PATH } from '../content/cetc';
+import { GUIDE_PATHS } from '../content/migrationGuides';
 import './MigrationIntent.css';
 
-// CETC va primero — Daguer pidió más visibilidad para este recurso en
-// particular (es una categoría nueva y con plazo limitado, sept.
-// 2026–sept. 2027). Su tarjeta enlaza a la página dedicada en vez del
-// "Agendar consulta" genérico de las demás — ver renderPanelContent.
+// Categorías con página-guía dedicada (src/pages/GuidePage.jsx): su
+// tarjeta enlaza ahí en vez del "Agendar consulta" genérico de las demás
+// — ver renderPanelContent. CETC va primera porque Daguer pidió más
+// visibilidad para ella en particular (categoría nueva, plazo limitado
+// sept. 2026–sept. 2027); Residencia, Naturalización y Refugio son las
+// otras tres con guía propia (contenido real de Daguer, ver
+// src/content/migrationGuides.js).
+const GUIDE_KEYS = ['cetc', 'residency', 'naturalization', 'refuge'];
+
 const items = [
   { key: 'cetc', terms: ['dimex', 'renewal', 'deadline'], tone: 'amber' },
   { key: 'residency', terms: ['temporary', 'permanent', 'family'], tone: 'gold' },
@@ -49,10 +54,10 @@ const MigrationIntent = () => {
       </div>
 
       <a
-        href={item.key === 'cetc' ? CETC_PATH[i18n.language === 'en' ? 'en' : 'es'] : '#appointment'}
+        href={GUIDE_KEYS.includes(item.key) ? GUIDE_PATHS[item.key][i18n.language === 'en' ? 'en' : 'es'] : '#appointment'}
         className="migration-intent-cta"
       >
-        {item.key === 'cetc' ? t('migrationIntent_cetc_viewDetails') : t('migrationIntent_cta')}
+        {GUIDE_KEYS.includes(item.key) ? t('migrationIntent_viewDetails') : t('migrationIntent_cta')}
       </a>
     </>
   );

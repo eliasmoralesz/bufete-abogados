@@ -1,0 +1,41 @@
+/* Estilos propios de las páginas-guía (CETC, Residencia, Naturalización,
+   Refugio) — reutiliza las clases .blog-article-* de Blog.css (mismo
+   lenguaje visual del sitio: fondo claro, navy/dorado, Lora + Lato) y solo
+   agrega lo que ese archivo no tenía: subtítulos h3 para las categorías
+   dentro de cada trámite, una caja de advertencia para las frases que
+   Daguer escribió en mayúsculas porque son las más importantes de no
+   pasar por alto (ej. "NO SE PRESENTA NINGUN DESESTIMIENTO DE REFUGIO"),
+   y una cita textual para la definición legal de Refugio. */
+
+.guide-body h3 {
+  font-family: 'Lora', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0a1f44;
+  margin: 28px 0 10px;
+}
+
+.guide-warning {
+  background: #fdf2f2;
+  border-left: 3px solid #b3261e;
+  color: #7a1a15;
+  font-weight: 700;
+  padding: 14px 18px;
+  border-radius: 4px;
+  margin: 0 0 20px;
+}
+
+.guide-quote {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  border-left: 3px solid #d4af37;
+  background: #f9f7f1;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  color: #333;
+  line-height: 1.7;
+}
+
+.guide-disclaimer {
+  margin-top: 40px;
+}

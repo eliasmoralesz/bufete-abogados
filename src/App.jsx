@@ -4,8 +4,8 @@ import Home from './pages/Home';
 import AboutDetails from './components/AboutDetails'; // Ruta corregida
 import Blog from './pages/Blog';
 import BlogArticle from './pages/BlogArticle';
-import CETC from './pages/CETC';
-import { CETC_PATH } from './content/cetc';
+import GuidePage from './pages/GuidePage';
+import { GUIDE_PATHS } from './content/migrationGuides';
 import WhatsAppButton from './components/WhatsAppButton';
 import SkipLink from './components/SkipLink';
 import AOS from 'aos';
@@ -27,12 +27,18 @@ function App() {
         <Route path="/about-details" element={<AboutDetails lang="es" />} />
         <Route path="/blog" element={<Blog lang="es" />} />
         <Route path="/blog/:slug" element={<BlogArticle lang="es" />} />
-        <Route path={CETC_PATH.es} element={<CETC lang="es" />} />
+        <Route path={GUIDE_PATHS.cetc.es} element={<GuidePage guideKey="cetc" lang="es" />} />
+        <Route path={GUIDE_PATHS.residency.es} element={<GuidePage guideKey="residency" lang="es" />} />
+        <Route path={GUIDE_PATHS.naturalization.es} element={<GuidePage guideKey="naturalization" lang="es" />} />
+        <Route path={GUIDE_PATHS.refuge.es} element={<GuidePage guideKey="refuge" lang="es" />} />
         <Route path="/en" element={<Home lang="en" />} />
         <Route path="/en/about-details" element={<AboutDetails lang="en" />} />
         <Route path="/en/blog" element={<Blog lang="en" />} />
         <Route path="/en/blog/:slug" element={<BlogArticle lang="en" />} />
-        <Route path={CETC_PATH.en} element={<CETC lang="en" />} />
+        <Route path={GUIDE_PATHS.cetc.en} element={<GuidePage guideKey="cetc" lang="en" />} />
+        <Route path={GUIDE_PATHS.residency.en} element={<GuidePage guideKey="residency" lang="en" />} />
+        <Route path={GUIDE_PATHS.naturalization.en} element={<GuidePage guideKey="naturalization" lang="en" />} />
+        <Route path={GUIDE_PATHS.refuge.en} element={<GuidePage guideKey="refuge" lang="en" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <WhatsAppButton />

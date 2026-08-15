@@ -5,7 +5,7 @@ import portraitA from '../assets/hero-portrait-2.jpg';
 import portraitB from '../assets/hero-portrait-1.JPG';
 import portraitC from '../assets/hero-portrait-3-2.jpg';
 import portraitD from '../assets/hero-portrait-4.JPG';
-import { CETC_PATH } from '../content/cetc';
+import { GUIDE_PATHS } from '../content/migrationGuides';
 import './Hero.css';
 
 // Cuatro fotos reales de Daguer (tomadas de invitaciones a programas de TV)
@@ -144,7 +144,7 @@ const Hero = () => {
   const { t, i18n } = useTranslation();
   const AREA_META = [
     ...AREA_META_BASE,
-    { descKey: 'migrationIntent_cetc_text', anchor: CETC_PATH[i18n.language === 'en' ? 'en' : 'es'] },
+    { descKey: 'migrationIntent_cetc_text', anchor: GUIDE_PATHS.cetc[i18n.language === 'en' ? 'en' : 'es'] },
   ];
   const heroRef = useRef(null);
   const [statsStarted, setStatsStarted] = useState(false);
