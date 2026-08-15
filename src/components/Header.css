@@ -146,12 +146,17 @@ nav.nav-menu ul li.language-buttons .language-buttons-divider {
   color: #333;
 }
 
-/* Botón fijo de "Agendar consulta" — mismo lenguaje visual que el CTA que
-   ya existía en el overlay mobile (.mobile-menu-cta): píldora dorada,
-   texto navy. Sólido en los dos colores de fondo (dorado sobre negro y
-   sobre blanco funciona igual), así que no necesita variantes por
-   estado como los links de texto plano del resto del nav. */
-.header-cta-button {
+/* Botón fijo de "Agendar consulta" — dorado, texto navy. Sólido en los dos
+   colores de fondo (dorado sobre negro y sobre blanco funciona igual), así
+   que no necesita variantes por estado como los links de texto plano del
+   resto del nav. Casi sin redondear (2px), igual que el botón "Agendar
+   consulta" del Hero (.btn-primary) — Elias no quería el look de píldora
+   completa. Ojo: hace falta la cadena completa "nav.nav-menu ul li" en el
+   selector para ganarle en especificidad a la regla genérica de los <a>
+   del nav (nav.nav-menu ul li a tiene border-radius:50px, para el efecto
+   hover de los links de texto) — con solo ".header-cta-button" perdía y
+   el botón salía redondo sin que nadie lo hubiera pedido así. */
+header nav.nav-menu ul li a.header-cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -164,13 +169,22 @@ nav.nav-menu ul li.language-buttons .language-buttons-divider {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 2px;
+  transform: none;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.header-cta-button:hover {
-  background-color: #c19d2e;
-  transform: translateY(-2px);
+/* !important + la cadena completa de selector (con "header" y "a" de tipo,
+   no solo la clase): hay dos reglas de hover genéricas para los <a> del
+   nav que si no, le ganan a esta — la del header transparente ya usa
+   !important (así que iguales en eso, se resuelve por especificidad —
+   necesitaba un elemento de tipo más en la cadena), y la del header en
+   blanco (scrolled) pone fondo azul, que se vería raro en un botón que se
+   supone dorado. */
+header nav.nav-menu ul li a.header-cta-button:hover {
+  background-color: #c19d2e !important;
+  color: #0A1F44 !important;
+  transform: translateY(-2px) !important;
 }
 
 /* Mobile Menu */
