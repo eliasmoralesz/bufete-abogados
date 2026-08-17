@@ -70,42 +70,6 @@
   overflow: hidden;
 }
 
-/* Pestañas píldora por trámite */
-.route-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 16px 22px;
-  border-bottom: 1px solid var(--ed-border);
-  background: var(--ed-bg-card);
-}
-
-.route-tab {
-  font-family: var(--ed-font);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--ed-text-muted);
-  background: transparent;
-  border: 1px solid var(--ed-border-strong);
-  /* Antes 999px (píldora) — recto, misma regla del resto de botones de
-     acción del sitio (ver Header.css). */
-  border-radius: 2px;
-  padding: 7px 15px;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.route-tab:hover {
-  border-color: var(--ed-text-muted);
-  color: var(--ed-text);
-}
-
-.route-tab.active {
-  background: var(--ed-text);
-  color: var(--ed-bg);
-  border-color: var(--ed-text);
-}
-
 .route-steps {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
