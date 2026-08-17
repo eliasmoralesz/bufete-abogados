@@ -114,9 +114,9 @@ const Home = ({ lang = 'es' }) => {
       <main id="main-content" tabIndex={-1}>
         <Hero />
         <About />
-        <ProcessRoute />
-        <Services />
         <MigrationIntent />
+        <Services />
+        <ProcessRoute />
         <Testimonials />
         <DiagnosticQuiz />
         <Appointment />

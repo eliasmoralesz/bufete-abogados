@@ -3,7 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=Lora:wght@600&display=swap" rel="stylesheet">
+    <!-- 700/800 añadidos: el CSS ya usaba font-weight:700/800 en varios
+         botones y links (nav, CTA "Agenda tu cita ahora", etc.) pero sin
+         cargar esos pesos reales el navegador los generaba con "bold
+         falso" (emboldening algorítmico), que se ve más delgado/inconsistente
+         que un peso real — Daguer notó que el CTA no se veía suficientemente
+         bold pese a que el CSS ya decía 800. -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600;700;800&family=Lora:wght@600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0A1F44" />
     <meta

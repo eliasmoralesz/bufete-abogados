@@ -166,13 +166,13 @@ header nav.nav-menu ul li a.header-cta-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 11px 22px;
   background-color: #D4AF37;
   color: #000000 !important;
   font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 2px;
@@ -230,8 +230,17 @@ header.scrolled .nav-menu ul li a {
   display: none;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive
+   El corte estaba en 768px, pero el nav de escritorio (logo + Sobre Mí +
+   Servicios + CETC + Contáctame + ES/EN + el botón "Agenda tu cita ahora",
+   que además ya no es tan angosto desde que se hizo más grande/bold)
+   necesita más de 1100px reales para no partirse — Elias mandó capturas de
+   iPad Pro (1024px), Surface Pro 7 (912px) y un Galaxy Fold abierto (882px)
+   donde el nav de escritorio se rompía: "SOBRE MÍ" se partía en dos líneas
+   encima del logo y el botón dorado se cortaba en el borde. Subido el corte
+   a 1150px para que cualquier tablet/plegable en ese rango use el menú
+   hamburguesa en vez del nav de escritorio apretado. */
+@media (max-width: 1150px) {
   .menu-toggle {
     display: block;
     position: absolute;
@@ -294,9 +303,13 @@ header.scrolled .nav-menu ul li a {
     color: #D4AF37;
   }
 
+  /* Esta regla, por tener más elementos de tipo en la cadena que la de
+     ".mobile-menu-cta" más abajo, le ganaba y devolvía el texto a navy
+     (#0A1F44) apenas se abría el menú — aunque esa otra regla ya decía
+     negro. Debe quedar en el mismo negro. */
   header.menu-open nav.nav-menu ul li .mobile-menu-cta,
   header.scrolled.menu-open nav.nav-menu ul li .mobile-menu-cta {
-    color: #0A1F44 !important;
+    color: #000000 !important;
   }
 
   /* El logo debe quedar por encima del overlay (que también es z-index 1000). */
@@ -350,11 +363,21 @@ header.scrolled .nav-menu ul li a {
     border-bottom: none;
   }
 
+  /* color:white !important: en escritorio ES/EN toma #333 (gris oscuro)
+     cuando el header no está transparente ("header:not(.scrolled) ..." es
+     la única regla que los pone en blanco, y solo aplica sin esa clase).
+     En mobile el overlay del menú SIEMPRE es navy pleno — pero las páginas
+     secundarias (Blog, guías, Sobre mí) usan <Header forceScrolled />, así
+     que ya arrancan con la clase "scrolled" puesta, y en el Home basta con
+     haber scrolleado antes de abrir el menú. En cualquiera de esos casos
+     el texto se volvía #333 sobre navy, casi invisible — Elias lo reportó.
+     Acá se fuerza blanco siempre, sin depender del estado de scroll. */
   nav.nav-menu ul li.language-buttons button {
     padding: 8px 16px;
     background-color: transparent;
     border: 1px solid white;
     border-radius: 6px;
+    color: white !important;
     font-size: 1rem;
     transition: transform 0.3s ease;
   }
@@ -527,8 +550,8 @@ header.scrolled.menu-open .menu-toggle span {
   background-color: #ffffff;
 }
 
-/* Solo visible en móviles */
-@media (max-width: 768px) {
+/* Solo visible en móviles/tablets — mismo corte que el bloque de arriba */
+@media (max-width: 1150px) {
   .menu-toggle {
     display: block;
   }

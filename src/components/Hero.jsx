@@ -30,7 +30,8 @@ const PORTRAITS = [
   { src: portraitC, position: '92% 20%' },
   { src: portraitD },
 ];
-const PORTRAIT_INTERVAL_MS = 7000;
+// Elias reportó que 7s por foto se sentía demasiado lento — bajado a 3s.
+const PORTRAIT_INTERVAL_MS = 3000;
 
 // Rediseño "editorial oscuro" inspirado en el wireframe E de la auditoría en Figr,
 // pero corrigiendo su placeholder: el retrato NO va incrustado como recuadro entre
@@ -52,9 +53,17 @@ const PORTRAIT_INTERVAL_MS = 7000;
 //    gustaba que el scroll lo moviera solo) que muestra la descripción real de
 //    ese trámite y es un link directo a esa sección.
 
+// Ritmo del titular letra-por-letra: Elias reportó que la entrada completa
+// se sentía lenta (~3.1s hasta la última letra de la 3ª línea) — recortado
+// a ~40% menos (stagger, duración y los espaciados entre líneas de abajo
+// escalados juntos ~0.6x) para que se sienta ágil sin perder el efecto
+// cinematográfico letra-por-letra que sí se quería conservar.
+const LETTER_STAGGER = 0.042;
+const LETTER_DURATION = 0.32;
+
 const lineVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07 } },
+  visible: { transition: { staggerChildren: LETTER_STAGGER } },
 };
 
 const charVariants = {
@@ -62,7 +71,7 @@ const charVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.52, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: LETTER_DURATION, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -132,7 +141,11 @@ const HeroStat = ({ target, prefix = '', suffix = '', start, label, delay = 0 })
 // CETC es la excepción: en vez de anclar a una sección del Home, ancla
 // directo a su propia página (Daguer pidió más visibilidad para ese
 // recurso) — por eso el anchor de CETC se arma con la ruta según el
-// idioma activo en vez de ser un string fijo como los demás.
+// idioma activo en vez de ser un string fijo como los demás. CETC va
+// PRIMERO (Daguer pidió que fuera lo primero que se vea acá, no lo
+// último) — el orden de este array debe coincidir 1:1 con el orden de
+// las etiquetas en hero_ed_areas (i18n.js), ya que se indexan juntos por
+// posición (activeArea).
 const AREA_META_BASE = [
   { descKey: 'migrationIntent_residency_text', anchor: '#migration-guidance' },
   { descKey: 'migrationIntent_naturalization_text', anchor: '#migration-guidance' },
@@ -143,8 +156,8 @@ const AREA_META_BASE = [
 const Hero = () => {
   const { t, i18n } = useTranslation();
   const AREA_META = [
-    ...AREA_META_BASE,
     { descKey: 'migrationIntent_cetc_text', anchor: GUIDE_PATHS.cetc[i18n.language === 'en' ? 'en' : 'es'] },
+    ...AREA_META_BASE,
   ];
   const heroRef = useRef(null);
   const [statsStarted, setStatsStarted] = useState(false);
@@ -213,8 +226,8 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: i === activePortrait ? 1 : 0, scale: 1 }}
             transition={{
-              opacity: { duration: 1.4, ease: 'easeInOut' },
-              scale: { duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] },
+              opacity: { duration: 1, ease: 'easeInOut' },
+              scale: { duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] },
             }}
           />
         ))}
@@ -224,11 +237,11 @@ const Hero = () => {
       <div className="hero-inner">
         <h1 className="hero-headline" aria-label={fullTitle}>
           <AnimatedLine text={pre} className="hl-line" delay={0} />
-          <AnimatedLine text={mid} className="hl-line" delay={pre.length * 0.07 + 0.26} />
+          <AnimatedLine text={mid} className="hl-line" delay={pre.length * LETTER_STAGGER + 0.16} />
           <AnimatedLine
             text={post}
             className="hl-line hl-dim"
-            delay={(pre.length + mid.length) * 0.07 + 0.52}
+            delay={(pre.length + mid.length) * LETTER_STAGGER + 0.31}
           />
         </h1>
 
@@ -236,7 +249,7 @@ const Hero = () => {
           className="hero-foot"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 2.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
           onAnimationComplete={() => setStatsStarted(true)}
         >
           <div className="hero-lead">
