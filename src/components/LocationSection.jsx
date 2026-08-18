@@ -1,15 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import sanJoseLocation from '../assets/sanjose-city.webp';
+import { useNearViewport } from '../hooks/useNearViewport';
 import './LocationSection.css';
 
 const mapsEmbedUrl = 'https://www.google.com/maps?q=Daguer%20Hernandez%2C%20San%20Sebasti%C3%A1n%2C%20San%20Jos%C3%A9%2C%20Costa%20Rica&output=embed';
 
 const LocationSection = () => {
   const { t } = useTranslation();
+  // Mismo caso que el iframe de Google Calendar en Appointment.jsx — el
+  // mapa de Google también es pesado y tenía el mismo loading="lazy"
+  // tardío. Ver src/hooks/useNearViewport.js.
+  const [nearRef, isNear] = useNearViewport('0px 0px 1500px 0px', 'https://www.google.com');
 
   return (
-    <section id="ubicacion" className="location-section">
+    <section id="ubicacion" className="location-section" ref={nearRef}>
       <div className="location-intro">
         <h2>{t('location_title')}</h2>
         <p>{t('location_intro')}</p>
@@ -45,9 +50,8 @@ const LocationSection = () => {
 
         <div className="location-map" aria-label={t('location_map_label')}>
           <iframe
-            src={mapsEmbedUrl}
+            src={isNear ? mapsEmbedUrl : undefined}
             title={t('location_map_label')}
-            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             allowFullScreen
           />

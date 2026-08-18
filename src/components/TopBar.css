@@ -18,14 +18,14 @@
     transition: transform 0.4s ease, opacity 0.4s ease;
     flex-wrap: nowrap;
   }
-  
+
   /* Estado oculto cuando se hace scroll */
   .top-bar.scrolled {
     transform: translateY(-100%);
     opacity: 0;
     pointer-events: none;
   }
-  
+
   /* Contenido de la izquierda */
   .top-bar-left {
     display: flex;
@@ -62,7 +62,7 @@
     justify-content: flex-end;
     min-width: 24px; /* asegura espacio mínimo */
   }
-  
+
   /* Icono de la derecha */
   .top-bar-right a {
     display: inline-flex;
@@ -72,13 +72,13 @@
     color: white;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  
+
   .top-bar-right a:hover {
     color: #d4af37;
     transform: scale(1.1);
     opacity: 0.8;
   }
-  
+
   .top-bar-right a svg {
     /* El viewBox del ícono es cuadrado (24x24) — antes esto forzaba
        135x20, una relación de aspecto totalmente distinta. El SVG
@@ -91,7 +91,7 @@
     fill: white;
     display: block;
   }
-  
+
   .contact-link {
     font-family: 'Lato', sans-serif;
     font-weight: 300; /* Light */
@@ -110,19 +110,19 @@
     justify-content: center;
     line-height: 1;
   }
-  
+
   .contact-link .icon svg {
     fill: #d4af37;
     width: 18px;
     height: 18px;
     flex-shrink: 0;
   }
-  
+
   .contact-link:hover {
     color: #d4af37;
   }
-  
-  
+
+
   /* Responsive */
   @media (max-width: 768px) {
     .top-bar {
@@ -131,15 +131,14 @@
       gap: 6px;
       padding: 10px 15px;
     }
-  
+
     .top-bar-left {
       gap: 10px;
       font-size: 0.8rem;
       flex-direction: column;
     }
-  
+
     .top-bar-right {
       align-self: flex-end;
     }
   }
-  
