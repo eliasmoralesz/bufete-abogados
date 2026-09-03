@@ -99,6 +99,14 @@ const GuidePage = ({ guideKey, lang = 'es' }) => {
               if (block.type === 'h3') return <h3 key={index}>{block.text}</h3>;
               if (block.type === 'warning') return <p key={index} className="guide-warning">{block.text}</p>;
               if (block.type === 'quote') return <blockquote key={index} className="guide-quote">{block.text}</blockquote>;
+              if (block.type === 'update') {
+                return (
+                  <div key={index} className="guide-update">
+                    <span className="guide-update-badge">{block.label}</span>
+                    <p>{block.text}</p>
+                  </div>
+                );
+              }
               if (block.type === 'ul') {
                 return (
                   <ul key={index}>

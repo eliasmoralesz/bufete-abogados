@@ -102,6 +102,7 @@ export const guideContent = {
         { type: 'h3', text: '3. Certificación de antecedentes penales' },
         { type: 'p', text: 'Debe presentarse una certificación del país de origen o de los países donde la persona haya residido durante los últimos tres años.' },
         { type: 'p', text: 'Cuando el documento provenga del extranjero, deberá cumplir las formalidades de apostilla o legalización correspondientes. Si se aporta una certificación de un país distinto al de origen, también podría ser necesario demostrar que la persona residió legalmente en ese territorio.' },
+        { type: 'update', label: 'Actualización', text: 'Para las personas que se han mantenido dentro de la Solicitud de Refugio y no le han resuelto todavía y mantienen su carnet vigente, así mismo no han salido de Costa Rica; y así se han mantenido por el plazo de tres años, se les permite la presentación de los Antecedentes Penales de Costa Rica que son emitidos por el Archivo Judicial del Poder Judicial, que se llaman popularmente "Hoja de Delincuencia".' },
 
         { type: 'h3', text: '4. Documento de identidad' },
         { type: 'p', text: 'Se puede aportar:' },
@@ -230,6 +231,7 @@ export const guideContent = {
         { type: 'h3', text: '3. Criminal record certification' },
         { type: 'p', text: 'A certification from the country of origin or from the countries where the person has resided during the last three years must be submitted.' },
         { type: 'p', text: 'When the document comes from abroad, it must meet the applicable apostille or legalization formalities. If a certification from a country other than the country of origin is submitted, it may also be necessary to show that the person resided legally in that territory.' },
+        { type: 'update', label: 'Update', text: 'People who have remained under a pending Refugee Status application — one that has not yet been resolved — who still hold a valid refugee-applicant ID card, who have not left Costa Rica, and who have remained in this situation for a period of three years, are allowed to submit Costa Rica\'s Criminal Record Certificate, issued by the Judicial Archive of the Judicial Branch (Poder Judicial), popularly known as the "Hoja de Delincuencia" (criminal record sheet).' },
 
         { type: 'h3', text: '4. Identity document' },
         { type: 'p', text: 'The following may be submitted:' },

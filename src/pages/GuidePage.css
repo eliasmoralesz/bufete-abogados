@@ -25,6 +25,39 @@
   margin: 0 0 20px;
 }
 
+/* Caja de "actualización reciente" — Daguer pidió explícitamente un color
+   de letra que destaque para que quede claro que es información nueva.
+   Verde (no rojo/dorado, ya usados por .guide-warning/.guide-quote arriba,
+   con otro significado) es la convención más reconocible para "novedad" /
+   "actualizado" sin leerse como una alerta de peligro. */
+.guide-update {
+  margin: 0 0 20px;
+  padding: 14px 18px;
+  border-left: 3px solid #1e7a4d;
+  background: #eef8f2;
+  border-radius: 4px;
+}
+
+.guide-update-badge {
+  display: inline-block;
+  background: #1e7a4d;
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+
+.guide-update p {
+  margin: 0;
+  color: #145536;
+  font-weight: 600;
+}
+
 .guide-quote {
   margin: 0 0 20px;
   padding: 16px 20px;
