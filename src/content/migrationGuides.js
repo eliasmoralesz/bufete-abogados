@@ -63,6 +63,16 @@ export const guideContent = {
         ] },
         { type: 'p', text: 'No es suficiente haber obtenido una cita para solicitar refugio: la persona debe haber presentado formalmente su solicitud dentro del periodo señalado.' },
 
+        { type: 'h2', text: '¿Cuándo NO procede la CETC?' },
+        { type: 'p', text: 'La categoría no procede, entre otros casos, cuando la persona:' },
+        { type: 'ul', items: [
+          'Ya tiene una permanencia legal aprobada en Costa Rica.',
+          'Mantiene un trámite migratorio distinto del de refugio todavía pendiente.',
+          'Puede optar por una categoría ordinaria (por ejemplo, por vínculo familiar u otra vía aplicable).',
+          'No cumple con la nacionalidad, las fechas o la permanencia continua exigidas.',
+        ] },
+        { type: 'p', text: 'No conviene tomar la decisión solo por rapidez: cambiar de vía migratoria puede afectar un trámite existente. Antes de presentar la solicitud, es recomendable revisar el expediente, los movimientos migratorios y las demás opciones ordinarias disponibles.' },
+
         { type: 'h2', text: '¿Qué beneficios ofrece?' },
         { type: 'p', text: 'La aprobación de la Categoría Especial Temporal Complementaria permite:' },
         { type: 'ul', items: [
@@ -90,6 +100,7 @@ export const guideContent = {
         { type: 'h3', text: '1. Formulario de filiación y desistimiento' },
         { type: 'p', text: 'Debe utilizarse el formulario específico establecido por Migración para esta categoría.' },
         { type: 'warning', text: 'NO SE PRESENTA NINGUN DESESTIMIENTO DE REFUGIO' },
+        { type: 'p', text: 'Distinto es el caso de quien tenía otro trámite migratorio pendiente (no la solicitud de refugio) y deseaba desistir de él para optar por la CETC: la Circular DG-026-08-2026 solo reconoció como válidos los desistimientos presentados antes del 1.º de septiembre de 2026. Los presentados después de esa fecha no habilitan la CETC.' },
 
         { type: 'h3', text: '2. Declaración jurada de nacimiento' },
         { type: 'p', text: 'Declaración jurada en el formulario autorizado, cuando resulte aplicable.' },
@@ -102,7 +113,9 @@ export const guideContent = {
         { type: 'h3', text: '3. Certificación de antecedentes penales' },
         { type: 'p', text: 'Debe presentarse una certificación del país de origen o de los países donde la persona haya residido durante los últimos tres años.' },
         { type: 'p', text: 'Cuando el documento provenga del extranjero, deberá cumplir las formalidades de apostilla o legalización correspondientes. Si se aporta una certificación de un país distinto al de origen, también podría ser necesario demostrar que la persona residió legalmente en ese territorio.' },
-        { type: 'update', label: 'Actualización', text: 'Para las personas que se han mantenido dentro de la Solicitud de Refugio y no le han resuelto todavía y mantienen su carnet vigente, así mismo no han salido de Costa Rica; y así se han mantenido por el plazo de tres años, se les permite la presentación de los Antecedentes Penales de Costa Rica que son emitidos por el Archivo Judicial del Poder Judicial, que se llaman popularmente "Hoja de Delincuencia".' },
+        { type: 'update', label: 'Actualización', text: 'Para las personas que se han mantenido dentro de la Solicitud de Refugio y no le han resuelto todavía y mantienen su carnet vigente, así mismo no han salido de Costa Rica; y así se han mantenido por el plazo de tres años, se les permite la presentación de los Antecedentes Penales de Costa Rica que son emitidos por el Archivo Judicial del Poder Judicial, que se llaman popularmente "Hoja de Delincuencia". Estos antecedentes de Costa Rica deben tener una vigencia máxima de tres meses. Esta excepción no aplica si la denegatoria del refugio ya está firme.' },
+        { type: 'p', text: 'Las personas menores de edad no deben presentar la certificación de antecedentes penales.' },
+        { type: 'p', text: 'Según indicó la DGME en un video informativo, las personas de nacionalidad cubana pueden solicitar este certificado directamente en el Consulado de Cuba en Costa Rica, sin necesidad de llevarlo a la Cancillería u otro país para autenticarlo.' },
 
         { type: 'h3', text: '4. Documento de identidad' },
         { type: 'p', text: 'Se puede aportar:' },
@@ -130,6 +143,7 @@ export const guideContent = {
 
         { type: 'h2', text: '¿Qué sucede si faltan documentos?' },
         { type: 'warning', text: 'Si está incompleta, SE RECHAZA.' },
+        { type: 'p', text: 'La Dirección General de Migración y Extranjería no está obligada a prevenir a la persona para que complete los documentos faltantes: el rechazo se produce en el mismo acto y esa decisión no admite recursos.' },
         { type: 'p', text: 'Por esta razón, no es recomendable acudir a la cita sin haber revisado previamente la vigencia, apostilla, legalización y contenido de cada documento.' },
 
         { type: 'h2', text: '¿Cómo se solicita la cita?' },
@@ -192,6 +206,16 @@ export const guideContent = {
         ] },
         { type: 'p', text: 'Having obtained an appointment to apply for refugee status is not enough: the person must have formally filed the application within the stated period.' },
 
+        { type: 'h2', text: 'When does the CETC NOT apply?' },
+        { type: 'p', text: 'The category does not apply, among other cases, when the person:' },
+        { type: 'ul', items: [
+          'Already has approved legal status in Costa Rica.',
+          'Has an immigration procedure other than the refugee application still pending.',
+          'Can qualify for an ordinary category (for example, through a family connection or another applicable route).',
+          'Does not meet the required nationality, dates, or continuous stay.',
+        ] },
+        { type: 'p', text: "Don't decide based on speed alone: switching immigration routes can affect an existing procedure. Before filing the application, it is advisable to review the case file, immigration movements, and other available ordinary options." },
+
         { type: 'h2', text: 'What benefits does it offer?' },
         { type: 'p', text: 'Approval of the Complementary Special Temporary Category allows the person to:' },
         { type: 'ul', items: [
@@ -219,6 +243,7 @@ export const guideContent = {
         { type: 'h3', text: '1. Affiliation and withdrawal form' },
         { type: 'p', text: 'The specific form established by Immigration for this category must be used.' },
         { type: 'warning', text: 'NO REFUGEE STATUS WITHDRAWAL IS FILED' },
+        { type: 'p', text: "The case is different for someone who had another immigration procedure pending (not the refugee application) and wanted to withdraw it in order to apply for the CETC: Circular DG-026-08-2026 only recognized withdrawals filed before September 1, 2026 as valid. Withdrawals filed after that date do not enable the CETC." },
 
         { type: 'h3', text: '2. Sworn birth statement' },
         { type: 'p', text: 'A sworn statement using the authorized form, when applicable.' },
@@ -231,7 +256,9 @@ export const guideContent = {
         { type: 'h3', text: '3. Criminal record certification' },
         { type: 'p', text: 'A certification from the country of origin or from the countries where the person has resided during the last three years must be submitted.' },
         { type: 'p', text: 'When the document comes from abroad, it must meet the applicable apostille or legalization formalities. If a certification from a country other than the country of origin is submitted, it may also be necessary to show that the person resided legally in that territory.' },
-        { type: 'update', label: 'Update', text: 'People who have remained under a pending Refugee Status application — one that has not yet been resolved — who still hold a valid refugee-applicant ID card, who have not left Costa Rica, and who have remained in this situation for a period of three years, are allowed to submit Costa Rica\'s Criminal Record Certificate, issued by the Judicial Archive of the Judicial Branch (Poder Judicial), popularly known as the "Hoja de Delincuencia" (criminal record sheet).' },
+        { type: 'update', label: 'Update', text: 'People who have remained under a pending Refugee Status application — one that has not yet been resolved — who still hold a valid refugee-applicant ID card, who have not left Costa Rica, and who have remained in this situation for a period of three years, are allowed to submit Costa Rica\'s Criminal Record Certificate, issued by the Judicial Archive of the Judicial Branch (Poder Judicial), popularly known as the "Hoja de Delincuencia" (criminal record sheet). This Costa Rican certificate must be no more than three months old. This exception does not apply if the refugee application has already been denied with a final decision.' },
+        { type: 'p', text: 'Minors are not required to submit the criminal record certification.' },
+        { type: 'p', text: "As indicated by the DGME in an informational video, nationals of Cuba may request this certificate directly from the Cuban Consulate in Costa Rica, without needing to have it authenticated at the Ministry of Foreign Affairs or in another country." },
 
         { type: 'h3', text: '4. Identity document' },
         { type: 'p', text: 'The following may be submitted:' },
@@ -259,6 +286,7 @@ export const guideContent = {
 
         { type: 'h2', text: 'What happens if documents are missing?' },
         { type: 'warning', text: 'If the application is incomplete, IT WILL BE REJECTED.' },
+        { type: 'p', text: 'The General Directorate of Migration and Immigration is not required to give the person a chance to complete missing documents: the rejection happens on the spot, and that decision cannot be appealed.' },
         { type: 'p', text: 'For this reason, it is not advisable to go to the appointment without having first checked the validity, apostille, legalization, and content of each document.' },
 
         { type: 'h2', text: 'How is the appointment requested?' },
