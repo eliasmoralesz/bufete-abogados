@@ -13,6 +13,19 @@ import 'aos/dist/aos.css';
 
 function App() {
   useEffect(() => {
+    // scripts/prerender.mjs inyecta este <style> en <head> para que los
+    // crawlers sin JavaScript vean el contenido siempre visible (sin
+    // animación) en el HTML estático. El problema: al vivir en <head> y no
+    // dentro de #root, createRoot().render() nunca lo reemplaza -- se queda
+    // pegado para siempre con !important, anulando TODAS las animaciones
+    // AOS del sitio incluso para usuarios reales con JavaScript. Elias lo
+    // notó ("las animaciones ya no existen mientras hago scroll") y esta es
+    // la causa real: nada se borró, era este bug latente del prerender.
+    // Quitarlo aquí, apenas monta React, restaura el comportamiento normal
+    // para cualquiera con JS -- los crawlers sin JS siguen viendo el HTML
+    // estático (con la etiqueta intacta) tal como antes.
+    document.querySelector('style[data-prerender-override]')?.remove();
+
     AOS.init({
       duration: 1000, // duración de la animación en milisegundos
       once: false,    // ❗ hace que la animación se repita cada vez que entra en pantalla
