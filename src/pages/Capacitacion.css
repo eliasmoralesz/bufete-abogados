@@ -195,6 +195,15 @@
 
 .capacitacion-viewer {
   min-height: 300px;
+  /* min-width:0 -- por defecto, una celda de grid no se encoge más allá
+     del tamaño mínimo de su contenido ("min-width: auto" implícito). El
+     documento (canvas) ahora puede pedir más ancho del que cabe a
+     propósito (Elias pidió más zoom, aceptando scroll horizontal en
+     mobile) -- sin este min-width:0, ese ancho se "filtraba" hacia
+     arriba y empujaba TODA la página (incluido el título) más ancha que
+     la pantalla, en vez de quedarse contenido con scroll dentro del
+     recuadro del visor (overflow:auto en SecurePdfViewer.css). */
+  min-width: 0;
 }
 
 @media (max-width: 720px) {
