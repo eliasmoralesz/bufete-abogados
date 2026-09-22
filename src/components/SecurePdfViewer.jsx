@@ -97,38 +97,26 @@ const SecurePdfViewer = ({ url }) => {
       if (!canvas) return;
       const containerWidth = canvas.parentElement.clientWidth;
       const baseViewport = page.getViewport({ scale: 1 });
-      const dpr = window.devicePixelRatio || 1;
-      // Elias pidió explícitamente MÁS zoom, tanto en desktop como en
-      // mobile, aceptando que los botones "Anterior/Siguiente" queden
-      // fuera de la pantalla (hay que bajar con scroll normal de la
-      // página -- ya no hay caja con scroll interno, ver altura
-      // automática en el CSS) y que en mobile el documento sea más ancho
-      // que la pantalla (hay que deslizar hacia los lados -- touch-action
-      // ya lo permite). Por eso ya no se limita al ancho del contenedor:
-      // se pide 1.8x ese tamaño de entrada.
-      //
-      // El único tope real es de SEGURIDAD, no de gusto: en mobile, al
-      // probar un zoom manual más agresivo, el canvas en píxeles físicos
-      // (ancho/alto × devicePixelRatio) superó el límite que soporta
-      // Safari en iOS y el render salió corrupto (Elias lo reportó con
-      // captura -- veía contenido de otra pestaña metido en el documento).
-      // El límite real de Safari es por ÁREA física del canvas, así que en
-      // vez de adivinar un porcentaje de zoom "seguro" por plataforma, se
-      // calcula el ancho×alto en píxeles físicos y, si se pasa del margen
-      // seguro, se reduce la escala lo justo para volver a entrar -- esto
-      // se ajusta solo sin importar el devicePixelRatio o la proporción
-      // del documento.
-      const SAFE_CANVAS_AREA_PX = 15_000_000; // margen bajo el límite ~16.7M de iOS Safari
-      let fitScale = Math.min(4, (containerWidth / baseViewport.width) * 1.8);
-      const physicalArea = baseViewport.width * fitScale * dpr * (baseViewport.height * fitScale * dpr);
-      if (physicalArea > SAFE_CANVAS_AREA_PX) {
-        fitScale *= Math.sqrt(SAFE_CANVAS_AREA_PX / physicalArea);
-      }
+      // Tamaño "ajustado": se limita por ancho Y por alto, para que en
+      // documentos con páginas verticales (carta/A4) el render no quede
+      // más alto que la pantalla y tape los botones "Anterior/Siguiente"
+      // -- Elias lo reportó con captura. En páginas horizontales (como la
+      // guía CETC, diapositivas) el límite de ancho gana primero, así que
+      // ese documento en particular casi no cambia (era el único que le
+      // preocupaba mantener grande).
+      // 0.66 (no 0.6) -- sin botones de zoom, este es el único tamaño que
+      // se va a ver, así que se sube un poco respecto al valor original
+      // para que se lea mejor de entrada.
+      const availableHeight = Math.max(320, window.innerHeight * 0.66);
+      const scaleByWidth = containerWidth / baseViewport.width;
+      const scaleByHeight = availableHeight / baseViewport.height;
+      const fitScale = Math.min(2, scaleByWidth, scaleByHeight);
       const viewport = page.getViewport({ scale: fitScale });
 
       const context = canvas.getContext('2d');
       // devicePixelRatio: nitidez en pantallas retina/celulares, que es
       // exactamente el tipo de pantalla que van a usar los 40 asistentes.
+      const dpr = window.devicePixelRatio || 1;
       canvas.width = viewport.width * dpr;
       canvas.height = viewport.height * dpr;
       canvas.style.width = `${viewport.width}px`;

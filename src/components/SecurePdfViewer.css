@@ -12,23 +12,14 @@
      de afuera (que ahora crece con vw hasta 1800px). Estos documentos
      suelen ser diapositivas horizontales, se benefician de más ancho. */
   max-width: 1500px;
-  /* Alto automático (ya no hay tope fijo) -- Elias pidió más zoom y
-     aceptó explícitamente que el documento sea más alto que la pantalla:
-     la página se desplaza normal (scroll de toda la página, no una caja
-     aparte) para llegar a los botones "Anterior/Siguiente" de abajo. El
-     ancho SÍ puede pasarse del contenedor (fitScale en el JSX pide más
-     zoom del que entra a lo ancho) -- overflow:auto deja deslizar hacia
-     los lados en vez de romper el layout de la página (ver
-     touch-action:pan-x abajo). */
-  min-height: 320px;
+  /* Alto FIJO (no solo un mínimo) -- el mismo valor que usa
+     SecurePdfViewer.jsx para "ajustar a pantalla" (Math.max(320,
+     innerHeight*0.66)). No hay zoom manual, así que el canvas nunca
+     debería pasarse de este alto/ancho (fitScale en el JSX ya lo calcula
+     para que quepa) -- overflow:auto queda solo como red de seguridad. */
+  height: max(320px, 66vh);
   display: flex;
-  /* flex-start (no center) -- con overflow:auto, un contenido centrado
-     que se pasa del ancho del contenedor solo deja hacer scroll hacia UN
-     lado en la mayoría de navegadores (el otro lado queda recortado sin
-     forma de llegar a él); con flex-start el documento arranca pegado a
-     la izquierda y se puede deslizar hasta ver el borde derecho
-     completo. */
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   overflow: auto;
   background: #f4f2ec;
