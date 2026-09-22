@@ -98,31 +98,25 @@ const SecurePdfViewer = ({ url }) => {
       const containerWidth = canvas.parentElement.clientWidth;
       const baseViewport = page.getViewport({ scale: 1 });
       const dpr = window.devicePixelRatio || 1;
-      // Tamaño "ajustado": se limita por ancho Y por alto, para que en
-      // documentos con páginas verticales (carta/A4) el render no quede
-      // más alto que la pantalla y tape los botones "Anterior/Siguiente"
-      // -- Elias lo reportó con captura. En páginas horizontales (como la
-      // guía CETC, diapositivas) el límite de ancho gana primero, así que
-      // ese documento en particular casi no cambia (era el único que le
-      // preocupaba mantener grande).
-      // 0.70 (no 0.66) -- Elias pidió más tamaño en desktop; se sube en
-      // pasos moderados sobre el mismo esquema centrado/contenido (no el
-      // "más zoom" de antes, que rompía el layout).
-      const availableHeight = Math.max(320, window.innerHeight * 0.7);
+      // Tamaño "ajustado": se limita SOLO por ancho (llena el
+      // contenedor), sin tope de alto -- Elias pidió explícitamente más
+      // tamaño en desktop, aceptando que el documento sea más alto que la
+      // pantalla y que los botones "Anterior/Siguiente" queden fuera de
+      // la pantalla (se llega con scroll normal de la página, vertical).
+      // El ancho SIEMPRE se queda dentro del contenedor en desktop -- por
+      // eso el documento se mantiene centrado (justify-content:center en
+      // el CSS) sin importar cuánto crezca en alto.
       const scaleByWidth = containerWidth / baseViewport.width;
-      const scaleByHeight = availableHeight / baseViewport.height;
-      let fitScale = Math.min(2, scaleByWidth, scaleByHeight);
+      let fitScale = Math.min(2, scaleByWidth);
       // En mobile (<=720px, mismo corte que el resto de la página) Elias
       // pidió más legibilidad y aceptó explícitamente que el documento se
       // salga del ancho de la pantalla, con scroll horizontal dentro del
       // recuadro -- 1.35x el ancho del contenedor en vez de ajustarse
       // exacto (el recuadro tiene overflow:auto, ver CSS, y
       // .capacitacion-viewer tiene min-width:0 para que ese ancho "de
-      // más" no empuje toda la página -- ver Capacitacion.css). En
-      // desktop esto NO aplica: ahí el documento nunca se sale del
-      // contenedor, se queda centrado como hasta ahora.
+      // más" no empuje toda la página -- ver Capacitacion.css).
       if (window.innerWidth <= 720) {
-        fitScale = Math.min(2, scaleByWidth * 1.35, scaleByHeight);
+        fitScale = Math.min(2, scaleByWidth * 1.35);
       }
       // Tope de seguridad por ÁREA física del canvas (ancho × alto ×
       // devicePixelRatio al cuadrado): en vez de adivinar un porcentaje
