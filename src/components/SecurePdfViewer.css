@@ -8,11 +8,10 @@
 .secure-pdf-canvas-wrap {
   position: relative;
   width: 100%;
-  /* Antes 760px -- era el verdadero límite que hacía ver el PDF chico en
-     desktop (el contenedor de afuera ya tenía espacio de sobra, pero el
-     canvas no lo aprovechaba). Estos documentos suelen ser diapositivas
-     horizontales, se benefician de más ancho, no menos. */
-  max-width: 1100px;
+  /* Antes 760px, luego 1100px -- seguía topando antes que el contenedor
+     de afuera (que ahora crece con vw hasta 1800px). Estos documentos
+     suelen ser diapositivas horizontales, se benefician de más ancho. */
+  max-width: 1500px;
   min-height: 200px;
   display: flex;
   justify-content: center;

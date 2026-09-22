@@ -13,12 +13,12 @@
 }
 
 .capacitacion-container {
-  width: 100%;
-  /* Más ancho que otras páginas de contenido (Blog usa 900px): acá el
-     contenido real es un visor de PDF -- normalmente diapositivas en
-     horizontal -- que se ve chico/apretado en una columna angosta. Elias
-     lo notó en desktop ("se ve super pequeño"). */
-  max-width: 1200px;
+  /* Antes un max-width fijo (1200px) -- en un monitor grande/ancho
+     (Elias probó en uno bien grande) eso seguía viéndose como una
+     tarjeta chica flotando en medio de mucho azul vacío. Con vw en vez
+     de un tope fijo, la página crece junto con la pantalla real en vez
+     de topar en un valor arbitrario. */
+  width: min(94vw, 1800px);
 }
 
 .capacitacion-eyebrow {

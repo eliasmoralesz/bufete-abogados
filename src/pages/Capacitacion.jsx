@@ -93,7 +93,7 @@ const Capacitacion = () => {
       <main id="main-content" tabIndex={-1} className="capacitacion-section">
         <div className="capacitacion-container">
           {!unlocked ? (
-            <div className="capacitacion-gate" data-aos="fade-up">
+            <div className="capacitacion-gate">
               <span className="capacitacion-eyebrow">Acceso privado</span>
               <h1>Materiales de la capacitación</h1>
               <p>Ingrese el usuario y la contraseña que se le compartieron para ver los documentos.</p>
@@ -126,7 +126,7 @@ const Capacitacion = () => {
               </form>
             </div>
           ) : (
-            <div className="capacitacion-content" data-aos="fade-up">
+            <div className="capacitacion-content">
               <span className="capacitacion-eyebrow">Capacitación municipal</span>
               <h1>Materiales de la capacitación</h1>
               <p className="capacitacion-intro">
