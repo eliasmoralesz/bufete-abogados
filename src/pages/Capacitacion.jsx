@@ -65,6 +65,27 @@ const Capacitacion = () => {
     setCheckingSession(false);
   }, []);
 
+  // Bloquea el pellizcar-para-zoom NATIVO de Safari en TODA esta página
+  // (no solo dentro del visor). El touch-action:pan-x pan-y del canvas
+  // (ver SecurePdfViewer.css) no alcanza -- en iOS Safari real el zoom de
+  // página lo controla la etiqueta <meta name="viewport">, no touch-action.
+  // Elias probó en su celular real y el pellizcar zoomeaba TODA la página
+  // (título, lista de documentos, etc. se veían cortados/desalineados,
+  // no solo el documento) en vez de usar los botones +/- propios. Se
+  // restaura el viewport original al salir de esta página (no se toca en
+  // el resto del sitio). Con esto, la única forma de acercar acá es
+  // nuestro control +/-.
+  useEffect(() => {
+    const meta = document.querySelector('meta[name="viewport"]');
+    const original = meta?.getAttribute('content');
+    if (meta) {
+      meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+    }
+    return () => {
+      if (meta && original) meta.setAttribute('content', original);
+    };
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);

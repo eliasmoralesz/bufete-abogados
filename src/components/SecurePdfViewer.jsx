@@ -24,6 +24,7 @@ const ZOOM_STEP = 0.25;
 // pantalla, no algo que se pueda arreglar con código.
 const SecurePdfViewer = ({ url }) => {
   const canvasRef = useRef(null);
+  const wrapRef = useRef(null);
   const touchStartRef = useRef(null);
   // Referencia a la "render task" de pdf.js en curso (si hay alguna). Vive
   // en un ref, no en una variable local del efecto, porque .cancel() es
@@ -221,6 +222,26 @@ const SecurePdfViewer = ({ url }) => {
     else goPrev();
   };
 
+  // Refuerzo extra contra el pellizcar-para-zoom nativo en iOS Safari,
+  // encima del meta viewport que ya lo bloquea a nivel de toda la página
+  // (ver Capacitacion.jsx) y de touch-action (CSS). "gesturestart" es un
+  // evento propio de WebKit que dispara ANTES que el zoom nativo tome el
+  // gesto -- cancelarlo (con addEventListener no-pasivo, no se puede con
+  // los props on* de React) es la forma más confiable de asegurar que el
+  // pellizcar nunca zoomee la página, ni siquiera en versiones viejas de
+  // Safari que no respeten bien el meta viewport.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return undefined;
+    const preventGesture = (e) => e.preventDefault();
+    el.addEventListener('gesturestart', preventGesture);
+    el.addEventListener('gesturechange', preventGesture);
+    return () => {
+      el.removeEventListener('gesturestart', preventGesture);
+      el.removeEventListener('gesturechange', preventGesture);
+    };
+  }, []);
+
   if (status === 'error') {
     return <p className="secure-pdf-error">No se pudo cargar el documento. Intente de nuevo más tarde.</p>;
   }
@@ -240,6 +261,7 @@ const SecurePdfViewer = ({ url }) => {
       )}
 
       <div
+        ref={wrapRef}
         className="secure-pdf-canvas-wrap"
         onContextMenu={(e) => e.preventDefault()}
         onTouchStart={handleTouchStart}
