@@ -12,13 +12,29 @@
      de afuera (que ahora crece con vw hasta 1800px). Estos documentos
      suelen ser diapositivas horizontales, se benefician de más ancho. */
   max-width: 1500px;
-  min-height: 200px;
+  /* Alto FIJO (no solo un mínimo) -- el mismo valor que usa
+     SecurePdfViewer.jsx para "ajustar a pantalla" (Math.max(320,
+     innerHeight*0.6)). Con zoom, el canvas puede quedar más grande que
+     este alto/ancho a propósito -- overflow:auto deja que el contenedor
+     scrollee internamente en vez de recortar el documento o volver a
+     achicarlo (que era lo que hacía max-width:100% en .secure-pdf-canvas
+     antes -- por eso se quitó de ahí). */
+  height: max(320px, 60vh);
   display: flex;
   justify-content: center;
+  align-items: center;
+  overflow: auto;
   background: #f4f2ec;
   border: 1px solid #e2dfd4;
   border-radius: 4px;
-  overflow: hidden;
+  /* pan-x/pan-y permiten recorrer con el dedo un documento acercado
+     (scroll normal), pero NO incluyen zoom -- así se desactiva el
+     pellizcar-para-zoom y el doble-tap-para-zoom nativos del navegador
+     en el documento. Elias reportó que el zoom nativo en el celular
+     chocaba con el gesto de deslizar (le cambiaba de diapositiva sin
+     querer) -- con esto, la única forma de acercar son los botones +/-
+     de arriba, que no tienen ese conflicto. */
+  touch-action: pan-x pan-y;
   /* Sin selección de texto/imagen dentro del visor -- refuerza lo que ya
      logra el canvas (que no tiene texto real que seleccionar), y evita el
      resaltado azul feo si alguien arrastra el mouse sobre la página. */
@@ -28,9 +44,48 @@
 
 .secure-pdf-canvas {
   display: block;
-  max-width: 100%;
-  height: auto;
+  flex-shrink: 0;
   pointer-events: none; /* sin arrastrar/soltar la imagen del canvas */
+}
+
+/* Controles de zoom propios -- ver el comentario largo en
+   SecurePdfViewer.jsx sobre por qué no se usa el pellizcar-para-zoom
+   nativo del navegador. */
+.secure-pdf-zoom-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.secure-pdf-zoom-bar span {
+  min-width: 42px;
+  text-align: center;
+}
+
+.secure-pdf-zoom-bar button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #d6d2c4;
+  background: #fff;
+  color: #0a1f44;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.secure-pdf-zoom-bar button:hover:not(:disabled) {
+  background: #f4f2ec;
+}
+
+.secure-pdf-zoom-bar button:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 .secure-pdf-loading {
