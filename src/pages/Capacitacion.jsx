@@ -35,6 +35,8 @@ const SESSION_KEY = 'documento-capacitacion-acceso';
 // documentos adentro, en vez de un sub-link por documento).
 const DOCUMENTS = [
   { title: 'Categoría Especial Temporal Complementaria (CETC) — Guía práctica', file: '/capacitacion/cetc-guia-practica-k7m2.pdf' },
+  { title: 'Procedimientos Migratorios y Movilidad Forzada (Módulos 1 y 4)', file: '/capacitacion/procedimientos-movilidad-m4t9.pdf' },
+  { title: 'Formularios de la CETC', file: '/capacitacion/formularios-cetc-v3q8.pdf' },
 ];
 
 async function sha256Hex(text) {
