@@ -128,8 +128,7 @@ const Capacitacion = () => {
               <span className="capacitacion-eyebrow">Capacitación municipal</span>
               <h1>Materiales de la capacitación</h1>
               <p className="capacitacion-intro">
-                Documentos preparados por el Lic. Daguer Hernández para la capacitación a funcionarios
-                municipales. Solo se pueden ver en esta página, no se pueden descargar.
+                Documentos preparados por el Lic. Daguer Hernández para esta capacitación.
               </p>
 
               {DOCUMENTS.length === 0 ? (
