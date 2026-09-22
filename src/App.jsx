@@ -5,6 +5,7 @@ import AboutDetails from './components/AboutDetails'; // Ruta corregida
 import Blog from './pages/Blog';
 import BlogArticle from './pages/BlogArticle';
 import GuidePage from './pages/GuidePage';
+import Capacitacion from './pages/Capacitacion';
 import { GUIDE_PATHS } from './content/migrationGuides';
 import WhatsAppButton from './components/WhatsAppButton';
 import SkipLink from './components/SkipLink';
@@ -52,6 +53,13 @@ function App() {
         <Route path={GUIDE_PATHS.residency.en} element={<GuidePage guideKey="residency" lang="en" />} />
         <Route path={GUIDE_PATHS.naturalization.en} element={<GuidePage guideKey="naturalization" lang="en" />} />
         <Route path={GUIDE_PATHS.refuge.en} element={<GuidePage guideKey="refuge" lang="en" />} />
+
+        {/* Página privada de capacitación municipal (Upala/La Cruz) --
+            a propósito NO está en public/sitemap.xml ni enlazada desde
+            ningún menú/nav. Ver src/pages/Capacitacion.jsx para el porqué
+            de cada capa de protección. */}
+        <Route path="/documento" element={<Capacitacion />} />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <WhatsAppButton />
