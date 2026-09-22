@@ -114,6 +114,17 @@
     height: 38px;
     font-size: 1.1rem;
   }
+
+  /* flex-start (no center) -- en mobile el documento ahora puede pasarse
+     del ancho a propósito (más legible, ver fitScale en
+     SecurePdfViewer.jsx). Con contenido centrado, overflow:auto solo deja
+     hacer scroll hacia UN lado en la mayoría de navegadores (bug conocido
+     de flexbox); con flex-start arranca pegado a la izquierda y se puede
+     deslizar hasta ver el borde derecho completo. En desktop no hace
+     falta -- ahí el documento nunca se sale del contenedor. */
+  .secure-pdf-canvas-wrap {
+    justify-content: flex-start;
+  }
 }
 
 .secure-pdf-nav {

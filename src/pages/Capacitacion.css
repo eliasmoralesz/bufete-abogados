@@ -195,6 +195,15 @@
 
 .capacitacion-viewer {
   min-height: 300px;
+  /* min-width:0 -- por defecto, una celda de grid no se encoge más allá
+     del tamaño mínimo de su contenido ("min-width: auto" implícito). En
+     mobile el documento (canvas) ahora puede pedir más ancho del que
+     cabe a propósito (Elias aceptó scroll horizontal para que se lea más
+     grande) -- sin este min-width:0, ese ancho "de más" se filtraba hacia
+     arriba y empujaba TODA la página (incluido el título) más ancha que
+     la pantalla, en vez de quedarse contenido con scroll dentro del
+     recuadro del visor (overflow:auto en SecurePdfViewer.css). */
+  min-width: 0;
 }
 
 @media (max-width: 720px) {
@@ -206,8 +215,17 @@
     padding: 34px 22px;
   }
 
+  /* 12px (no 18px) -- Elias pidió ganar espacio en mobile para que el
+     documento se lea más grande; menos aire alrededor de la tarjeta le
+     da más ancho real al visor. */
   .capacitacion-content {
-    padding: 30px 18px;
+    padding: 30px 12px;
+  }
+
+  /* 97vw (no 94vw, el valor de escritorio) -- mismo motivo: ganar ancho
+     real para el visor en mobile. */
+  .capacitacion-container {
+    width: 97vw;
   }
 
   .capacitacion-layout {

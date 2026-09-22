@@ -97,6 +97,7 @@ const SecurePdfViewer = ({ url }) => {
       if (!canvas) return;
       const containerWidth = canvas.parentElement.clientWidth;
       const baseViewport = page.getViewport({ scale: 1 });
+      const dpr = window.devicePixelRatio || 1;
       // Tamaño "ajustado": se limita por ancho Y por alto, para que en
       // documentos con páginas verticales (carta/A4) el render no quede
       // más alto que la pantalla y tape los botones "Anterior/Siguiente"
@@ -104,19 +105,40 @@ const SecurePdfViewer = ({ url }) => {
       // guía CETC, diapositivas) el límite de ancho gana primero, así que
       // ese documento en particular casi no cambia (era el único que le
       // preocupaba mantener grande).
-      // 0.70 (no 0.66) -- Elias pidió un poco más de tamaño otra vez;
-      // se sube en pasos moderados sobre el mismo esquema centrado/
-      // contenido (no el "más zoom" de antes, que rompía el layout).
+      // 0.70 (no 0.66) -- Elias pidió más tamaño en desktop; se sube en
+      // pasos moderados sobre el mismo esquema centrado/contenido (no el
+      // "más zoom" de antes, que rompía el layout).
       const availableHeight = Math.max(320, window.innerHeight * 0.7);
       const scaleByWidth = containerWidth / baseViewport.width;
       const scaleByHeight = availableHeight / baseViewport.height;
-      const fitScale = Math.min(2, scaleByWidth, scaleByHeight);
+      let fitScale = Math.min(2, scaleByWidth, scaleByHeight);
+      // En mobile (<=720px, mismo corte que el resto de la página) Elias
+      // pidió más legibilidad y aceptó explícitamente que el documento se
+      // salga del ancho de la pantalla, con scroll horizontal dentro del
+      // recuadro -- 1.35x el ancho del contenedor en vez de ajustarse
+      // exacto (el recuadro tiene overflow:auto, ver CSS, y
+      // .capacitacion-viewer tiene min-width:0 para que ese ancho "de
+      // más" no empuje toda la página -- ver Capacitacion.css). En
+      // desktop esto NO aplica: ahí el documento nunca se sale del
+      // contenedor, se queda centrado como hasta ahora.
+      if (window.innerWidth <= 720) {
+        fitScale = Math.min(2, scaleByWidth * 1.35, scaleByHeight);
+      }
+      // Tope de seguridad por ÁREA física del canvas (ancho × alto ×
+      // devicePixelRatio al cuadrado): en vez de adivinar un porcentaje
+      // de zoom "seguro", se calcula el área real en píxeles y, si se
+      // pasa de un margen prudente, se reduce la escala lo justo para
+      // volver a entrar. Se ajusta solo sin importar el dispositivo.
+      const SAFE_CANVAS_AREA_PX = 15_000_000;
+      const physicalArea = baseViewport.width * fitScale * dpr * (baseViewport.height * fitScale * dpr);
+      if (physicalArea > SAFE_CANVAS_AREA_PX) {
+        fitScale *= Math.sqrt(SAFE_CANVAS_AREA_PX / physicalArea);
+      }
       const viewport = page.getViewport({ scale: fitScale });
 
       const context = canvas.getContext('2d');
       // devicePixelRatio: nitidez en pantallas retina/celulares, que es
       // exactamente el tipo de pantalla que van a usar los 40 asistentes.
-      const dpr = window.devicePixelRatio || 1;
       canvas.width = viewport.width * dpr;
       canvas.height = viewport.height * dpr;
       canvas.style.width = `${viewport.width}px`;
@@ -179,13 +201,20 @@ const SecurePdfViewer = ({ url }) => {
   }, [numPages, goPrev, goNext]);
 
   // Deslizar en mobile -- mismo comportamiento que las flechas de teclado.
+  // En mobile el documento ahora puede ser más ancho que el recuadro (ver
+  // fitScale en el efecto de arriba), así que un deslizar horizontal
+  // puede significar dos cosas distintas: "recorrer el documento hacia el
+  // lado" (scroll nativo del recuadro, vía touch-action:pan-x) o "quiero
+  // la página siguiente". Se distinguen comparando el scrollLeft del
+  // recuadro antes y después del gesto -- si el recuadro se movió, fue un
+  // pan, no un cambio de página.
   const handleTouchStart = (e) => {
     if (e.touches.length > 1) {
       touchStartRef.current = null;
       return;
     }
     const t = e.touches[0];
-    touchStartRef.current = { x: t.clientX, y: t.clientY };
+    touchStartRef.current = { x: t.clientX, y: t.clientY, scrollLeft: wrapRef.current?.scrollLeft ?? 0 };
   };
 
   const handleTouchEnd = (e) => {
@@ -194,7 +223,9 @@ const SecurePdfViewer = ({ url }) => {
     const t = e.changedTouches[0];
     const dx = t.clientX - start.x;
     const dy = t.clientY - start.y;
+    const scrollLeftMoved = Math.abs((wrapRef.current?.scrollLeft ?? 0) - start.scrollLeft) > 5;
     touchStartRef.current = null;
+    if (scrollLeftMoved) return;
     if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
     if (dx < 0) goNext();
     else goPrev();
