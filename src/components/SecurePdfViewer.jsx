@@ -109,14 +109,14 @@ const SecurePdfViewer = ({ url }) => {
       const scaleByWidth = containerWidth / baseViewport.width;
       let fitScale = Math.min(2, scaleByWidth);
       // En mobile (<=720px, mismo corte que el resto de la página) Elias
-      // pidió más legibilidad y aceptó explícitamente que el documento se
-      // salga del ancho de la pantalla, con scroll horizontal dentro del
-      // recuadro -- 1.35x el ancho del contenedor en vez de ajustarse
-      // exacto (el recuadro tiene overflow:auto, ver CSS, y
+      // pidió más legibilidad todavía, otra vez, y aceptó que se pierda
+      // el deslizar-para-cambiar-de-página con tal de que el texto se
+      // vea grande -- 1.7x (antes 1.35x) el ancho del contenedor, con
+      // scroll horizontal dentro del recuadro (overflow:auto, ver CSS, y
       // .capacitacion-viewer tiene min-width:0 para que ese ancho "de
       // más" no empuje toda la página -- ver Capacitacion.css).
       if (window.innerWidth <= 720) {
-        fitScale = Math.min(2, scaleByWidth * 1.35);
+        fitScale = Math.min(2, scaleByWidth * 1.7);
       }
       // Tope de seguridad por ÁREA física del canvas (ancho × alto ×
       // devicePixelRatio al cuadrado): en vez de adivinar un porcentaje
