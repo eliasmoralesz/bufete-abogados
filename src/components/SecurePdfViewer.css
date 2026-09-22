@@ -48,6 +48,59 @@
   font-family: 'Lato', sans-serif;
 }
 
+/* Flechas superpuestas a los lados del documento -- Elias pidió una forma
+   de avanzar sin tener que hacer scroll hasta los botones de abajo. Como
+   el canvas ahora también tiene tope de alto (ver SecurePdfViewer.jsx),
+   siempre cabe dentro de una altura razonable de pantalla, así que un
+   simple position:absolute centrado en el propio contenedor alcanza --
+   no hace falta la complejidad de position:fixed/sticky calculado por JS
+   que se probó antes. Mismo goPrev/goNext que el teclado y el deslizar
+   en mobile. */
+.secure-pdf-side-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(10, 31, 68, 0.55);
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  z-index: 2;
+}
+
+.secure-pdf-side-arrow:hover:not(:disabled) {
+  background: rgba(10, 31, 68, 0.85);
+}
+
+.secure-pdf-side-arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.secure-pdf-side-arrow-left {
+  left: 12px;
+}
+
+.secure-pdf-side-arrow-right {
+  right: 12px;
+}
+
+@media (max-width: 720px) {
+  .secure-pdf-side-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+}
+
 .secure-pdf-nav {
   display: flex;
   align-items: center;
