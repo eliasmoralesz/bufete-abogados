@@ -14,7 +14,11 @@
 
 .capacitacion-container {
   width: 100%;
-  max-width: 900px;
+  /* Más ancho que otras páginas de contenido (Blog usa 900px): acá el
+     contenido real es un visor de PDF -- normalmente diapositivas en
+     horizontal -- que se ve chico/apretado en una columna angosta. Elias
+     lo notó en desktop ("se ve super pequeño"). */
+  max-width: 1200px;
 }
 
 .capacitacion-eyebrow {
