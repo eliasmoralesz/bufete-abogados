@@ -71,10 +71,12 @@ const Capacitacion = () => {
   // página lo controla la etiqueta <meta name="viewport">, no touch-action.
   // Elias probó en su celular real y el pellizcar zoomeaba TODA la página
   // (título, lista de documentos, etc. se veían cortados/desalineados,
-  // no solo el documento) en vez de usar los botones +/- propios. Se
+  // no solo el documento). No hay un control de zoom propio que lo
+  // reemplace (se probó y se quitó -- ver nota en SecurePdfViewer.jsx):
+  // acá simplemente no se puede hacer zoom, a propósito, porque pellizcar
+  // se confundía con el gesto de deslizar para cambiar de página. Se
   // restaura el viewport original al salir de esta página (no se toca en
-  // el resto del sitio). Con esto, la única forma de acercar acá es
-  // nuestro control +/-.
+  // el resto del sitio).
   useEffect(() => {
     const meta = document.querySelector('meta[name="viewport"]');
     const original = meta?.getAttribute('content');
