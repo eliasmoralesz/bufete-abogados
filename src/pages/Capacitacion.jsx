@@ -96,6 +96,12 @@ const Capacitacion = () => {
     if (userHash === CREDENTIALS_HASH.user && passHash === CREDENTIALS_HASH.pass) {
       sessionStorage.setItem(SESSION_KEY, 'true');
       setUnlocked(true);
+      // Contador anónimo en Google Analytics -- Elias preguntó cuánta gente
+      // había entrado y no había forma de saberlo (sin backend, sin esto).
+      // Solo cuenta el login exitoso, no guarda quién fue (no hay campo de
+      // nombre en el formulario, a propósito -- ver el comentario grande
+      // más arriba sobre por qué el acceso es compartido, no por persona).
+      window.gtag?.('event', 'documento_login_exitoso');
     } else {
       setError('Usuario o contraseña incorrectos.');
     }
