@@ -104,10 +104,10 @@ const SecurePdfViewer = ({ url }) => {
       // guía CETC, diapositivas) el límite de ancho gana primero, así que
       // ese documento en particular casi no cambia (era el único que le
       // preocupaba mantener grande).
-      // 0.66 (no 0.6) -- sin botones de zoom, este es el único tamaño que
-      // se va a ver, así que se sube un poco respecto al valor original
-      // para que se lea mejor de entrada.
-      const availableHeight = Math.max(320, window.innerHeight * 0.66);
+      // 0.70 (no 0.66) -- Elias pidió un poco más de tamaño otra vez;
+      // se sube en pasos moderados sobre el mismo esquema centrado/
+      // contenido (no el "más zoom" de antes, que rompía el layout).
+      const availableHeight = Math.max(320, window.innerHeight * 0.7);
       const scaleByWidth = containerWidth / baseViewport.width;
       const scaleByHeight = availableHeight / baseViewport.height;
       const fitScale = Math.min(2, scaleByWidth, scaleByHeight);
