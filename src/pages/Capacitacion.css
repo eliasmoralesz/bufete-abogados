@@ -206,6 +206,32 @@
   min-width: 0;
 }
 
+/* Botón de descarga -- pedido explícito de Daguer (ver comentario en
+   Capacitacion.jsx). Estilo consistente con el resto del sitio: esquinas
+   cuadradas, no pill (ver nota en la memoria del proyecto sobre
+   consistencia de forma de botones). */
+.capacitacion-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  background: #0a1f44;
+  color: #fff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 2px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.capacitacion-download-btn:hover {
+  background-color: #16305f;
+}
+
 @media (max-width: 720px) {
   .capacitacion-section {
     padding: 120px 14px 60px;

@@ -39,6 +39,19 @@ const DOCUMENTS = [
   { title: 'Formularios de la CETC', file: '/capacitacion/formularios-cetc-v3q8.pdf' },
 ];
 
+// Nombre de archivo "bonito" para la descarga -- los archivos reales en
+// public/capacitacion/ llevan un sufijo random a propósito (ver el README
+// de esa carpeta), así que sin esto la gente descargaría algo como
+// "cetc-guia-practica-k7m2.pdf" en vez de un nombre legible.
+function slugifyFilename(title) {
+  return `${title
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase()}.pdf`;
+}
+
 async function sha256Hex(text) {
   const data = new TextEncoder().encode(text.trim().toLowerCase());
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);
@@ -181,7 +194,25 @@ const Capacitacion = () => {
 
                   <div className="capacitacion-viewer">
                     {activeDoc ? (
-                      <SecurePdfViewer url={activeDoc} />
+                      <>
+                        {/* Botón de descarga -- pedido explícito de Daguer.
+                            Contradice a propósito el diseño "solo lectura"
+                            de SecurePdfViewer (canvas sin texto seleccionable,
+                            sin link de descarga) que se construyó antes para
+                            evitar copias -- pero el dueño del contenido lo
+                            pidió, así que la protección anti-copia queda
+                            para cuando alguien NO usa este botón (evita
+                            copiar/pegar texto mientras lee), no para
+                            impedir la descarga completa del PDF. */}
+                        <a
+                          className="capacitacion-download-btn"
+                          href={activeDoc}
+                          download={slugifyFilename(DOCUMENTS.find((doc) => doc.file === activeDoc)?.title || 'documento')}
+                        >
+                          ⬇ Descargar PDF
+                        </a>
+                        <SecurePdfViewer url={activeDoc} />
+                      </>
                     ) : (
                       <p className="capacitacion-empty">Seleccione un documento de la lista para verlo.</p>
                     )}
